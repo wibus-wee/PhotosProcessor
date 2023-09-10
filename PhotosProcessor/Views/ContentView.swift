@@ -8,6 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    init() {
+        // 请求 /System/Library/ColorSync/Profiles 权限
+        let url = URL(fileURLWithPath: "/System/Library/ColorSync/Profiles")
+        let _ = url.startAccessingSecurityScopedResource()
+    }
+    
     var body: some View {
         NavigationView {
             List {
