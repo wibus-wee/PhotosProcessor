@@ -10,6 +10,9 @@
 		38861CEE2AAD679A005DD3B4 /* ListColorProfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38861CED2AAD679A005DD3B4 /* ListColorProfiles.swift */; };
 		38861CF22AADCC4B005DD3B4 /* InternalKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38861CF12AADCC4B005DD3B4 /* InternalKit.swift */; };
 		38861CF42AADD1E7005DD3B4 /* GetImageMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38861CF32AADD1E7005DD3B4 /* GetImageMetadata.swift */; };
+		38F63CA72AAE130C003D7156 /* Compressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F63CA62AAE130C003D7156 /* Compressor.swift */; };
+		38F63CA92AAE1312003D7156 /* ShellRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F63CA82AAE1312003D7156 /* ShellRunner.swift */; };
+		38F63CAD2AAE1A6B003D7156 /* avifenc in Resources */ = {isa = PBXBuildFile; fileRef = 38F63CAA2AAE1A53003D7156 /* avifenc */; };
 		38F893202AAD544D008414D9 /* PhotosProcessorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F8931F2AAD544D008414D9 /* PhotosProcessorApp.swift */; };
 		38F893222AAD544D008414D9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F893212AAD544D008414D9 /* ContentView.swift */; };
 		38F893242AAD544E008414D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38F893232AAD544E008414D9 /* Assets.xcassets */; };
@@ -26,6 +29,9 @@
 		38861CEF2AAD7796005DD3B4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		38861CF12AADCC4B005DD3B4 /* InternalKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalKit.swift; sourceTree = "<group>"; };
 		38861CF32AADD1E7005DD3B4 /* GetImageMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetImageMetadata.swift; sourceTree = "<group>"; };
+		38F63CA62AAE130C003D7156 /* Compressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compressor.swift; sourceTree = "<group>"; };
+		38F63CA82AAE1312003D7156 /* ShellRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellRunner.swift; sourceTree = "<group>"; };
+		38F63CAA2AAE1A53003D7156 /* avifenc */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = avifenc; sourceTree = "<group>"; };
 		38F8931C2AAD544D008414D9 /* PhotosProcessor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotosProcessor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38F8931F2AAD544D008414D9 /* PhotosProcessorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosProcessorApp.swift; sourceTree = "<group>"; };
 		38F893212AAD544D008414D9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,13 +78,24 @@
 			isa = PBXGroup;
 			children = (
 				38861CF12AADCC4B005DD3B4 /* InternalKit.swift */,
+				38F63CA62AAE130C003D7156 /* Compressor.swift */,
+				38F63CA82AAE1312003D7156 /* ShellRunner.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		38F63CAC2AAE1A61003D7156 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				38F63CAA2AAE1A53003D7156 /* avifenc */,
+			);
+			path = bin;
 			sourceTree = "<group>";
 		};
 		38F893132AAD544D008414D9 = {
 			isa = PBXGroup;
 			children = (
+				38F63CAC2AAE1A61003D7156 /* bin */,
 				38861CEF2AAD7796005DD3B4 /* README.md */,
 				38F8931E2AAD544D008414D9 /* PhotosProcessor */,
 				38F8931D2AAD544D008414D9 /* Products */,
@@ -185,6 +202,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38F63CAD2AAE1A6B003D7156 /* avifenc in Resources */,
 				38F893282AAD544E008414D9 /* Preview Assets.xcassets in Resources */,
 				38F893242AAD544E008414D9 /* Assets.xcassets in Resources */,
 			);
@@ -199,6 +217,7 @@
 			files = (
 				38F893342AAD5701008414D9 /* Constants.swift in Sources */,
 				38861CEE2AAD679A005DD3B4 /* ListColorProfiles.swift in Sources */,
+				38F63CA72AAE130C003D7156 /* Compressor.swift in Sources */,
 				38F893222AAD544D008414D9 /* ContentView.swift in Sources */,
 				38F893302AAD5476008414D9 /* CompressImageView.swift in Sources */,
 				38F893202AAD544D008414D9 /* PhotosProcessorApp.swift in Sources */,
@@ -206,6 +225,7 @@
 				38F893322AAD54A5008414D9 /* ModifyMetadataView.swift in Sources */,
 				38861CF42AADD1E7005DD3B4 /* GetImageMetadata.swift in Sources */,
 				38F893362AAD5723008414D9 /* SidebarView.swift in Sources */,
+				38F63CA92AAE1312003D7156 /* ShellRunner.swift in Sources */,
 				38F893382AAD5750008414D9 /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

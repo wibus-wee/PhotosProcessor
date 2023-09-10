@@ -9,24 +9,21 @@ import ImageIO
 import SwiftUI
 
 func getImageMetadata(image: NSImage) -> [String: Any]? {
-    guard let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) else {
+    guard let imageData = image.tiffRepresentation else {
         return nil
     }
-    
-    let source = CGImageSourceCreateWithDataProvider(cgImage.dataProvider!, nil)
-    
-    guard let imageSource = source else {
+    guard let source = CGImageSourceCreateWithData(imageData as CFData, nil) else {
         return nil
     }
-    
-    let imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil) as? [String: Any]
-    
-    return imageProperties
+    guard let metadata = CGImageSourceCopyPropertiesAtIndex(source, 0, nil) as? [String: Any] else {
+        return nil
+    }
+    return metadata
 }
 
 func getColorProfileFromMetadata(metadata: [String: Any]) -> String? {
-    if let profileName = metadata[kCGImagePropertyProfileName as String] as? String {
-        return profileName
+    guard let colorProfile = metadata[kCGImagePropertyProfileName as String] as? String else {
+        return nil
     }
-    return nil
+    return colorProfile
 }

@@ -1,15 +1,16 @@
 import SwiftUI
 
 struct CompressImageView: View {
-    var availableColorProfiles: [String] = listColorProfiles()
     @State private var selectedImage: NSImage?
+    @State private var selectedImagePath: String?
     @State private var selectedImageMetadata: [String: Any]?
     @State private var compressionQuality: CGFloat = 0.85
     @State private var compressionSpeed: CGFloat = 0.0 // 0.0 表示最慢
     @State private var selectedYUVOption = 2 // 默认选择 YUV 4:2:0
     @State private var useColorProfiles = true
     @State private var cleanExifInfo = true
-    @State private var selectedColorProfile: String = "sRGB Profile.icc"
+    @State private var selectedColorProfile: String = "Follow Original"
+    var availableColorProfiles: [String] = listColorProfiles() + ["Follow Original"]
     
     var yuvOptions = ["YUV 4:4:4", "YUV 4:2:2", "YUV 4:2:0", "YUV 4:0:0"]
     
@@ -54,6 +55,7 @@ struct CompressImageView: View {
                         InternalKit.useFilePanel(title: "选择图片", message: "请选择要压缩的图片文件", action: { url in
                             if let selectedURL = url {
                                 selectedImage = NSImage(contentsOf: selectedURL)
+                                selectedImagePath = selectedURL.path
                             }
                             selectedImageMetadata = getImageMetadata(image: selectedImage!)
                         })
@@ -64,7 +66,39 @@ struct CompressImageView: View {
                 }
                 ToolbarItem {
                     Button {
-                        
+                        if let image = selectedImage {
+                            let config = CompressorConfig(
+                                quality: Int(compressionQuality * 100),
+                                yuv: yuvOptions[selectedYUVOption].replacingOccurrences(of: "YUV ", with: "").replacingOccurrences(of: ":", with: ""),
+                                speed: Int(compressionSpeed * 100),
+                                cleanExifInfo: cleanExifInfo,
+                                useColorProfiles: useColorProfiles,
+                                colorProfile: selectedColorProfile == "Follow Original" ? nil : selectedColorProfile
+                            )
+                            let compressor = Compressor()
+                            let compressedImagePath = compressor.compress(imagePath: selectedImagePath!, config: config)
+                            if let compressedImagePath = compressedImagePath {
+                                selectedImage = NSImage(contentsOfFile: compressedImagePath)
+                                selectedImageMetadata = getImageMetadata(image: selectedImage!)
+                                InternalKit.useAlert(
+                                    title: "压缩完成",
+                                    message: "压缩后的图片已保存到原图片目录下",
+                                    primaryButton: "OK",
+                                    secondaryButton: "Open"
+                                ) { isClickPrimaryButton in
+                                    if !isClickPrimaryButton {
+                                        NSWorkspace.shared.open(URL(fileURLWithPath: compressedImagePath))
+                                    }
+                                }
+                            } else {
+                                InternalKit.useAlert(
+                                    title: "压缩失败",
+                                    message: "",
+                                    primaryButton: "OK",
+                                    secondaryButton: "Cancel"
+                                ) { _ in }
+                            }
+                        }
                     } label: {
                         Label("保存图片", systemImage: "square.and.arrow.up")
                     }
@@ -84,12 +118,21 @@ struct CompressImageView: View {
                         .frame(width: 300, height: 300)
                     
                     Divider()
-                    VStack(alignment: .leading) {
-                        Text("Size: \(image.size.width) x \(image.size.height)")
+                    VStack() {
+                        Text("Name: \(image.name() ?? "Unknown")")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                        Text("Size: \(Int(image.size.width)) x \(Int(image.size.height))")
                             .font(.caption)
                             .foregroundColor(.gray)
                         //selectedImageMetadata: [String: Any]?
-                        
+                        if let metadata = selectedImageMetadata {
+                            if let profileName = getColorProfileFromMetadata(metadata: metadata) {
+                                Text("Color Profile: \(profileName)")
+                                    .font(.caption)
+                                    .foregroundColor(.gray)
+                            }
+                        }
                         
                     }
                 }
@@ -149,6 +192,10 @@ struct CompressImageView: View {
                 }
             }
             .disabled(!useColorProfiles)
+            Text("使用 Follow Original 将会始终恢复原始的 Color Profile, 但当系统内无此 Color Profile 时, 将会使用 sRGB")
+                .font(.caption)
+                .foregroundColor(.gray)
+            
         }
         .padding()
     }
