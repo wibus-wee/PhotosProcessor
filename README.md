@@ -1,11 +1,21 @@
-#  PhotosProcessor
+# PhotosProcessor
+
+A multi-functional picture processor software.
 
 ## Roadmap
 
-- [ ] 图片压缩
-- [ ] 修改图片元数据
-- [ ] 添加暗水印
-- [ ] 菜单栏拖动立即处理
-- [ ] 配置保存
-- [ ] 专家模式、普通模式、小白模式
-- [ ] 支持批量处理
+- [ ] Image compression
+- [ ] Modifies image metadata
+- [ ] Adds a dark watermark
+- [ ] Menu bar Drag to process immediately
+- [ ] Configuration Support
+- [ ] Expert mode, common mode, noob mode
+- [ ] Supports batch processing
+- [ ] Log Display
+
+## Author
+
+PhotosProcessor © Wibus, Released under AGPLv3. Created on Sep 11, 2023
+
+> [Personal Website](http://iucky.cn/) · [Blog](https://blog.iucky.cn/) · GitHub [@wibus-wee](https://github.com/wibus-wee/) · Telegram [@wibus✪](https://t.me/wibus_wee)
+
