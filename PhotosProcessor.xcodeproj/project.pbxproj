@@ -11,6 +11,11 @@
 		38F893222AAD544D008414D9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F893212AAD544D008414D9 /* ContentView.swift */; };
 		38F893242AAD544E008414D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38F893232AAD544E008414D9 /* Assets.xcassets */; };
 		38F893282AAD544E008414D9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38F893272AAD544E008414D9 /* Preview Assets.xcassets */; };
+		38F893302AAD5476008414D9 /* CompressImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F8932F2AAD5476008414D9 /* CompressImageView.swift */; };
+		38F893322AAD54A5008414D9 /* ModifyMetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F893312AAD54A5008414D9 /* ModifyMetadataView.swift */; };
+		38F893342AAD5701008414D9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F893332AAD5701008414D9 /* Constants.swift */; };
+		38F893362AAD5723008414D9 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F893352AAD5723008414D9 /* SidebarView.swift */; };
+		38F893382AAD5750008414D9 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F893372AAD5750008414D9 /* WelcomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +25,11 @@
 		38F893232AAD544E008414D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38F893252AAD544E008414D9 /* PhotosProcessor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PhotosProcessor.entitlements; sourceTree = "<group>"; };
 		38F893272AAD544E008414D9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		38F8932F2AAD5476008414D9 /* CompressImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressImageView.swift; sourceTree = "<group>"; };
+		38F893312AAD54A5008414D9 /* ModifyMetadataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyMetadataView.swift; sourceTree = "<group>"; };
+		38F893332AAD5701008414D9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		38F893352AAD5723008414D9 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
+		38F893372AAD5750008414D9 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +62,10 @@
 		38F8931E2AAD544D008414D9 /* PhotosProcessor */ = {
 			isa = PBXGroup;
 			children = (
+				38F8932E2AAD5464008414D9 /* Views */,
 				38F8931F2AAD544D008414D9 /* PhotosProcessorApp.swift */,
 				38F893212AAD544D008414D9 /* ContentView.swift */,
+				38F893332AAD5701008414D9 /* Constants.swift */,
 				38F893232AAD544E008414D9 /* Assets.xcassets */,
 				38F893252AAD544E008414D9 /* PhotosProcessor.entitlements */,
 				38F893262AAD544E008414D9 /* Preview Content */,
@@ -67,6 +79,17 @@
 				38F893272AAD544E008414D9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		38F8932E2AAD5464008414D9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				38F8932F2AAD5476008414D9 /* CompressImageView.swift */,
+				38F893312AAD54A5008414D9 /* ModifyMetadataView.swift */,
+				38F893352AAD5723008414D9 /* SidebarView.swift */,
+				38F893372AAD5750008414D9 /* WelcomeView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,8 +162,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38F893342AAD5701008414D9 /* Constants.swift in Sources */,
 				38F893222AAD544D008414D9 /* ContentView.swift in Sources */,
+				38F893302AAD5476008414D9 /* CompressImageView.swift in Sources */,
 				38F893202AAD544D008414D9 /* PhotosProcessorApp.swift in Sources */,
+				38F893322AAD54A5008414D9 /* ModifyMetadataView.swift in Sources */,
+				38F893362AAD5723008414D9 /* SidebarView.swift in Sources */,
+				38F893382AAD5750008414D9 /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
