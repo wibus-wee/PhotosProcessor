@@ -4,6 +4,9 @@
 			"path": "./PhotosProcessor/App"
 		},
 		{
+			"path": "./PhotosProcessor/Backend"
+		},
+		{
 			"path": "./PhotosProcessor/Extensions"
 		},
 		{

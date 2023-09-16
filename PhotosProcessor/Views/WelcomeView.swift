@@ -13,7 +13,8 @@ struct WelcomeView: View {
         .publish(every: 1, on: .main, in: .common)
         .autoconnect()
     @State var dotAnimation: String = ""
-    @State var openInstanceDialog: Bool = false
+    @State var isShowingLogSheet = false
+    @StateObject private var executor = Executor()
     
     var body: some View {
         ZStack {
@@ -55,7 +56,16 @@ struct WelcomeView: View {
         }
         .toolbar {
             Group {
-                
+                Button(action: {
+                    isShowingLogSheet.toggle()
+                    executor.clean()
+                    executor.executeAsync("ls", ["-l"])
+                }) {
+                    Label("Show Log", systemImage: "doc.text.magnifyingglass")
+                }
+                .sheet(isPresented: $isShowingLogSheet) {
+                    LogView(outputText: $executor.outputText, errorMessage: $executor.errorMessage, isRunning: $executor.isRunning)
+                }
             }
         }
         .frame(minWidth: 400, minHeight: 200)
