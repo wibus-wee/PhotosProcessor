@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "./PhotosProcessor/App"
+		},
+		{
+			"path": "./PhotosProcessor/Extensions"
+		},
+		{
+			"path": "./PhotosProcessor/Utils"
+		},
+		{
+			"path": "./PhotosProcessor/Views"
+		},
+		{
+			"path": "PhotosProcessor"
+		},
+		{
+			"path": ".",
+			"name": "PhotosProcessor Root"
+		},
+	]
+}
