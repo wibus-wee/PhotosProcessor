@@ -17,8 +17,7 @@ struct CompressorConfig {
 }
 
 class Compressor {
-    func avifencProcess(imagePath: String, config: CompressorConfig) -> String? {
-      let shellRunner = ShellRunner()
+    func avifencCommand(imagePath: String, config: CompressorConfig) -> (command: String, arguments: [String])? {
       let avifencPath = Bundle.main.path(forResource: "avifenc", ofType: nil)
       if avifencPath == nil || avifencPath!.isEmpty {
         InternalKit.useAlert(
@@ -39,10 +38,11 @@ class Compressor {
         imagePath,
         avifImagePath
       ]
-      let _result = shellRunner.execute(command: avifencPath!, arguments: arguments)
-      print(_result)
-      return avifImagePath
+      
+      return (avifencPath!, arguments)
     }
+
+    // @WIP
     func metadataProcess(imagePath: String, config: CompressorConfig) -> String? {
       let shellRunner = ShellRunner()
       let exiftoolPath = Bundle.main.path(forResource: "exiftool", ofType: nil)
@@ -62,6 +62,8 @@ class Compressor {
       let result = shellRunner.execute(command: exiftoolPath!, arguments: arguments)
       return result
     }
+
+    // @WIP
     func profileProcess(imagePath: String, config: CompressorConfig) -> String? {
       let shellRunner = ShellRunner()
       let magickPath = Bundle.main.path(forResource: "magick", ofType: nil)
@@ -84,11 +86,11 @@ class Compressor {
      let result = shellRunner.execute(command: magickPath!, arguments: arguments.map { $0 })
       return result
     }
-    func compress(imagePath: String, config: CompressorConfig) -> String? {
-      let avifImagePath = avifencProcess(imagePath: imagePath, config: config)
-      if avifImagePath == nil {
-        return nil
-      }
+    func compress(imagePath: String, config: CompressorConfig) {
+      // let avifImagePath = avifencProcess(imagePath: imagePath, config: config)
+      // if avifImagePath == nil {
+      //   return nil
+      // }
 //      let metadata = metadataProcess(imagePath: imagePath, config: config)
 //      if metadata == nil {
 //        return nil
@@ -99,6 +101,6 @@ class Compressor {
 //          return nil
 //        }
 //      }
-      return avifImagePath
+      // return avifImagePath
     }
 }
