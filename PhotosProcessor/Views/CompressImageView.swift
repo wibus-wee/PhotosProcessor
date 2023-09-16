@@ -11,6 +11,9 @@ struct CompressImageView: View {
     @State private var cleanExifInfo = true
     @State private var selectedColorProfile: String = "Follow Original"
     var availableColorProfiles: [String] = listColorProfiles() + ["Follow Original"]
+
+    @State var isShowingLogSheet = false
+    @StateObject private var executor = Executor()
     
     var yuvOptions = ["YUV 4:4:4", "YUV 4:2:2", "YUV 4:2:0", "YUV 4:0:0"]
     
@@ -76,35 +79,19 @@ struct CompressImageView: View {
                                 colorProfile: selectedColorProfile == "Follow Original" ? nil : selectedColorProfile
                             )
                             let compressor = Compressor()
-                            let compressedImagePath = compressor.compress(imagePath: selectedImagePath!, config: config)
-                            if let compressedImagePath = compressedImagePath {
-                                selectedImage = NSImage(contentsOfFile: compressedImagePath)
-                                selectedImageMetadata = getImageMetadata(image: selectedImage!)
-                                InternalKit.useAlert(
-                                    title: "压缩完成",
-                                    message: "压缩后的图片已保存到原图片目录下",
-                                    primaryButton: "OK",
-                                    secondaryButton: "Open"
-                                ) { isClickPrimaryButton in
-                                    if !isClickPrimaryButton {
-                                        NSWorkspace.shared.open(URL(fileURLWithPath: compressedImagePath))
-                                    }
-                                }
-                            } else {
-                                InternalKit.useAlert(
-                                    title: "压缩失败",
-                                    message: "",
-                                    primaryButton: "OK",
-                                    secondaryButton: "Cancel"
-                                ) { _ in }
-                            }
+                            let compressCommand = compressor.avifencCommand(imagePath: selectedImagePath!, config: config)
+                            isShowingLogSheet.toggle()
+                            executor.clean()
+                            executor.executeAsync(compressCommand!.command, compressCommand!.arguments)
                         }
                     } label: {
                         Label("保存图片", systemImage: "square.and.arrow.up")
                     }
                 }
-            
             }
+        }
+        .sheet(isPresented: $isShowingLogSheet) {
+            LogView(outputText: $executor.outputText, errorMessage: $executor.errorMessage, isRunning: $executor.isRunning)
         }
     }
     

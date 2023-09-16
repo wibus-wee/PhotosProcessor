@@ -21,7 +21,7 @@ class Executor: ObservableObject {
         }
         print("[*] whoami \(username)")
     }
-
+    
     func isCommandAvailable(_ command: String) -> (status: Bool, path: String) {
         let executeResult = execute("/usr/bin/which", [command])
         if executeResult.exitCode == 0 {
@@ -42,57 +42,62 @@ class Executor: ObservableObject {
             return
         }
         launchPathpath = commandAvailable.path
-        let task = Process()
-        let pipe = Pipe()
-        let errorPipe = Pipe() // Add a error pipe
-        task.standardOutput = pipe
-        task.launchPath = launchPathpath
-        task.arguments = arguments
-        // task.standardError = errorPipe // Set the standard error
-        let outputHandler = pipe.fileHandleForReading
-        outputHandler.readabilityHandler = { pipe in
-            let data = pipe.availableData
-            if let output = String(data: data, encoding: .utf8) {
-                DispatchQueue.main.async {
-                    self.outputText += output
+        DispatchQueue.global(qos: .background).async {
+            let task = Process()
+            let pipe = Pipe()
+            let errorPipe = Pipe() // Add an error pipe
+            task.standardOutput = pipe
+            task.launchPath = launchPathpath
+            task.arguments = arguments
+            
+            let outputHandler = pipe.fileHandleForReading
+            outputHandler.readabilityHandler = { pipe in
+                let data = pipe.availableData
+                if let output = String(data: data, encoding: .utf8) {
+                    DispatchQueue.main.async {
+                        self.outputText += output
+                    }
                 }
             }
-        }
-
-        let errorHandler = errorPipe.fileHandleForReading
-        errorHandler.readabilityHandler = { pipe in
-            let data = pipe.availableData
-            if let error = String(data: data, encoding: .utf8) {
-                DispatchQueue.main.async {
-                    self.errorMessage += error
+            
+            let errorHandler = errorPipe.fileHandleForReading
+            errorHandler.readabilityHandler = { pipe in
+                let data = pipe.availableData
+                if let error = String(data: data, encoding: .utf8) {
+                    DispatchQueue.main.async {
+                        self.errorMessage += error
+                    }
                 }
             }
-        }
-        
-        task.terminationHandler = { _ in
-            outputHandler.closeFile()
-            errorHandler.closeFile()
-            DispatchQueue.main.async {
-                self.isRunning = false
+            
+            task.terminationHandler = { _ in
+                outputHandler.closeFile()
+                errorHandler.closeFile()
+                DispatchQueue.main.async {
+                    self.isRunning = false
+                }
             }
-        }
-        
-        task.launch()
-        print("[*] \(command) \(arguments.joined(separator: " "))")
-        self.isRunning = true
-        task.waitUntilExit()
-
-        if task.terminationStatus != 0 {
-            DispatchQueue.main.async {
-                self.errorMessage += "Command failed with exit code \(task.terminationStatus)\n"
+            
+            task.launch()
+            print("[*] \(command) \(arguments.joined(separator: " "))")
+            self.isRunning = true
+            task.waitUntilExit()
+            
+            if task.terminationStatus != 0 {
+                DispatchQueue.main.async {
+                    self.errorMessage += "Command failed with exit code \(task.terminationStatus)\n"
+                }
             }
         }
     }
-
+    
+    
     func clean() {
         outputText = ""
+        errorMessage = ""
+        isRunning = false
     }
-
+    
     func execute(_ command: String, _ arguments: [String]) -> (exitCode: Int32, stdout: String, stderr: String) {
         let task = Process()
         let pipe = Pipe()

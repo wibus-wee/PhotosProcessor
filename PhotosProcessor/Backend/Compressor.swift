@@ -43,8 +43,7 @@ class Compressor {
     }
 
     // @WIP
-    func metadataProcess(imagePath: String, config: CompressorConfig) -> String? {
-      let shellRunner = ShellRunner()
+    func metadataProcess(imagePath: String, config: CompressorConfig) -> (command: String, arguments: [String])? {
       let exiftoolPath = Bundle.main.path(forResource: "exiftool", ofType: nil)
       if exiftoolPath == nil || exiftoolPath!.isEmpty {
         InternalKit.useAlert(
@@ -59,13 +58,12 @@ class Compressor {
         "-all:all=",
         imagePath
       ]
-      let result = shellRunner.execute(command: exiftoolPath!, arguments: arguments)
-      return result
+      return (exiftoolPath!, arguments)
+      
     }
 
     // @WIP
-    func profileProcess(imagePath: String, config: CompressorConfig) -> String? {
-      let shellRunner = ShellRunner()
+    func profileProcess(imagePath: String, config: CompressorConfig) -> (command: String, arguments: [String])? {
       let magickPath = Bundle.main.path(forResource: "magick", ofType: nil)
       if magickPath == nil || magickPath!.isEmpty {
         InternalKit.useAlert(
@@ -83,24 +81,6 @@ class Compressor {
         colorProfilePath,
         imagePath
       ]
-     let result = shellRunner.execute(command: magickPath!, arguments: arguments.map { $0 })
-      return result
-    }
-    func compress(imagePath: String, config: CompressorConfig) {
-      // let avifImagePath = avifencProcess(imagePath: imagePath, config: config)
-      // if avifImagePath == nil {
-      //   return nil
-      // }
-//      let metadata = metadataProcess(imagePath: imagePath, config: config)
-//      if metadata == nil {
-//        return nil
-//      }
-//      if config.useColorProfiles {
-//        let profile = profileProcess(imagePath: imagePath, config: config)
-//        if profile == nil {
-//          return nil
-//        }
-//      }
-      // return avifImagePath
+      return (magickPath!, arguments)
     }
 }

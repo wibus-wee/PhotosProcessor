@@ -30,7 +30,7 @@ struct LogView: View {
             .foregroundColor(.red)
         }
       }
-      .frame(minWidth: 400, minHeight: 300)
+      .frame(minWidth: 600, minHeight: 400)
       HStack {
         Spacer()
         Button(action: {
@@ -44,13 +44,15 @@ struct LogView: View {
           let pasteboard = NSPasteboard.general
           pasteboard.clearContents()
           pasteboard.setString(outputText, forType: .string)
-          presendationMode.wrappedValue.dismiss()
+          presentationMode.wrappedValue.dismiss()
         }) {
           Text("Copy")
         }
+        .keyboardShortcut("c", modifiers: [.command, .shift])
+        .disabled(isRunning)
       }
     }
     .padding()
-    .frame(minWidth: 400, minHeight: 300)
+    .frame(minWidth: 600, minHeight: 400)
   }
 }
