@@ -3,7 +3,9 @@ import SwiftUI
 struct CompressImageView: View {
     @State private var selectedImage: NSImage?
     @State private var selectedImagePath: String?
+    @State private var selectedImageName: String = ""
     @State private var selectedImageMetadata: [String: Any]?
+    
     @State private var compressionQuality: CGFloat = 0.85
     @State private var compressionSpeed: CGFloat = 0.0 // 0.0 表示最慢
     @State private var selectedYUVOption = 2 // 默认选择 YUV 4:2:0
@@ -59,6 +61,7 @@ struct CompressImageView: View {
                             if let selectedURL = url {
                                 selectedImage = NSImage(contentsOf: selectedURL)
                                 selectedImagePath = selectedURL.path
+                                selectedImageName = selectedURL.lastPathComponent
                             }
                             selectedImageMetadata = getImageMetadata(image: selectedImage!)
                         })
@@ -80,9 +83,7 @@ struct CompressImageView: View {
                             )
                             let compressor = Compressor()
                             let compressCommand = compressor.avifencCommand(imagePath: selectedImagePath!, config: config)
-                            isShowingLogSheet.toggle()
-                            executor.clean()
-                            executor.executeAsync(compressCommand!.command, compressCommand!.arguments)
+                            commandQueue.enqueue(compressCommand!.command, compressCommand!.arguments, description: "Compress \(selectedImageName) to AVIF")
                         }
                     } label: {
                         Label("保存图片", systemImage: "square.and.arrow.up")
@@ -90,9 +91,9 @@ struct CompressImageView: View {
                 }
             }
         }
-        .sheet(isPresented: $isShowingLogSheet) {
-            LogView(outputText: $executor.outputText, errorMessage: $executor.errorMessage, isRunning: $executor.isRunning)
-        }
+        // .sheet(isPresented: $isShowingLogSheet) {
+        //     LogView(outputText: $executor.outputText, errorMessage: $executor.errorMessage, isRunning: $executor.isRunning)
+        // }
     }
     
     var leftColumn: some View {
@@ -106,7 +107,7 @@ struct CompressImageView: View {
                     
                     Divider()
                     VStack() {
-                        Text("Name: \(image.name() ?? "Unknown")")
+                        Text("Name: \(selectedImageName)")
                             .font(.caption)
                             .foregroundColor(.gray)
                         Text("Size: \(Int(image.size.width)) x \(Int(image.size.height))")

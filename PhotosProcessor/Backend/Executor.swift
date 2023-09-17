@@ -11,6 +11,7 @@ class Executor: ObservableObject {
     @Published var outputText = ""
     @Published var errorMessage = ""
     @Published var isRunning = false
+
     
     init() {
         let whoami = "/usr/bin/whoami"

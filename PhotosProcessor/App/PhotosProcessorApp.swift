@@ -7,11 +7,15 @@
 
 import SwiftUI
 
+let commandQueue = CommandQueue.share
+
 @main
 struct PhotosProcessorApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
+        .windowResizability(.contentSize)
+        .commands { SidebarCommands() }
     }
 }
