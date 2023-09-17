@@ -116,6 +116,27 @@ struct CompressImageView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 300, height: 300)
+                        .cornerRadius(8)
+                        .onDrop(of: ["public.file-url"], isTargeted: nil) { (items) -> Bool in
+                            if let item = items.first {
+                                if let identifier = item.registeredTypeIdentifiers.first {
+                                    if identifier == "public.file-url" {
+                                        item.loadItem(forTypeIdentifier: identifier, options: nil) { (urlData, error) in
+                                            if let urlData = urlData as? Data {
+                                                if let url = URL(dataRepresentation: urlData, relativeTo: nil) {
+                                                    selectedImage = NSImage(contentsOf: url)
+                                                    selectedImagePath = url.path
+                                                    selectedImageName = url.lastPathComponent
+                                                    selectedImageMetadata = getImageMetadata(image: selectedImage!)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            return true
+                        }
+
                     
                     Divider()
                     VStack() {
@@ -143,6 +164,27 @@ struct CompressImageView: View {
                     .foregroundColor(.gray)
                     .frame(width: 300, height: 300)
                     .background(Color.secondary.opacity(0.2))
+                    .cornerRadius(8)
+                    .onDrop(of: ["public.file-url"], isTargeted: nil) { (items) -> Bool in
+                        if let item = items.first {
+                            if let identifier = item.registeredTypeIdentifiers.first {
+                                if identifier == "public.file-url" {
+                                    item.loadItem(forTypeIdentifier: identifier, options: nil) { (urlData, error) in
+                                        if let urlData = urlData as? Data {
+                                            if let url = URL(dataRepresentation: urlData, relativeTo: nil) {
+                                                selectedImage = NSImage(contentsOf: url)
+                                                selectedImagePath = url.path
+                                                selectedImageName = url.lastPathComponent
+                                                selectedImageMetadata = getImageMetadata(image: selectedImage!)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        return true
+                    }
+
             }
         }
         .padding()

@@ -21,6 +21,7 @@ A multi-functional picture processor software for macOS. Written in Swift.
 - [ ] Expert mode, common mode, noob mode
 - [ ] Supports batch processing
 - [ ] Drag and drop processing
+  - [x] Image compression View
 - [x] Log Display
 - [x] Process Queue Support
 
