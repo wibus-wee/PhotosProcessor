@@ -30,8 +30,13 @@ class CommandQueue: ObservableObject {
     @Published var commands: [Command] = []
     @Published var commandResults: [CommandResult] = []
     
+    func enqueue(_ command: String, _ arguments: [String], description: String) -> UUID {
+        let newCommand = Command(id: UUID(), parentId: nil, command: command, arguments: arguments, description: description)
+        commands.append(newCommand)
+        return newCommand.id
+    }
 
-    func enqueue(_ command: String, _ arguments: [String], parentId: UUID?, description: String) -> UUID {
+    func enqueueBeta(_ command: String, _ arguments: [String], parentId: UUID?, description: String) -> UUID {
         if parentId == nil {
             let newCommand = Command(id: UUID(), parentId: nil, command: command, arguments: arguments, description: description)
             commands.append(newCommand)
@@ -45,8 +50,22 @@ class CommandQueue: ObservableObject {
         return newCommand.id
     }
 
-    /// You can use this method to enqueue a command with the parent command and children commands
     func execute(id: UUID) {
+        guard commands.first(where: { $0.id == id }) != nil else {
+            return
+        }
+        let _executor = Executor()
+        let commandIndex = commands.firstIndex(where: { $0.id == id })!
+        let command = commands[commandIndex].command
+        let arguments = commands[commandIndex].arguments
+        _executor.executeAsync(command, arguments)
+        let commandResults = CommandResult(id: id, info: commands[commandIndex], executor: _executor)
+        self.commandResults.append(commandResults)
+        commands.remove(at: commandIndex)
+    }
+
+    /// You can use this method to enqueue a command with the parent command and children commands
+    func executeBeta(id: UUID) {
         guard commands.first(where: { $0.id == id }) != nil else {
             return
         }

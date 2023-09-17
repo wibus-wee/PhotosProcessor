@@ -89,7 +89,8 @@ struct CompressImageView: View {
                             )
                             let compressor = Compressor()
                             let compressCommand = compressor.avifencCommand(imagePath: selectedImagePath!, config: config)
-                            let id = commandQueue.enqueue(compressCommand!.command, compressCommand!.arguments, parentId: nil, description: "Compress \(selectedImageName) to AVIF")
+                            // let id = commandQueue.enqueueBeta(compressCommand!.command, compressCommand!.arguments, parentId: nil, description: "Compress \(selectedImageName) to AVIF")
+                            let id = commandQueue.enqueue(compressCommand!.command, compressCommand!.arguments, description: "Compress \(selectedImageName) to AVIF")
                             queueId = id
                             // Configuration: Execute command immediately
                             commandQueue.execute(id: id)
@@ -117,25 +118,20 @@ struct CompressImageView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 300, height: 300)
                         .cornerRadius(8)
-                        .onDrop(of: ["public.file-url"], isTargeted: nil) { (items) -> Bool in
-                            if let item = items.first {
-                                if let identifier = item.registeredTypeIdentifiers.first {
-                                    if identifier == "public.file-url" {
-                                        item.loadItem(forTypeIdentifier: identifier, options: nil) { (urlData, error) in
-                                            if let urlData = urlData as? Data {
-                                                if let url = URL(dataRepresentation: urlData, relativeTo: nil) {
-                                                    selectedImage = NSImage(contentsOf: url)
-                                                    selectedImagePath = url.path
-                                                    selectedImageName = url.lastPathComponent
-                                                    selectedImageMetadata = getImageMetadata(image: selectedImage!)
-                                                }
-                                            }
-                                        }
-                                    }
+                        .onDrop(of: [.fileURL], isTargeted: nil) { providers in
+                        if let provider = providers.first(where: { $0.canLoadObject(ofClass: URL.self) } ) {
+                            let _ = provider.loadObject(ofClass: URL.self) { object, error in
+                                if let url = object {
+                                    selectedImage = NSImage(contentsOf: url)
+                                    selectedImagePath = url.path
+                                    selectedImageName = url.lastPathComponent
+                                    selectedImageMetadata = getImageMetadata(image: selectedImage!)
                                 }
                             }
                             return true
                         }
+                        return false
+                    }
                 }
                 
             } else {
@@ -145,24 +141,19 @@ struct CompressImageView: View {
                     .frame(width: 300, height: 300)
                     .background(Color.secondary.opacity(0.05))
                     .cornerRadius(8)
-                    .onDrop(of: ["public.file-url"], isTargeted: nil) { (items) -> Bool in
-                        if let item = items.first {
-                            if let identifier = item.registeredTypeIdentifiers.first {
-                                if identifier == "public.file-url" {
-                                    item.loadItem(forTypeIdentifier: identifier, options: nil) { (urlData, error) in
-                                        if let urlData = urlData as? Data {
-                                            if let url = URL(dataRepresentation: urlData, relativeTo: nil) {
-                                                selectedImage = NSImage(contentsOf: url)
-                                                selectedImagePath = url.path
-                                                selectedImageName = url.lastPathComponent
-                                                selectedImageMetadata = getImageMetadata(image: selectedImage!)
-                                            }
-                                        }
-                                    }
+                    .onDrop(of: [.fileURL], isTargeted: nil) { providers in
+                        if let provider = providers.first(where: { $0.canLoadObject(ofClass: URL.self) } ) {
+                            let _ = provider.loadObject(ofClass: URL.self) { object, error in
+                                if let url = object {
+                                    selectedImage = NSImage(contentsOf: url)
+                                    selectedImagePath = url.path
+                                    selectedImageName = url.lastPathComponent
+                                    selectedImageMetadata = getImageMetadata(image: selectedImage!)
                                 }
                             }
+                            return true
                         }
-                        return true
+                        return false
                     }
                 
             }
