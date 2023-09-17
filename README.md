@@ -24,9 +24,9 @@ A multi-functional picture processor software for macOS.
 - [x] Log Display
 - [ ] Process Queue Support
 
-## Configurations
+### Configurations
 
-> Configurations are features that allow users to customize the software.
+> Configurations are features that allow users to customize the software. When the configuration item is not completed, the following options will not be checked.
 
 - [ ] Avifenc, Exiftool, Magick Path
   - Description: *The path to the avifenc executable file.*
