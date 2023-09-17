@@ -1,6 +1,10 @@
-# PhotosProcessor for macOS
+# PhotosProcessor For macOS
 
 A multi-functional picture processor software for macOS. Written in Swift.
+
+<pre align="center">
+🧪 Working in Progress
+</pre>
 
 ## Roadmap
 
@@ -23,6 +27,7 @@ A multi-functional picture processor software for macOS. Written in Swift.
 - [x] Drag and drop processing
 - [x] Log Display
 - [x] Process Queue Support
+- [ ] Remove built-in Resource (avifenc,exiftool,magick)
 
 ### Configurations
 
