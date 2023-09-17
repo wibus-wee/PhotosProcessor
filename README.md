@@ -8,7 +8,7 @@ A multi-functional picture processor software for macOS. Written in Swift.
 
 > The core features are the most important features of the software, and the software cannot be used without them.
 
-- [ ] Image compression
+- [x] Image compression
 - [ ] Modifies image metadata
 - [ ] Adds a dark watermark
 
@@ -20,8 +20,7 @@ A multi-functional picture processor software for macOS. Written in Swift.
 - [ ] Configuration Support
 - [ ] Expert mode, common mode, noob mode
 - [ ] Supports batch processing
-- [ ] Drag and drop processing
-  - [x] Image compression View
+- [x] Drag and drop processing
 - [x] Log Display
 - [x] Process Queue Support
 
