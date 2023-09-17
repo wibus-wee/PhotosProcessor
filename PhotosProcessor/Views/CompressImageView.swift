@@ -68,8 +68,8 @@ struct CompressImageView: View {
                                 selectedImage = NSImage(contentsOf: selectedURL)
                                 selectedImagePath = selectedURL.path
                                 selectedImageName = selectedURL.lastPathComponent
+                                selectedImageMetadata = getImageMetadata(image: selectedImage!)
                             }
-                            selectedImageMetadata = getImageMetadata(image: selectedImage!)
                         })
                     } label: {
                         Label("Choose Image", systemImage: "photo")
