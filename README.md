@@ -1,6 +1,6 @@
-# PhotosProcessor
+# PhotosProcessor for macOS
 
-A multi-functional picture processor software for macOS.
+A multi-functional picture processor software for macOS. Written in Swift.
 
 ## Roadmap
 
