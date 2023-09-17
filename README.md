@@ -1,6 +1,6 @@
 # PhotosProcessor
 
-A multi-functional picture processor software.
+A multi-functional picture processor software for macOS.
 
 ## Roadmap
 
@@ -8,21 +8,21 @@ A multi-functional picture processor software.
 
 > The core features are the most important features of the software, and the software cannot be used without them.
 
-- [ ] Image compression | 图片压缩
-- [ ] Modifies image metadata | 修改图片元数据
-- [ ] Adds a dark watermark | 暗水印
+- [ ] Image compression
+- [ ] Modifies image metadata
+- [ ] Adds a dark watermark
 
 ### Performance Features
 
 > Performance features are features that improve the user experience.
 
-- [ ] Menu bar Drag to process | 菜单栏拖拽处理
-- [ ] Configuration Support | 配置支持
-- [ ] Expert mode, common mode, noob mode | 专家模式、普通模式、小白模式
-- [ ] Supports batch processing | 支持批量处理
-- [ ] Drag and drop processing | 拖拽处理
-- [x] Log Display | 日志显示
-- [ ] Process Queue Support | 处理队列支持
+- [ ] Menu bar Drag to process
+- [ ] Configuration Support
+- [ ] Expert mode, common mode, noob mode
+- [ ] Supports batch processing
+- [ ] Drag and drop processing
+- [x] Log Display
+- [ ] Process Queue Support
 
 ## Configurations
 
@@ -50,6 +50,11 @@ A multi-functional picture processor software.
   - Description: *Whether to start the menu bar processing.*
   - Type: `Checkbox`
   - Default: `true`
+
+## References
+
+- [a-wing's Notion Site](https://awing.notion.site/2023-36-v1-1-1e1b3542b8e84db197555365824a6773)
+- [a-wing's Tweet](https://twitter.com/_a_wing/status/1700586549065155043)
 
 ## Author
 
