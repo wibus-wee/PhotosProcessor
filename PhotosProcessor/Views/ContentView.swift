@@ -72,6 +72,14 @@ struct ContentView: View {
                                 Text("\(command.id)")
                                     .foregroundColor(.secondary)
                                     .font(.system(.caption, design: .monospaced))
+                                List {
+                                    ForEach(command.children, id: \.self) { childId in
+                                        let childCommand = commandQueue.commands.first(where: { $0.id == childId })!
+                                        Text("\(childCommand.description) (Child)")
+                                            .font(.system(.body, design: .rounded))
+                                            .foregroundColor(.secondary)
+                                    }
+                                }
                                 Spacer()
                                 
                                 HStack {

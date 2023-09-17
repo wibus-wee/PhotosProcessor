@@ -11,7 +11,6 @@
 		387B9D872AB610DF002777DA /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B9D862AB610DF002777DA /* LogView.swift */; };
 		387B9D8B2AB6C46E002777DA /* CommandQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B9D8A2AB6C46E002777DA /* CommandQueue.swift */; };
 		387B9D8F2AB6FE6A002777DA /* SendNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B9D8E2AB6FE6A002777DA /* SendNotification.swift */; };
-		387B9D932AB71CD0002777DA /* exiftool in Resources */ = {isa = PBXBuildFile; fileRef = 387B9D922AB71CD0002777DA /* exiftool */; };
 		38861CEE2AAD679A005DD3B4 /* ListColorProfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38861CED2AAD679A005DD3B4 /* ListColorProfiles.swift */; };
 		38861CF22AADCC4B005DD3B4 /* InternalKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38861CF12AADCC4B005DD3B4 /* InternalKit.swift */; };
 		38861CF42AADD1E7005DD3B4 /* GetImageMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38861CF32AADD1E7005DD3B4 /* GetImageMetadata.swift */; };
@@ -224,7 +223,6 @@
 			files = (
 				38F63CAD2AAE1A6B003D7156 /* avifenc in Resources */,
 				38F893282AAD544E008414D9 /* Preview Assets.xcassets in Resources */,
-				387B9D932AB71CD0002777DA /* exiftool in Resources */,
 				38F893242AAD544E008414D9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

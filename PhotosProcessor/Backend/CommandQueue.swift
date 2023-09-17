@@ -78,6 +78,10 @@ class CommandQueue: ObservableObject {
         }
         executeChildren(parentCommand)
         _executor.executeMultiInOneAsync(commandArray)
+        
+        let newCommandResult = CommandResult(id: _command.id, info: _command, executor: _executor)
+        commandResults.append(newCommandResult)
+        commands.remove(at: commandIndex) // Remove the command from the queue
     }
 
     func findOne(id: UUID?) -> CommandResult? {
