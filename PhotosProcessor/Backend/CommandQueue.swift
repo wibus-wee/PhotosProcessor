@@ -11,7 +11,7 @@ import SwiftUI
 struct Command {
     let id: UUID
     let parentId: UUID?
-    let children: [UUID] = []
+    var children: [UUID] = []
     let command: String
     let arguments: [String]
     let description: String
@@ -31,10 +31,15 @@ class CommandQueue: ObservableObject {
     @Published var commandResults: [CommandResult] = []
     
 
-    func enqueue(_ command: String, _ arguments: [String], parentId: UUID, description: String) -> UUID {
+    func enqueue(_ command: String, _ arguments: [String], parentId: UUID?, description: String) -> UUID {
+        if parentId == nil {
+            let newCommand = Command(id: UUID(), parentId: nil, command: command, arguments: arguments, description: description)
+            commands.append(newCommand)
+            return newCommand.id
+        }
         let parentCommandIndex = commands.firstIndex(where: { $0.id == parentId })!
         let parentCommand = commands[parentCommandIndex]
-        let newCommand = Command(id: UUID(), command: command, arguments: arguments, description: description, parentId: parentCommand.id)
+        let newCommand = Command(id: UUID(), parentId: parentCommand.id, command: command, arguments: arguments, description: description)
         commands.append(newCommand)
         commands[parentCommandIndex].children.append(newCommand.id)
         return newCommand.id
