@@ -5,7 +5,7 @@ struct CompressImageView: View {
     @State private var selectedImagePath: String?
     @State private var selectedImageName: String = ""
     @State private var selectedImageMetadata: [String: Any]?
-
+    
     @State private var queueId: UUID?
     
     @State private var compressionQuality: CGFloat = 0.85
@@ -15,7 +15,7 @@ struct CompressImageView: View {
     @State private var cleanExifInfo = true
     @State private var selectedColorProfile: String = "Follow Original"
     var availableColorProfiles: [String] = listColorProfiles() + ["Follow Original"]
-
+    
     @State var isShowingLogSheet = false
     @StateObject private var executor = Executor()
     
@@ -89,7 +89,7 @@ struct CompressImageView: View {
                             )
                             let compressor = Compressor()
                             let compressCommand = compressor.avifencCommand(imagePath: selectedImagePath!, config: config)
-                            let id = commandQueue.enqueue(compressCommand!.command, compressCommand!.arguments, description: "Compress \(selectedImageName) to AVIF")
+                            let id = commandQueue.enqueue(compressCommand!.command, compressCommand!.arguments, parentId: nil, description: "Compress \(selectedImageName) to AVIF")
                             queueId = id
                             // Configuration: Execute command immediately
                             commandQueue.execute(id: id)
@@ -136,34 +136,14 @@ struct CompressImageView: View {
                             }
                             return true
                         }
-
-                    
-                    Divider()
-                    VStack() {
-                        Text("\(selectedImageName)")
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                        Text("Size: \(Int(image.size.width)) x \(Int(image.size.height))")
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                        //selectedImageMetadata: [String: Any]?
-                        if let metadata = selectedImageMetadata {
-                            if let profileName = getColorProfileFromMetadata(metadata: metadata) {
-                                Text("Color Profile: \(profileName)")
-                                    .font(.caption)
-                                    .foregroundColor(.gray)
-                            }
-                        }
-                        
-                    }
                 }
-               
+                
             } else {
                 Text("Choose Image")
                     .font(.headline)
                     .foregroundColor(.gray)
                     .frame(width: 300, height: 300)
-                    .background(Color.secondary.opacity(0.2))
+                    .background(Color.secondary.opacity(0.05))
                     .cornerRadius(8)
                     .onDrop(of: ["public.file-url"], isTargeted: nil) { (items) -> Bool in
                         if let item = items.first {
@@ -184,7 +164,28 @@ struct CompressImageView: View {
                         }
                         return true
                     }
-
+                
+            }
+            Divider()
+            VStack() {
+                Text("\(selectedImageName == "" ? "No Image Selected" : selectedImageName)")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+                Text("Size: \(Int(selectedImage?.size.width ?? 0)) x \(Int(selectedImage?.size.height ?? 0))")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+                if let metadata = selectedImageMetadata {
+                    if let profileName = getColorProfileFromMetadata(metadata: metadata) {
+                        Text("Color Profile: \(profileName)")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                    }
+                } else {
+                    Text("Color Profile: Unknown")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                }
+                
             }
         }
         .padding()
@@ -192,18 +193,22 @@ struct CompressImageView: View {
     
     var rightColumn: some View {
         VStack(alignment: .leading) {
-            Slider(value: $compressionQuality, in: 0.0...1.0, step: 0.05) {
-                Text("Quality: \(Int(compressionQuality * 100))%")
+            VStack(alignment: .leading) {
+                Slider(value: $compressionQuality, in: 0.0...1.0, step: 0.05) {
+                    Text("Quality: \(Int(compressionQuality * 100))%")
+                }
                 Text("Color Quality and Alpha Quality will be adjusted at the same time")
                     .font(.caption)
                     .foregroundColor(.gray)
             }
-            
-            Slider(value: $compressionSpeed, in: 0.0...1.0, step: 0.05) {
-                Text("Speed: \(Int(compressionSpeed * 100))%")
+
+            VStack(alignment: .leading) {
+                Slider(value: $compressionSpeed, in: 0.0...1.0, step: 0.05) {
+                    Text("Speed: \(Int(compressionSpeed * 100))%")
+                }
                 Text("Control the speed and efficiency of image encoding (0% slowest)")
-                    .font(.caption)
-                    .foregroundColor(.gray)
+                        .font(.caption)
+                        .foregroundColor(.gray)
             }
             
             Picker("YUV Sampling", selection: $selectedYUVOption) {
@@ -215,7 +220,7 @@ struct CompressImageView: View {
             Text(yuvExplanation)
                 .font(.caption)
                 .foregroundColor(.gray)
-
+            
             Toggle("Clean EXIF Info", isOn: $cleanExifInfo)
             Text("Clean EXIF will also clear the Color Profiles, which may cause the image to not be displayed.")
                 .font(.caption)
