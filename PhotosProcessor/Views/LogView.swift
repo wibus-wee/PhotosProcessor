@@ -20,19 +20,24 @@ struct LogView: View {
           .font(.system(.title, design: .rounded, weight: .bold))
         Spacer()
       }
+      .padding()
       ScrollView {
         Text(outputText)
-          .font(.system(.body, design: .monospaced))
-          .foregroundColor(.white)
+          .font(.system(.caption, design: .monospaced))
         if !errorMessage.isEmpty {
           Text("Error: \(errorMessage)")
-            .font(.system(.body, design: .monospaced))
+            .font(.system(.caption, design: .monospaced))
             .foregroundColor(.red)
         }
       }
       .frame(minWidth: 600, minHeight: 400)
       HStack {
         Spacer()
+        if isRunning {
+          ProgressView()
+            .progressViewStyle(CircularProgressViewStyle())
+            .scaleEffect(0.5)
+        }
         Button(action: {
           presentationMode.wrappedValue.dismiss()
         }) {
