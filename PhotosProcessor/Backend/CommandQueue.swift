@@ -29,9 +29,10 @@ class CommandQueue: ObservableObject {
     @Published var commandResults: [CommandResult] = []
     
 
-    func enqueue(_ command: String, _ arguments: [String], description: String) {
+    func enqueue(_ command: String, _ arguments: [String], description: String) -> UUID {
         let newCommand = Command(id: UUID(), command: command, arguments: arguments, description: description)
         commands.append(newCommand)
+        return newCommand.id
     }
 
     func execute(id: UUID) {

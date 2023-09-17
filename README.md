@@ -22,7 +22,7 @@ A multi-functional picture processor software for macOS. Written in Swift.
 - [ ] Supports batch processing
 - [ ] Drag and drop processing
 - [x] Log Display
-- [ ] Process Queue Support
+- [x] Process Queue Support
 
 ### Configurations
 
@@ -48,6 +48,10 @@ A multi-functional picture processor software for macOS. Written in Swift.
   - Default: `true`
 - [ ] Start menu bar processing
   - Description: *Whether to start the menu bar processing.*
+  - Type: `Checkbox`
+  - Default: `true`
+- [ ] Execute command immediately
+  - Description: *Whether to execute the command immediately.*
   - Type: `Checkbox`
   - Default: `true`
 

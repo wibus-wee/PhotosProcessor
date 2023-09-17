@@ -9,6 +9,10 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    let timer = Timer
+        .publish(every: 1, on: .main, in: .common)
+        .autoconnect()
+    @State var dotAnimation: String = ""
 
     var body: some View {
         ZStack {
@@ -27,6 +31,7 @@ struct WelcomeView: View {
             VStack {
                 Spacer()
                 HStack {
+                    Text("Command Queue is working \(dotAnimation)")
                     Spacer()
                     Text("Made with love by @wibus-wee - v\(Constants.appVersion).b\(Constants.appBuildVersion)")
                         .onTapGesture {
@@ -37,6 +42,14 @@ struct WelcomeView: View {
                 .opacity(0.55)
             }
             .padding()
+            .onReceive(timer) { _ in
+                    switch dotAnimation {
+                    case ".": dotAnimation = ".."
+                    case "..": dotAnimation = "..."
+                    case "...": dotAnimation = "...."
+                    default: dotAnimation = "."
+                    }
+                }
 
         }
         .toolbar {
