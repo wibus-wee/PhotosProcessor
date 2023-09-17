@@ -34,7 +34,6 @@ class Executor: ObservableObject {
     
     func executeAsync(_ command: String, _ arguments: [String]) {
         var launchPathpath = ""
-        // guard 检查命令是否可用，并赋值命令路径
         let commandAvailable = isCommandAvailable(command)
         guard commandAvailable.status else {
             DispatchQueue.main.async {
@@ -89,6 +88,12 @@ class Executor: ObservableObject {
                     self.errorMessage += "Command failed with exit code \(task.terminationStatus)\n"
                 }
             }
+        }
+    }
+
+    func executeMultiInOneAsync(_ commands: [(command: String, arguments: [String])]) {
+        for command in commands {
+            executeAsync(command.command, command.arguments)
         }
     }
     
