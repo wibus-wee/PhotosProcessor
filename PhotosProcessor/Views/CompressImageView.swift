@@ -69,6 +69,7 @@ struct CompressImageView: View {
                                 selectedImagePath = selectedURL.path
                                 selectedImageName = selectedURL.lastPathComponent
                                 selectedImageMetadata = getImageMetadata(image: selectedImage!)
+                                queueId = nil
                             }
                         })
                     } label: {
@@ -126,6 +127,7 @@ struct CompressImageView: View {
                                     selectedImagePath = url.path
                                     selectedImageName = url.lastPathComponent
                                     selectedImageMetadata = getImageMetadata(image: selectedImage!)
+                                    queueId = nil
                                 }
                             }
                             return true
@@ -149,6 +151,7 @@ struct CompressImageView: View {
                                     selectedImagePath = url.path
                                     selectedImageName = url.lastPathComponent
                                     selectedImageMetadata = getImageMetadata(image: selectedImage!)
+                                    queueId = nil
                                 }
                             }
                             return true

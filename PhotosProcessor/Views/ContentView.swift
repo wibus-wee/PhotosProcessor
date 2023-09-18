@@ -58,11 +58,10 @@ struct ContentView: View {
                 .popover(isPresented: self.$isStatusPopoverShown, arrowEdge: .bottom) {
                     VStack(alignment: .leading, spacing: 4) {
 
-                        Text("Queue List")
-                        Text(
-                            "There are \(commandQueue.commands.count) commands in the queue."
-                        )
-                        .foregroundColor(.secondary)
+                        Text("Commands List")
+                        Text("There are \(commandQueue.commands.count) commands in the queue.")
+                            .font(.system(.caption, design: .rounded))
+                            .foregroundColor(.secondary)
 
                         ForEach(commandQueue.commands, id: \.id) { command in
                             Divider()
