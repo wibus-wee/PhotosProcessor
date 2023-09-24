@@ -1,4 +1,4 @@
-# PhotosProcessor For macOS
+# PhotosProcessor For Mac
 
 A multi-functional picture processor software for macOS. Written in Swift.
 
@@ -13,8 +13,8 @@ A multi-functional picture processor software for macOS. Written in Swift.
 > The core features are the most important features of the software, and the software cannot be used without them.
 
 - [x] Image compression **`🔧 Improving`**
-- [ ] Modifies image metadata
-- [ ] Adds a dark watermark
+- [ ] Modifies image metadata **`⏳ In Progress`**
+- [ ] Adds a dark watermark **`⏳ In Progress`**
 - [ ] Menu bar processing **`❓ Planning`**
 
 ### Performance Features
@@ -28,7 +28,7 @@ A multi-functional picture processor software for macOS. Written in Swift.
 - [x] Log Display **`🐛 Bug Occurred`**
 - [x] Process Queue Support
 - [ ] Supports multiple languages
-- [x] Support for dependencies (avifenc, etc.)
+- [x] Support for loading external dependencies (avifenc, etc.)
 - [ ] Quickly process with quick actions
 
 ## References
