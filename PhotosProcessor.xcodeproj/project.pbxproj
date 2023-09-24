@@ -18,6 +18,8 @@
 		38DC562C2ABFC15C00DC6408 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 38DC562B2ABFC15C00DC6408 /* LaunchAtLogin */; };
 		38DC562E2ABFC2C400DC6408 /* PublishedStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DC562D2ABFC2C400DC6408 /* PublishedStorage.swift */; };
 		38DC56302ABFC48100DC6408 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DC562F2ABFC48100DC6408 /* SettingView.swift */; };
+		38DC56322ABFF35700DC6408 /* Watermark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DC56312ABFF35700DC6408 /* Watermark.swift */; };
+		38DC56342AC012FE00DC6408 /* WaterMarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DC56332AC012FE00DC6408 /* WaterMarkView.swift */; };
 		38F63CA72AAE130C003D7156 /* Compressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F63CA62AAE130C003D7156 /* Compressor.swift */; };
 		38F63CAD2AAE1A6B003D7156 /* avifenc in Resources */ = {isa = PBXBuildFile; fileRef = 38F63CAA2AAE1A53003D7156 /* avifenc */; };
 		38F893202AAD544D008414D9 /* PhotosProcessorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F8931F2AAD544D008414D9 /* PhotosProcessorApp.swift */; };
@@ -44,6 +46,8 @@
 		38DC56282ABFC0E100DC6408 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		38DC562D2ABFC2C400DC6408 /* PublishedStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishedStorage.swift; sourceTree = "<group>"; };
 		38DC562F2ABFC48100DC6408 /* SettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		38DC56312ABFF35700DC6408 /* Watermark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watermark.swift; sourceTree = "<group>"; };
+		38DC56332AC012FE00DC6408 /* WaterMarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterMarkView.swift; sourceTree = "<group>"; };
 		38F63CA62AAE130C003D7156 /* Compressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compressor.swift; sourceTree = "<group>"; };
 		38F63CAA2AAE1A53003D7156 /* avifenc */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = avifenc; sourceTree = "<group>"; };
 		38F8931C2AAD544D008414D9 /* PhotosProcessor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotosProcessor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +108,7 @@
 		38861CF02AADCC40005DD3B4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				38DC56312ABFF35700DC6408 /* Watermark.swift */,
 				38DC562D2ABFC2C400DC6408 /* PublishedStorage.swift */,
 				38861CF12AADCC4B005DD3B4 /* InternalKit.swift */,
 			);
@@ -170,6 +175,7 @@
 				38F893352AAD5723008414D9 /* SidebarView.swift */,
 				38F893372AAD5750008414D9 /* WelcomeView.swift */,
 				387B9D862AB610DF002777DA /* LogView.swift */,
+				38DC56332AC012FE00DC6408 /* WaterMarkView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -258,6 +264,7 @@
 				38F63CA72AAE130C003D7156 /* Compressor.swift in Sources */,
 				38F893222AAD544D008414D9 /* ContentView.swift in Sources */,
 				38F893302AAD5476008414D9 /* CompressImageView.swift in Sources */,
+				38DC56322ABFF35700DC6408 /* Watermark.swift in Sources */,
 				38DC56292ABFC0E100DC6408 /* Configuration.swift in Sources */,
 				38DC562E2ABFC2C400DC6408 /* PublishedStorage.swift in Sources */,
 				38F893202AAD544D008414D9 /* PhotosProcessorApp.swift in Sources */,
@@ -265,6 +272,7 @@
 				38F893322AAD54A5008414D9 /* ModifyMetadataView.swift in Sources */,
 				38861CF42AADD1E7005DD3B4 /* GetImageMetadata.swift in Sources */,
 				387B9D852AB60FAB002777DA /* Executor.swift in Sources */,
+				38DC56342AC012FE00DC6408 /* WaterMarkView.swift in Sources */,
 				38F893362AAD5723008414D9 /* SidebarView.swift in Sources */,
 				38F893382AAD5750008414D9 /* WelcomeView.swift in Sources */,
 				387B9D8F2AB6FE6A002777DA /* SendNotification.swift in Sources */,

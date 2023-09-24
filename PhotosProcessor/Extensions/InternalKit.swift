@@ -126,40 +126,21 @@ enum InternalKit {
         }
     }
     
-    static func setupSettingView(
+    static func saveFilePanel(
         title: String,
-        field: String,
-        text: String,
-        disabled: Bool?,
-        firstButton: String?,
-        firstButtonAction: (() -> Void)?,
-        secondButton: String?,
-        secondButtonAction: (() -> Void)?,
-        description: String?
-    ) -> some View {
-        return VStack(alignment: .leading, spacing: 8) {
-                Text(title)
-                    .font(.system(.headline, design: .rounded, weight: .bold))
-                HStack {
-                    TextField(field, text: .constant(text))
-                        .disabled(disabled ?? false)
-                    if (firstButton != nil) {
-                        Button(firstButton!) {
-                            firstButtonAction?()
-                        }
-                    }
-                    if (secondButton != nil) {
-                        Button(secondButton!) {
-                            secondButtonAction?()
-                        }
-                        .buttonStyle(.borderedProminent)
-                    }
-                }
-                if(description != nil) {
-                    Text(description!)
-                        .font(.system(.footnote))
-                }
-            }
+        message: String,
+        primaryButton: String = "OK",
+        secondaryButton: String = "Cancel",
+        action: @escaping (URL?) -> Void
+    ) {
+        let panel = NSSavePanel()
+        panel.title = title
+        panel.message = message
+        panel.prompt = primaryButton
+        panel.canCreateDirectories = true
+        panel.beginSheetModal(for: NSApp.mainWindow!) { response in
+            action(panel.url)
+        }
     }
     
 }

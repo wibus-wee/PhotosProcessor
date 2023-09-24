@@ -1,6 +1,16 @@
+//
+//  CompressImageView.swift
+//  PhotosProcessor
+//
+//  Created by wibus on 2023/9/10.
+//
+
 import SwiftUI
 
 struct CompressImageView: View {
+    @State private var isStatusPopoverShown = false
+    @State var showingLogSheetID = ""
+    
     @State private var selectedImage: NSImage?
     @State private var selectedImagePath: String?
     @State private var selectedImageName: String = ""
@@ -58,6 +68,18 @@ struct CompressImageView: View {
                 }
             }
         }
+        .sheet(isPresented: Binding(
+            get: {
+                showingLogSheetID != ""
+            },
+            set: { newValue in
+                if !newValue {
+                    showingLogSheetID = ""
+                }
+            }
+        )) {
+            LogView(id: $showingLogSheetID)
+        }
         .navigationTitle("Compress Image")
         .toolbar {
             Group {
@@ -111,6 +133,76 @@ struct CompressImageView: View {
                     }
                     .disabled(selectedImage == nil || queueId != nil)
                 }
+                ToolbarItem {
+                    Button {
+                        self.isStatusPopoverShown.toggle()
+                    } label: {
+                        Label("Queue", systemImage: "list.bullet.rectangle")
+                    }
+                    .popover(isPresented: self.$isStatusPopoverShown, arrowEdge: .bottom) {
+                        VStack(alignment: .leading, spacing: 4) {
+                            
+                            Text("Commands List")
+                            Text("There are \(commandQueue.commands.count) commands in the queue.")
+                                .font(.system(.caption, design: .rounded))
+                                .foregroundColor(.secondary)
+                            
+                            ForEach(commandQueue.commands, id: \.id) { command in
+                                Divider()
+                                VStack {
+                                    Text("\(command.description)")
+                                        .font(.system(.body, design: .rounded))
+                                    Text("\(command.id)")
+                                        .foregroundColor(.secondary)
+                                        .font(.system(.caption, design: .monospaced))
+                                    List {
+                                        ForEach(command.children, id: \.self) { childId in
+                                            let childCommand = commandQueue.commands.first(where: { $0.id == childId })!
+                                            Text("\(childCommand.description) (Child)")
+                                                .font(.system(.body, design: .rounded))
+                                                .foregroundColor(.secondary)
+                                        }
+                                    }
+                                    Spacer()
+                                    
+                                    HStack {
+                                        Button("Execute") {
+                                            commandQueue.execute(id: command.id)
+                                            isStatusPopoverShown = false
+                                        }
+                                        .buttonStyle(.borderedProminent)
+                                        Button("Cancel") {
+                                            commandQueue.cancel(id: command.id)
+                                            isStatusPopoverShown = false
+                                        }
+                                    }
+                                }
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            }
+                            ForEach(commandQueue.commandResults, id: \.id) { commandResult in
+                                Divider()
+                                VStack {
+                                    Text("\(commandResult.info.description)")
+                                        .font(.system(.body, design: .rounded))
+                                    Text("\(commandResult.id) (Executed)")
+                                        .foregroundColor(.secondary)
+                                        .font(.system(.caption, design: .monospaced))
+                                    Spacer()
+                                    
+                                    HStack {
+                                        Button("Show Log") {
+                                            showingLogSheetID = commandResult.id.uuidString
+                                        }
+                                    }
+                                }
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            }
+                            
+                            
+                        }
+                        .padding()
+                    }
+                }
             }
         }
     }
@@ -125,20 +217,20 @@ struct CompressImageView: View {
                         .frame(width: 300, height: 300)
                         .cornerRadius(8)
                         .onDrop(of: [.fileURL], isTargeted: nil) { providers in
-                        if let provider = providers.first(where: { $0.canLoadObject(ofClass: URL.self) } ) {
-                            let _ = provider.loadObject(ofClass: URL.self) { object, error in
-                                if let url = object {
-                                    selectedImage = NSImage(contentsOf: url)
-                                    selectedImagePath = url.path
-                                    selectedImageName = url.lastPathComponent
-                                    selectedImageMetadata = getImageMetadata(image: selectedImage!)
-                                    queueId = nil
+                            if let provider = providers.first(where: { $0.canLoadObject(ofClass: URL.self) } ) {
+                                let _ = provider.loadObject(ofClass: URL.self) { object, error in
+                                    if let url = object {
+                                        selectedImage = NSImage(contentsOf: url)
+                                        selectedImagePath = url.path
+                                        selectedImageName = url.lastPathComponent
+                                        selectedImageMetadata = getImageMetadata(image: selectedImage!)
+                                        queueId = nil
+                                    }
                                 }
+                                return true
                             }
-                            return true
+                            return false
                         }
-                        return false
-                    }
                 }
                 
             } else {
@@ -200,14 +292,14 @@ struct CompressImageView: View {
                     .font(.caption)
                     .foregroundColor(.gray)
             }
-
+            
             VStack(alignment: .leading) {
                 Slider(value: $compressionSpeed, in: 0.0...1.0, step: 0.05) {
                     Text("Speed: \(Int(compressionSpeed * 100))%")
                 }
                 Text("Control the speed and efficiency of image encoding (0% slowest)")
-                        .font(.caption)
-                        .foregroundColor(.gray)
+                    .font(.caption)
+                    .foregroundColor(.gray)
             }
             
             Picker("YUV Sampling", selection: $selectedYUVOption) {

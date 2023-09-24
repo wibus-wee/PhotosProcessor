@@ -28,6 +28,11 @@ struct SidebarView: View {
                 } label: {
                     Label("Metadata", systemImage: "tag.circle")
                 }
+                useNavigationLink {
+                    WaterMarkView()
+                } label: {
+                    Label("Watermark", systemImage: "drop.fill")
+                }
             }
 
             Section("Misc") {
