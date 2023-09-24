@@ -12,53 +12,24 @@ A multi-functional picture processor software for macOS. Written in Swift.
 
 > The core features are the most important features of the software, and the software cannot be used without them.
 
-- [x] Image compression
+- [x] Image compression `🔧 Improving`
 - [ ] Modifies image metadata
 - [ ] Adds a dark watermark
+- [ ] Menu bar processing `❓ Planning`
 
 ### Performance Features
 
 > Performance features are features that improve the user experience.
 
-- [ ] Menu bar Drag to process
-- [ ] Configuration Support
+- [ ] Configuration Support `⏳ Working in Progress`
 - [ ] Expert mode, common mode, noob mode
 - [ ] Supports batch processing
 - [x] Drag and drop processing
 - [x] Log Display
 - [x] Process Queue Support
-- [ ] Remove built-in Resource (avifenc,exiftool,magick)
-
-### Configurations
-
-> Configurations are features that allow users to customize the software. When the configuration item is not completed, the following options will not be checked.
-
-- [x] Avifenc
-  - Description: *The path to the avifenc executable file.*
-  - Type: `Select + Input`
-  - Default: `Built-in`
-  - Options: `Built-in`, `Custom` (If `Custom` is selected, the input box will be displayed)
-- [ ] Menu bar Drag to process immediately
-  - Description: *Whether to process immediately when dragging to the menu bar.*
-  - Type: `Checkbox`
-  - Default: `true`
-- [ ] Default Mode
-  - Description: *The default mode when the software is opened.*
-  - Type: `Select`
-  - Default: `Normal`
-  - Options: `Expert`, `Normal`, `Noob`
-- [ ] Check for updates automatically
-  - Description: *Whether to check for updates automatically when the software is opened.*
-  - Type: `Checkbox`
-  - Default: `true`
-- [ ] Start menu bar processing
-  - Description: *Whether to start the menu bar processing.*
-  - Type: `Checkbox`
-  - Default: `true`
-- [x] Execute command immediately
-  - Description: *Whether to execute the command immediately.*
-  - Type: `Checkbox`
-  - Default: `true`
+- [ ] Supports multiple languages
+- [x] Support for dependencies (avifenc, etc.)
+- [ ] Quickly process with quick actions
 
 ## References
 
