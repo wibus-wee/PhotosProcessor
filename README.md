@@ -24,8 +24,8 @@ A multi-functional picture processor software for macOS. Written in Swift.
 - [ ] Configuration Support **`⏳ In Progress`**
 - [ ] Expert mode, common mode, noob mode
 - [ ] Supports batch processing
-- [x] Drag and drop processing **🐛 Bug Occurred**
-- [x] Log Display **🐛 Bug Occurred**
+- [x] Drag and drop processing **`🐛 Bug Occurred`**
+- [x] Log Display **`🐛 Bug Occurred`**
 - [x] Process Queue Support
 - [ ] Supports multiple languages
 - [x] Support for dependencies (avifenc, etc.)
