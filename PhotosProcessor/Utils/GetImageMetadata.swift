@@ -27,3 +27,11 @@ func getColorProfileFromMetadata(metadata: [String: Any]) -> String? {
     }
     return colorProfile
 }
+
+// KMD
+func getDateTimeOriginalFromMetadata(metadata: [String: Any]) -> String? {
+    guard let dateTimeOriginal = metadata[kCGImagePropertyExifDateTimeOriginal as String] as? String else {
+        return nil
+    }
+    return dateTimeOriginal
+}

@@ -11,9 +11,18 @@ struct CompressImageView: View {
     @State private var isStatusPopoverShown = false
     @State var showingLogSheetID = ""
     
-    @State private var selectedImage: NSImage?
+    @State private var selectedImage: NSImage? = nil {
+        didSet {
+            if selectedImage == nil {
+                selectedImagePath = ""
+                selectedImageName = ""
+                selectedImageMetadata = nil
+                queueId = nil
+            }
+        }
+    }
     @State private var selectedImagePath: String?
-    @State private var selectedImageName: String = ""
+    @State private var selectedImageName: String?
     @State private var selectedImageMetadata: [String: Any]?
     
     @State private var queueId: UUID?
@@ -91,7 +100,6 @@ struct CompressImageView: View {
                                 selectedImagePath = selectedURL.path
                                 selectedImageName = selectedURL.lastPathComponent
                                 selectedImageMetadata = getImageMetadata(image: selectedImage!)
-                                queueId = nil
                             }
                         })
                     } label: {
@@ -116,7 +124,7 @@ struct CompressImageView: View {
                                 return
                             }
                             // let id = commandQueue.enqueueBeta(compressCommand!.command, compressCommand!.arguments, parentId: nil, description: "Compress \(selectedImageName) to AVIF")
-                            let id = commandQueue.enqueue(compressCommand!.command, compressCommand!.arguments, description: "Compress \(selectedImageName) to AVIF")
+                            let id = commandQueue.enqueue(compressCommand!.command, compressCommand!.arguments, description: "Compress \(selectedImageName!) to AVIF")
                             queueId = id
                             // Configuration: Execute command immediately
                             if configuration.executeImmediately {
@@ -208,78 +216,18 @@ struct CompressImageView: View {
     }
     
     var leftColumn: some View {
-        VStack {
-            if let image = selectedImage {
-                VStack {
-                    Image(nsImage: image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 300, height: 300)
-                        .cornerRadius(8)
-                        .onDrop(of: [.fileURL], isTargeted: nil) { providers in
-                            if let provider = providers.first(where: { $0.canLoadObject(ofClass: URL.self) } ) {
-                                let _ = provider.loadObject(ofClass: URL.self) { object, error in
-                                    if let url = object {
-                                        selectedImage = NSImage(contentsOf: url)
-                                        selectedImagePath = url.path
-                                        selectedImageName = url.lastPathComponent
-                                        selectedImageMetadata = getImageMetadata(image: selectedImage!)
-                                        queueId = nil
-                                    }
-                                }
-                                return true
-                            }
-                            return false
-                        }
-                }
-                
-            } else {
-                Text("Choose Image")
-                    .font(.headline)
-                    .foregroundColor(.gray)
-                    .frame(width: 300, height: 300)
-                    .background(Color.secondary.opacity(0.05))
-                    .cornerRadius(8)
-                    .onDrop(of: [.fileURL], isTargeted: nil) { providers in
-                        if let provider = providers.first(where: { $0.canLoadObject(ofClass: URL.self) } ) {
-                            let _ = provider.loadObject(ofClass: URL.self) { object, error in
-                                if let url = object {
-                                    selectedImage = NSImage(contentsOf: url)
-                                    selectedImagePath = url.path
-                                    selectedImageName = url.lastPathComponent
-                                    selectedImageMetadata = getImageMetadata(image: selectedImage!)
-                                    queueId = nil
-                                }
-                            }
-                            return true
-                        }
-                        return false
-                    }
-                
+        ImageUniversalView(
+            selectedImage: $selectedImage,
+            selectedImagePath: $selectedImagePath,
+            selectedImageName: $selectedImageName,
+            selectedImageMetadata: $selectedImageMetadata,
+            dropAction: { url in
+                selectedImage = NSImage(contentsOf: url)
+                selectedImagePath = url.path
+                selectedImageName = url.lastPathComponent
+                selectedImageMetadata = getImageMetadata(image: selectedImage!)
             }
-            Divider()
-            VStack() {
-                Text("\(selectedImageName == "" ? "No Image Selected" : selectedImageName)")
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                Text("Size: \(Int(selectedImage?.size.width ?? 0)) x \(Int(selectedImage?.size.height ?? 0))")
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                if let metadata = selectedImageMetadata {
-                    if let profileName = getColorProfileFromMetadata(metadata: metadata) {
-                        Text("Color Profile: \(profileName)")
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                    }
-                } else {
-                    Text("Color Profile: Unknown")
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                }
-                
-            }
-        }
-        .padding()
+        )
     }
     
     var rightColumn: some View {

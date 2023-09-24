@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		380769702AC055F90066C7FE /* ImageUniversalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3807696F2AC055F90066C7FE /* ImageUniversalView.swift */; };
 		387B9D852AB60FAB002777DA /* Executor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B9D842AB60FAB002777DA /* Executor.swift */; };
 		387B9D872AB610DF002777DA /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B9D862AB610DF002777DA /* LogView.swift */; };
 		387B9D8B2AB6C46E002777DA /* CommandQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B9D8A2AB6C46E002777DA /* CommandQueue.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3807696F2AC055F90066C7FE /* ImageUniversalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUniversalView.swift; sourceTree = "<group>"; };
 		387B9D842AB60FAB002777DA /* Executor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Executor.swift; sourceTree = "<group>"; };
 		387B9D862AB610DF002777DA /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
 		387B9D8A2AB6C46E002777DA /* CommandQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandQueue.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				38F893372AAD5750008414D9 /* WelcomeView.swift */,
 				387B9D862AB610DF002777DA /* LogView.swift */,
 				38DC56332AC012FE00DC6408 /* WaterMarkView.swift */,
+				3807696F2AC055F90066C7FE /* ImageUniversalView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				38F63CA72AAE130C003D7156 /* Compressor.swift in Sources */,
 				38F893222AAD544D008414D9 /* ContentView.swift in Sources */,
 				38F893302AAD5476008414D9 /* CompressImageView.swift in Sources */,
+				380769702AC055F90066C7FE /* ImageUniversalView.swift in Sources */,
 				38DC56322ABFF35700DC6408 /* Watermark.swift in Sources */,
 				38DC56292ABFC0E100DC6408 /* Configuration.swift in Sources */,
 				38DC562E2ABFC2C400DC6408 /* PublishedStorage.swift in Sources */,
