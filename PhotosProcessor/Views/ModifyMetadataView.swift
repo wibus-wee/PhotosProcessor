@@ -8,15 +8,18 @@
 import SwiftUI
 
 let supportMetadataKeys: [String: CFString] = [
-    "DateTimeOriginal": kMDItemContentCreationDate,
-    "DateTimeDigitized": kMDItemContentModificationDate,
-    "FSCreationDate": kMDItemFSCreationDate,
-    "FSContentChangeDate": kMDItemFSContentChangeDate,
-    "ProfileName": kMDItemProfileName,
-    "Timestamp": kMDItemTimestamp,
-    "Make": kMDItemAcquisitionMake,
-    "Model": kMDItemAcquisitionModel,
-    "Creator": kMDItemCreator,
+    "DateTimeOriginal": kMDItemContentCreationDate, // 创建时间
+    "DateTimeDigitized": kMDItemContentModificationDate,    // 修改时间
+    "FSCreationDate": kMDItemFSCreationDate,    // 文件创建时间
+    "FSContentChangeDate": kMDItemFSContentChangeDate,  // 文件修改时间
+    "ProfileName": kMDItemProfileName,  // 颜色空间
+    "Timestamp": kMDItemTimestamp,  // 时间戳
+    "Make": kMDItemAcquisitionMake, // 设备制造商
+    "Model": kMDItemAcquisitionModel,   // 设备型号
+    "Creator": kMDItemCreator,  // 创建者
+    "ColorSpace": kMDItemColorSpace,    // 颜色空间
+    "BitsPerSample": kMDItemBitsPerSample,  // 位深
+    "LensModel": kMDItemLensModel,  // 镜头型号
 ]
 
 struct ModifyMetadataView: View {
