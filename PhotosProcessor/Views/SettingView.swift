@@ -72,7 +72,7 @@ struct SettingView: View {
                                 dialog.canChooseDirectories = false
                                 dialog.canCreateDirectories = false
                                 dialog.allowsMultipleSelection = false
-                                dialog.allowedFileTypes = ["file"]
+                                dialog.allowedContentTypes = [.executable]
                                 if dialog.runModal() == NSApplication.ModalResponse.OK {
                                     let result = dialog.url
                                     if (result != nil) {
@@ -92,11 +92,5 @@ struct SettingView: View {
             .padding()
         }
         .navigationTitle("App Configuration")
-    }
-}
-
-struct SettingView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingView()
     }
 }

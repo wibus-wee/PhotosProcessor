@@ -33,8 +33,9 @@ A multi-functional picture processor software for macOS. Written in Swift.
 
 ## References
 
-- [a-wing's Notion Site](https://awing.notion.site/2023-36-v1-1-1e1b3542b8e84db197555365824a6773)
-- [a-wing's Tweet](https://twitter.com/_a_wing/status/1700586549065155043)
+- [新一.enp1s1 on X](https://twitter.com/_a_wing/status/1700586549065155043)
+- [Lakr233/ActionBee](https://github.com/Lakr233/ActionBee)
+- [Lakr233/CameraTools](https://github.com/Lakr233/CameraTools)
 
 ## Author
 
