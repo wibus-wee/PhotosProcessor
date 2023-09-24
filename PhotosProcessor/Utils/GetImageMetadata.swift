@@ -15,9 +15,13 @@ func getImageMetadata(image: NSImage) -> [String: Any]? {
     guard let source = CGImageSourceCreateWithData(imageData as CFData, nil) else {
         return nil
     }
-    guard let metadata = CGImageSourceCopyPropertiesAtIndex(source, 0, nil) as? [String: Any] else {
+    let metadataOptions: [CFString: Any] = [
+        kCGImageSourceShouldAllowFloat: true
+    ]
+    guard let metadata = CGImageSourceCopyPropertiesAtIndex(source, 0, metadataOptions as CFDictionary) as? [String: Any] else {
         return nil
     }
+    
     return metadata
 }
 
@@ -28,10 +32,24 @@ func getColorProfileFromMetadata(metadata: [String: Any]) -> String? {
     return colorProfile
 }
 
-// KMD
-func getDateTimeOriginalFromMetadata(metadata: [String: Any]) -> String? {
-    guard let dateTimeOriginal = metadata[kCGImagePropertyExifDateTimeOriginal as String] as? String else {
+func getImageMetadataFromMDItem(url: URL, key: CFString) -> Any? {
+    print("[*] getImageMetadataFromMDItem: \(key)")
+    guard let mdItem = MDItemCreateWithURL(kCFAllocatorDefault, url as CFURL) else {
         return nil
     }
-    return dateTimeOriginal
+    guard let mdItemMetadata = MDItemCopyAttributes(mdItem, [key] as CFArray) as? [String: Any] else {
+        return nil
+    }
+    print("[*] getImageMetadataFromMDItem: \(mdItemMetadata), \([key] as CFArray)")
+    return mdItemMetadata[key as String]
+}
+
+func getImageMetadataFromMDItem(url: URL, key: CFArray) -> [String: Any]? {
+    guard let mdItem = MDItemCreateWithURL(kCFAllocatorDefault, url as CFURL) else {
+        return nil
+    }
+    guard let mdItemMetadata = MDItemCopyAttributes(mdItem, key) as? [String: Any] else {
+        return nil
+    }
+    return mdItemMetadata
 }

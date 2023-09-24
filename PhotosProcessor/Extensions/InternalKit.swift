@@ -105,6 +105,18 @@ enum InternalKit {
             action(response == .alertFirstButtonReturn)
         }
     }
+
+    static func eazyAlert(
+        title: String,
+        message: String
+    ) {
+        let alert = NSAlert()
+        alert.messageText = title
+        alert.informativeText = message
+        alert.alertStyle = .informational
+        alert.beginSheetModal(for: NSApp.mainWindow!) { response in
+        }
+    }
     
     static func useFilePanel(
         title: String,
