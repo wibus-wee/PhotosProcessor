@@ -21,14 +21,20 @@ struct SidebarView: View {
                 useNavigationLink {
                     CompressImageView()
                 } label: {
-                    // Label("压缩图片", systemImage: "arrow.down.circle")
                     Label("Compressor", systemImage: "square.and.arrow.down")
                 }
                 useNavigationLink {
                     ModifyMetadataView()
                 } label: {
-                    // Label("修改元数据", systemImage: "info.circle")
                     Label("Metadata", systemImage: "tag.circle")
+                }
+            }
+
+            Section("Misc") {
+                NavigationLink {
+                    SettingView()
+                } label: {
+                    Label("Setting", systemImage: "gear")
                 }
             }
         }

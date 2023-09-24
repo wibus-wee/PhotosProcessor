@@ -13,4 +13,5 @@ enum Constants {
     static let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "unknown"
     static let appBuildVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "unknown"
     static let projectUrl = URL(string: "https://github.com/wibus-wee/PhorosProcessor")!
+    static let appKey = "dev.wibus.PhotosProcessor"
 }

@@ -33,7 +33,7 @@ A multi-functional picture processor software for macOS. Written in Swift.
 
 > Configurations are features that allow users to customize the software. When the configuration item is not completed, the following options will not be checked.
 
-- [ ] Avifenc, Exiftool, Magick Path
+- [ ] Avifenc
   - Description: *The path to the avifenc executable file.*
   - Type: `Select + Input`
   - Default: `Built-in`

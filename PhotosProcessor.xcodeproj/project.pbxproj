@@ -14,6 +14,10 @@
 		38861CEE2AAD679A005DD3B4 /* ListColorProfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38861CED2AAD679A005DD3B4 /* ListColorProfiles.swift */; };
 		38861CF22AADCC4B005DD3B4 /* InternalKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38861CF12AADCC4B005DD3B4 /* InternalKit.swift */; };
 		38861CF42AADD1E7005DD3B4 /* GetImageMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38861CF32AADD1E7005DD3B4 /* GetImageMetadata.swift */; };
+		38DC56292ABFC0E100DC6408 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DC56282ABFC0E100DC6408 /* Configuration.swift */; };
+		38DC562C2ABFC15C00DC6408 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 38DC562B2ABFC15C00DC6408 /* LaunchAtLogin */; };
+		38DC562E2ABFC2C400DC6408 /* PublishedStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DC562D2ABFC2C400DC6408 /* PublishedStorage.swift */; };
+		38DC56302ABFC48100DC6408 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DC562F2ABFC48100DC6408 /* SettingView.swift */; };
 		38F63CA72AAE130C003D7156 /* Compressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F63CA62AAE130C003D7156 /* Compressor.swift */; };
 		38F63CAD2AAE1A6B003D7156 /* avifenc in Resources */ = {isa = PBXBuildFile; fileRef = 38F63CAA2AAE1A53003D7156 /* avifenc */; };
 		38F893202AAD544D008414D9 /* PhotosProcessorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F8931F2AAD544D008414D9 /* PhotosProcessorApp.swift */; };
@@ -37,6 +41,9 @@
 		38861CEF2AAD7796005DD3B4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		38861CF12AADCC4B005DD3B4 /* InternalKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalKit.swift; sourceTree = "<group>"; };
 		38861CF32AADD1E7005DD3B4 /* GetImageMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetImageMetadata.swift; sourceTree = "<group>"; };
+		38DC56282ABFC0E100DC6408 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		38DC562D2ABFC2C400DC6408 /* PublishedStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishedStorage.swift; sourceTree = "<group>"; };
+		38DC562F2ABFC48100DC6408 /* SettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		38F63CA62AAE130C003D7156 /* Compressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compressor.swift; sourceTree = "<group>"; };
 		38F63CAA2AAE1A53003D7156 /* avifenc */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = avifenc; sourceTree = "<group>"; };
 		38F8931C2AAD544D008414D9 /* PhotosProcessor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotosProcessor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38DC562C2ABFC15C00DC6408 /* LaunchAtLogin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +74,7 @@
 		387B9D832AB60B31002777DA /* Backend */ = {
 			isa = PBXGroup;
 			children = (
+				38DC56282ABFC0E100DC6408 /* Configuration.swift */,
 				38F63CA62AAE130C003D7156 /* Compressor.swift */,
 				387B9D842AB60FAB002777DA /* Executor.swift */,
 				387B9D8A2AB6C46E002777DA /* CommandQueue.swift */,
@@ -95,6 +104,7 @@
 		38861CF02AADCC40005DD3B4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				38DC562D2ABFC2C400DC6408 /* PublishedStorage.swift */,
 				38861CF12AADCC4B005DD3B4 /* InternalKit.swift */,
 			);
 			path = Extensions;
@@ -153,6 +163,7 @@
 		38F8932E2AAD5464008414D9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				38DC562F2ABFC48100DC6408 /* SettingView.swift */,
 				38F893212AAD544D008414D9 /* ContentView.swift */,
 				38F8932F2AAD5476008414D9 /* CompressImageView.swift */,
 				38F893312AAD54A5008414D9 /* ModifyMetadataView.swift */,
@@ -179,6 +190,9 @@
 			dependencies = (
 			);
 			name = PhotosProcessor;
+			packageProductDependencies = (
+				38DC562B2ABFC15C00DC6408 /* LaunchAtLogin */,
+			);
 			productName = PhotosProcessor;
 			productReference = 38F8931C2AAD544D008414D9 /* PhotosProcessor.app */;
 			productType = "com.apple.product-type.application";
@@ -207,6 +221,9 @@
 				Base,
 			);
 			mainGroup = 38F893132AAD544D008414D9;
+			packageReferences = (
+				38DC562A2ABFC15C00DC6408 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
+			);
 			productRefGroup = 38F8931D2AAD544D008414D9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -237,9 +254,12 @@
 				38F893342AAD5701008414D9 /* Constants.swift in Sources */,
 				387B9D8B2AB6C46E002777DA /* CommandQueue.swift in Sources */,
 				38861CEE2AAD679A005DD3B4 /* ListColorProfiles.swift in Sources */,
+				38DC56302ABFC48100DC6408 /* SettingView.swift in Sources */,
 				38F63CA72AAE130C003D7156 /* Compressor.swift in Sources */,
 				38F893222AAD544D008414D9 /* ContentView.swift in Sources */,
 				38F893302AAD5476008414D9 /* CompressImageView.swift in Sources */,
+				38DC56292ABFC0E100DC6408 /* Configuration.swift in Sources */,
+				38DC562E2ABFC2C400DC6408 /* PublishedStorage.swift in Sources */,
 				38F893202AAD544D008414D9 /* PhotosProcessorApp.swift in Sources */,
 				38861CF22AADCC4B005DD3B4 /* InternalKit.swift in Sources */,
 				38F893322AAD54A5008414D9 /* ModifyMetadataView.swift in Sources */,
@@ -471,6 +491,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		38DC562A2ABFC15C00DC6408 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		38DC562B2ABFC15C00DC6408 /* LaunchAtLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38DC562A2ABFC15C00DC6408 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
+			productName = LaunchAtLogin;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 38F893142AAD544D008414D9 /* Project object */;
 }

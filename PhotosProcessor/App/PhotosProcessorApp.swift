@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+let configuration = Configuration.shared
 let commandQueue = CommandQueue.share
 
 @main
