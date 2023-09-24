@@ -45,11 +45,6 @@ class Configuration: NSObject, ObservableObject {
 
     @PublishedStorage(key: "\(Constants.appKey).executeImmediately", defaultValue: true)
     var executeImmediately: Bool
-
-    public func switchAvifencLocationType(_ value: String) {
-        avifencLocationType = value
-        save()
-    }
     
     public func switchAutoStartup(_ value: Bool) {
         autostartup = value

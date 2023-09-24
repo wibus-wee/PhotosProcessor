@@ -33,7 +33,7 @@ A multi-functional picture processor software for macOS. Written in Swift.
 
 > Configurations are features that allow users to customize the software. When the configuration item is not completed, the following options will not be checked.
 
-- [ ] Avifenc
+- [x] Avifenc
   - Description: *The path to the avifenc executable file.*
   - Type: `Select + Input`
   - Default: `Built-in`
@@ -55,7 +55,7 @@ A multi-functional picture processor software for macOS. Written in Swift.
   - Description: *Whether to start the menu bar processing.*
   - Type: `Checkbox`
   - Default: `true`
-- [ ] Execute command immediately
+- [x] Execute command immediately
   - Description: *Whether to execute the command immediately.*
   - Type: `Checkbox`
   - Default: `true`

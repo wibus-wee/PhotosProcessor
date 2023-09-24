@@ -18,11 +18,16 @@ struct CompressorConfig {
 
 class Compressor {
     func avifencCommand(imagePath: String, config: CompressorConfig) -> (command: String, arguments: [String])? {
-      let avifencPath = Bundle.main.path(forResource: "avifenc", ofType: nil)
-      if avifencPath == nil || avifencPath!.isEmpty {
+      var avifencPath = ""
+      if (configuration.avifencLocationType == "built-in") {
+          avifencPath = Bundle.main.path(forResource: "avifenc", ofType: nil)!
+      } else {
+        avifencPath = configuration.avifencLocation
+      }
+        if avifencPath == nil || avifencPath.isEmpty {
         InternalKit.useAlert(
-          title: "无法找到 avifenc",
-          message: "请检查 avifenc 是否已安装",
+          title: "Avifenc Not Found",
+          message: "Please check if avifenc is installed, or set the location type to Built-in in the settings",
           primaryButton: "OK",
           secondaryButton: "Cancel"
         ) { _ in }
@@ -39,7 +44,7 @@ class Compressor {
         avifImagePath
       ]
       
-      return (avifencPath!, arguments)
+        return (avifencPath, arguments)
     }
 
     // @WIP
