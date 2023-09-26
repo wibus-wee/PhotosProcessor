@@ -15,7 +15,8 @@ A multi-functional picture processor software for macOS. Written in Swift.
 - [x] Image compression **`🔧 Improving`**
 - [ ] Modifies image metadata **`⏳ In Progress`**
 - [ ] Adds a dark watermark **`⏳ In Progress`**
-- [ ] Menu bar processing **`❓ Planning`**
+- [ ] Menu bar processing **`🏷️ Planning`**
+- [ ] GPS location fix
 
 ### Performance Features
 
@@ -23,13 +24,17 @@ A multi-functional picture processor software for macOS. Written in Swift.
 
 - [ ] Configuration Support **`⏳ In Progress`**
 - [ ] Expert mode, common mode, noob mode
-- [ ] Supports batch processing
+- [ ] Supports batch processing **`🏷️ Planning`**
 - [x] Drag and drop processing **`🐛 Bug Occurred`**
 - [x] Log Display **`🐛 Bug Occurred`**
-- [x] Process Queue Support
+- [x] Process Queue Support **`🔧 Improving`**
 - [ ] Supports multiple languages
-- [x] Support for loading external dependencies (avifenc, etc.)
+- [x] Support for loading external dependencies (avifenc, etc.) **`💣 Improve Later`**
 - [ ] Quickly process with quick actions
+
+### Others
+
+- [ ] Refactor UI
 
 ## References
 
