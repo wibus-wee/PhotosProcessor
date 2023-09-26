@@ -19,7 +19,7 @@ struct WaterMarkView: View {
     }
     @State private var selectedImagePath: String?
     @State private var selectedImageName: String?
-    @State private var selectedImageMetadata: [String: Any]?
+    @State private var selectedImageMetadata: ImageMetadata?
     
     @State private var watermarkText: String = ""
     @State private var watermarkFontSize: String = ""
@@ -54,7 +54,7 @@ struct WaterMarkView: View {
                                 selectedImage = NSImage(contentsOf: selectedURL)
                                 selectedImagePath = selectedURL.path
                                 selectedImageName = selectedURL.lastPathComponent
-                                selectedImageMetadata = getImageMetadata(image: selectedImage!)
+                                selectedImageMetadata = ImageMetadata(url: selectedURL)
                             }
                         })
                     } label: {
@@ -117,7 +117,7 @@ struct WaterMarkView: View {
                 selectedImage = NSImage(contentsOf: url)
                 selectedImagePath = url.path
                 selectedImageName = url.lastPathComponent
-                selectedImageMetadata = getImageMetadata(image: selectedImage!)
+                selectedImageMetadata = ImageMetadata(url: url)
             }
         )
     }

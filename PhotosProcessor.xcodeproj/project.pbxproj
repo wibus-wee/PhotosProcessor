@@ -102,7 +102,6 @@
 			children = (
 				387B9D8E2AB6FE6A002777DA /* SendNotification.swift */,
 				38861CED2AAD679A005DD3B4 /* ListColorProfiles.swift */,
-				38861CF32AADD1E7005DD3B4 /* ImageMetadata.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -110,6 +109,7 @@
 		38861CF02AADCC40005DD3B4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				38861CF32AADD1E7005DD3B4 /* ImageMetadata.swift */,
 				38DC56312ABFF35700DC6408 /* Watermark.swift */,
 				38DC562D2ABFC2C400DC6408 /* PublishedStorage.swift */,
 				38861CF12AADCC4B005DD3B4 /* InternalKit.swift */,

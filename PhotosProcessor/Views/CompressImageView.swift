@@ -23,7 +23,7 @@ struct CompressImageView: View {
     }
     @State private var selectedImagePath: String?
     @State private var selectedImageName: String?
-    @State private var selectedImageMetadata: [String: Any]?
+    @State private var selectedImageMetadata: ImageMetadata?
     
     @State private var queueId: UUID?
     
@@ -99,7 +99,8 @@ struct CompressImageView: View {
                                 selectedImage = NSImage(contentsOf: selectedURL)
                                 selectedImagePath = selectedURL.path
                                 selectedImageName = selectedURL.lastPathComponent
-                                selectedImageMetadata = getImageMetadata(image: selectedImage!)
+                                // selectedImageMetadata = getImageMetadata(image: selectedImage!)
+                                selectedImageMetadata = ImageMetadata(url: selectedURL)
                             }
                         })
                     } label: {
@@ -225,7 +226,7 @@ struct CompressImageView: View {
                 selectedImage = NSImage(contentsOf: url)
                 selectedImagePath = url.path
                 selectedImageName = url.lastPathComponent
-                selectedImageMetadata = getImageMetadata(image: selectedImage!)
+                selectedImageMetadata = ImageMetadata(url: url)
             }
         )
     }

@@ -11,7 +11,7 @@ struct ImageUniversalView: View {
     @Binding var selectedImage: NSImage?
     @Binding var selectedImagePath: String?
     @Binding var selectedImageName: String?
-    @Binding var selectedImageMetadata: [String: Any]?
+    @Binding var selectedImageMetadata: ImageMetadata?
 
     var dropAction: (_ url: URL) -> Void
     
@@ -66,7 +66,7 @@ struct ImageUniversalView: View {
                     .font(.caption)
                     .foregroundColor(.gray)
                 if let metadata = selectedImageMetadata {
-                    if let profileName = getColorProfileFromMetadata(metadata: metadata) {
+                    if let profileName = metadata.getMetadata(key: kCGImagePropertyExifColorSpace) as? String {
                         Text("Color Profile: \(profileName)")
                             .font(.caption)
                             .foregroundColor(.gray)

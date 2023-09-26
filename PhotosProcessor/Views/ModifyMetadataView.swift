@@ -47,7 +47,7 @@ struct ModifyMetadataView: View {
     @State private var selectedImageURL: URL?
     @State private var selectedImagePath: String?
     @State private var selectedImageName: String?
-    @State private var selectedImageMetadata: [String: Any]?
+    @State private var selectedImageMetadata: ImageMetadata?
     
     @State private var copyFromKey: String = "DateTimeOriginal"
     @State private var processMetadataKeyInputType: String = "Picker"
@@ -115,7 +115,7 @@ struct ModifyMetadataView: View {
                                 selectedImageURL = selectedURL
                                 selectedImagePath = selectedURL.path
                                 selectedImageName = selectedURL.lastPathComponent
-                                selectedImageMetadata = getImageMetadata(image: selectedImage!)
+                                selectedImageMetadata = ImageMetadata(url: selectedURL)
                                 updateProcessMetadataValue()
                                 // let newProcessMetadataValue = getImageMetadata(url: selectedImageURL!, key: supportMetadataKeys[copyFromKey]!)
                                 // self.newProcessMetadataValue = "\(newProcessMetadataValue ?? "")"
@@ -141,7 +141,7 @@ struct ModifyMetadataView: View {
                 selectedImageURL = url
                 selectedImagePath = url.path
                 selectedImageName = url.lastPathComponent
-                selectedImageMetadata = getImageMetadata(image: selectedImage!)
+                selectedImageMetadata = ImageMetadata(url: url)
                 updateProcessMetadataValue()
                 // let newProcessMetadataValue = getImageMetadata(url: selectedImageURL!, key: supportMetadataKeys[copyFromKey]!)
                 // self.newProcessMetadataValue = "\(newProcessMetadataValue ?? "")"
