@@ -34,7 +34,7 @@ A multi-functional picture processor software for macOS. Written in Swift.
 
 ### Others
 
-- [ ] Refactor UI
+- [ ] Refactor UI **`🏷️ Planning. After the core features are completed`**
 
 ## References
 
