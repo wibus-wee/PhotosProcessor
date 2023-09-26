@@ -30,6 +30,14 @@ let supportMetadataKeys: [String: MetadataKey] = [
     "Software": MetadataKey(key: kCGImagePropertyTIFFSoftware, area: "TIFF"),
 ]
 
+let supportArea: [String] = [
+    "Exif",
+    "ExifAux",
+    "TIFF",
+    "GPS",
+    "IPTC",
+]
+
 
 struct ModifyMetadataView: View {
     @State private var modifyType: String = "Copy" // Copy, Edit, Remove, Add
@@ -62,21 +70,54 @@ struct ModifyMetadataView: View {
                 newProcessMetadataValue = ""
                 return
             }
-            let newMetadataValue = getImageMetadata(url: selectedImageURL!, key: copyFromKey!)
+            // let newMetadataValue = getImageMetadata(url: selectedImageURL!, key: copyFromKey!)
+            let newMetadataValue = selectedImageMetadata?.getMetadata(key: copyFromKey!)
             newProcessMetadataValue = "\(newMetadataValue ?? "")"
         }
         if modifyType == "Remove" {
             newProcessMetadataValue = "nil"
         }
         let key = supportMetadataKeys[self.processMetadataKey]
-        if (key == nil) {
+        if (key == nil) { // 如果不在默认的支持列表中，表明是自定义的 key
+            print("[*] \(self.processMetadataKey) is not in supportMetadataKeys. And try to use it as custom key.")
+            // 如果以 kCGImageProperty 开头，表明是 Core Graphics 的 key
+            if (self.processMetadataKey.starts(with: "kCGImageProperty")) {
+                print("[*] \(self.processMetadataKey) is a Core Graphics key. Try to analyze it.")
+                // kCGImageProperty 的构成为：kCGImageProperty + Area(Optional) + Key
+                // 例如：kCGImagePropertyExifDateTimeOriginal, kCGImagePropertyColorModel
+                // Start.
+                let spliter = self.processMetadataKey.split(separator: "kCGImageProperty")
+                print("[*] spliter: \(spliter)")
+                // 检查一下后面还有没有东西
+                if spliter.count < 1 {
+                    print("[*] There is no key after kCGImageProperty.")
+                    return
+                }
+                let preKey = spliter[0]
+                print("[*] preKey: \(preKey)")
+                // 尝试分割 Area, 把 supportArea 中的每个元素都尝试一遍
+                var areaKey: Substring? = nil
+                for area in supportArea {
+                    if preKey.starts(with: area) {
+                        print("[*] area matched: \(area)")
+                        areaKey = preKey.split(separator: area)[0]
+                        break
+                    }
+                }
+                let keyKey = preKey.split(separator: areaKey == nil ? "" : areaKey!)[0]
+                // End.
+                let value = selectedImageMetadata?.getMetadata(key: MetadataKey(key: keyKey as CFString, area: String(areaKey!) as String))
+                print("[*] value: \(String(describing: value))")
+                oldProcessMetadataValue = "\(value ?? "")"
+            }
             oldProcessMetadataValue = ""
             if (modifyType == "Edit") {
                 newProcessMetadataValue = ""
             }
             return
         }
-        let oldMetadataValue = getImageMetadata(url: selectedImageURL!, key: key!)
+        // let oldMetadataValue = getImageMetadata(url: selectedImageURL!, key: key!)
+        let oldMetadataValue = selectedImageMetadata?.getMetadata(key: key!)
         if (modifyType == "Edit") {
             newProcessMetadataValue = "\(oldMetadataValue ?? "")"
         }
@@ -126,6 +167,47 @@ struct ModifyMetadataView: View {
                     }
                     .help("Choose Image")
                 }
+                // Start Modify
+                ToolbarItem {
+                    Button {
+                        if (selectedImage == nil || selectedImageMetadata == nil) {
+                            return
+                        }
+                        let metadata = selectedImageMetadata!
+                        if modifyType == "Copy" {
+                            let copyFromKey = supportMetadataKeys[self.copyFromKey]
+                            let processKey = supportMetadataKeys[self.processMetadataKey]
+                            if (copyFromKey == nil || processKey == nil) {
+                                return
+                            }
+                            let _ = metadata.copyMetadata(from: copyFromKey!, to: processKey!)
+                        }
+                        if modifyType == "Edit" {
+                            let processKey = supportMetadataKeys[self.processMetadataKey]
+                            if (processKey == nil) {
+                                return
+                            }
+                            let _ = metadata.editMetadata(key: processKey!, value: newProcessMetadataValue)
+                        }
+                        if modifyType == "Remove" {
+                            let processKey = supportMetadataKeys[self.processMetadataKey]
+                            if (processKey == nil) {
+                                return
+                            }
+                            let _ = metadata.removeMetadata(key: processKey!)
+                        }
+                        if modifyType == "Add" {
+                            let processKey = supportMetadataKeys[self.processMetadataKey]
+                            if (processKey == nil) {
+                                return
+                            }
+                            let _ = metadata.addMetadata(key: processKey!, value: newProcessMetadataValue)
+                        }
+                    } label: {
+                        Label("Modify", systemImage: "hammer")
+                    }
+                    .help("Modify")
+                }           
             }
         }
     }
@@ -145,8 +227,8 @@ struct ModifyMetadataView: View {
                 updateProcessMetadataValue()
                 // let newProcessMetadataValue = getImageMetadata(url: selectedImageURL!, key: supportMetadataKeys[copyFromKey]!)
                 // self.newProcessMetadataValue = "\(newProcessMetadataValue ?? "")"
-//                let meta = getImageMetadata(url: url)
-//                print("[*] getImageMetadata: dropAction \(String(describing: meta))")
+                //                let meta = getImageMetadata(url: url)
+                //                print("[*] getImageMetadata: dropAction \(String(describing: meta))")
             }
         )
     }
@@ -203,12 +285,11 @@ struct ModifyMetadataView: View {
                     .foregroundColor(.secondary)
                 if processMetadataKeyInputType == "Input" {
                     TextField("Process metadata key", text: $processMetadataKey)
-                    // .frame(width: 300, height: 30)
                         .disabled(selectedImageMetadata == nil)
                         .help("Process metadata key")
-                        // .onChange(of: processMetadataKey) { _ in
-                        //     updateProcessMetadataValue()
-                        // }
+                    // .onChange(of: processMetadataKey) { _ in
+                    //     updateProcessMetadataValue()
+                    // }
                         .onSubmit(of: .text) {
                             updateProcessMetadataValue()
                         }
@@ -256,9 +337,9 @@ struct ModifyMetadataView: View {
                 // .frame(width: 300, height: 30)
                     .disabled(selectedImageMetadata == nil)
                     .help("New metadata key")
-                    // .onChange(of: processMetadataKey) { _ in
-                    //     updateProcessMetadataValue()
-                    // }
+                // .onChange(of: processMetadataKey) { _ in
+                //     updateProcessMetadataValue()
+                // }
                     .onSubmit(of: .text) {
                         updateProcessMetadataValue()
                     }
@@ -280,10 +361,16 @@ struct ModifyMetadataView: View {
                 // }
             }
             
-            TextField("Metadata value", text: $newProcessMetadataValue)
-            // .frame(width: 300, height: 30)
+            // TextField-like TextEditor
+            TextEditor(text: $newProcessMetadataValue)
+                .font(.system(size: 12, design: .monospaced))
+                .background(Color(NSColor.textBackgroundColor))
+                .frame(height: 100)
                 .disabled(selectedImageMetadata == nil)
                 .help("Metadata value")
+                .onChange(of: newProcessMetadataValue) { _ in
+                    updateProcessMetadataValue()
+                }
         }
     }
     
@@ -312,9 +399,9 @@ struct ModifyMetadataView: View {
                 // .frame(width: 300, height: 30)
                     .disabled(selectedImageMetadata == nil)
                     .help("Metadata key")
-                    // .onChange(of: processMetadataKey) { _ in
-                    //     updateProcessMetadataValue()
-                    // }
+                // .onChange(of: processMetadataKey) { _ in
+                //     updateProcessMetadataValue()
+                // }
                     .onSubmit(of: .text) {
                         updateProcessMetadataValue()
                     }
