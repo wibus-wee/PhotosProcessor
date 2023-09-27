@@ -40,6 +40,8 @@ let supportArea: [String] = [
 
 
 struct ModifyMetadataView: View {
+    @State private var isPresented: Bool = false
+
     @State private var modifyType: String = "Copy" // Copy, Edit, Remove, Add
     
     @State private var selectedImage: NSImage? = nil {
@@ -128,7 +130,6 @@ struct ModifyMetadataView: View {
     
     var body: some View {
         ZStack {
-            
             GeometryReader { geometry in
                 if geometry.size.width > 600 {
                     HStack {
@@ -145,9 +146,22 @@ struct ModifyMetadataView: View {
                 }
             }
         }
+        .sheet(isPresented: $isPresented) {
+            let title: Binding<String> = .constant("Image Metadata")
+            let data: Binding<Any?> = .constant(selectedImageMetadata?.metadata)
+            AnyDataView(title: title, data: data)
+        }   
         .navigationTitle("Modify Metadata")
         .toolbar {
             Group {
+                ToolbarItem {
+                    Button {
+                        isPresented = true
+                    } label: {
+                        Label("Metadata", systemImage: "info.circle")
+                    }
+                    .help("Metadata")
+                }
                 ToolbarItem {
                     Button {
                         InternalKit.useFilePanel(title: "Choose Image", message: "Select the image file to compress", action: { url in
@@ -180,7 +194,7 @@ struct ModifyMetadataView: View {
                             if (copyFromKey == nil || processKey == nil) {
                                 return
                             }
-                            let _ = metadata.copyMetadata(from: copyFromKey!, to: processKey!)
+                            // let _ = metadata.copyMetadata(from: copyFromKey!, to: processKey!)
                         }
                         if modifyType == "Edit" {
                             let processKey = supportMetadataKeys[self.processMetadataKey]
@@ -194,14 +208,14 @@ struct ModifyMetadataView: View {
                             if (processKey == nil) {
                                 return
                             }
-                            let _ = metadata.removeMetadata(key: processKey!)
+                            // let _ = metadata.removeMetadata(key: processKey!)
                         }
                         if modifyType == "Add" {
                             let processKey = supportMetadataKeys[self.processMetadataKey]
                             if (processKey == nil) {
                                 return
                             }
-                            let _ = metadata.addMetadata(key: processKey!, value: newProcessMetadataValue)
+                            // let _ = metadata.addMetadata(key: processKey!, value: newProcessMetadataValue)
                         }
                     } label: {
                         Label("Modify", systemImage: "hammer")
@@ -368,9 +382,9 @@ struct ModifyMetadataView: View {
                 .frame(height: 100)
                 .disabled(selectedImageMetadata == nil)
                 .help("Metadata value")
-                .onChange(of: newProcessMetadataValue) { _ in
-                    updateProcessMetadataValue()
-                }
+                // .onChange(of: newProcessMetadataValue) { _ in
+                //     updateProcessMetadataValue()
+                // }
         }
     }
     
