@@ -69,104 +69,57 @@ class ImageMetadata {
     }
 
     func editMetadata(key: MetadataKey, value: Any) -> Bool {
-        guard let url = self.url else {
-            return false
-        }
+        let url = self.url!
+        let urlComponents = url.pathComponents
+        let fileName = urlComponents[urlComponents.count - 1]
+        let fileNameComponents = fileName.split(separator: ".")
+        let fileExtension = fileNameComponents[fileNameComponents.count - 1]
+        let newFileName = "\(fileNameComponents[0])_metadata_edited.\(fileExtension)"
+        let newFilePath = url.deletingLastPathComponent().appendingPathComponent(newFileName)
+        let newFileURL = URL(fileURLWithPath: newFilePath.path)
+
+        let area: String? = key.area.isEmpty ? nil : "{\(key.area)}"
+        let key = key.key
+        let value = value as CFTypeRef
+        
         guard let imageSource = CGImageSourceCreateWithURL(url as CFURL, nil) else {
             return false
         }
-        guard let imageDestination = CGImageDestinationCreateWithURL(url as CFURL, CGImageSourceGetType(imageSource)!, 1, nil) else {
+        guard let imageDestination = CGImageDestinationCreateWithURL(newFileURL as CFURL, CGImageSourceGetType(imageSource)!, 1, nil) else {
             return false
         }
-        guard let metadata = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil) as? [String: Any] else {
+        guard let image = CGImageSourceCreateImageAtIndex(imageSource, 0, nil) else {
             return false
         }
-        var metadataToBeWritten = metadata
-        guard var area = metadataToBeWritten["{\(key.area)}"] as? [String: Any] else {
-            return false
+        var newMetadata = self.metadata!
+        if area == nil {
+            newMetadata[key as String] = value
+        } else {
+            var newArea = newMetadata[area!] as? [String: Any]
+            if newArea == nil {
+                newArea = [String: Any]()
+            }
+            newArea![key as String] = value
+            newMetadata[area!] = newArea
         }
-        area[key.key as String] = value
-        metadataToBeWritten["{\(key.area)}"] = area
-        CGImageDestinationAddImageFromSource(imageDestination, imageSource, 0, metadataToBeWritten as CFDictionary)
+        print("[*] metadata before edited: \(self.metadata!)")
+        print("[*] metadata edited: \(newMetadata)")
+        
+        CGImageDestinationAddImage(imageDestination, image, newMetadata as CFDictionary)
         CGImageDestinationFinalize(imageDestination)
+        
         return true
     }
 
     func copyMetadata(from: MetadataKey, to: MetadataKey) -> Bool {
-        guard let url = self.url else {
-            return false
-        }
-        guard let imageSource = CGImageSourceCreateWithURL(url as CFURL, nil) else {
-            return false
-        }
-        guard let imageDestination = CGImageDestinationCreateWithURL(url as CFURL, CGImageSourceGetType(imageSource)!, 1, nil) else {
-            return false
-        }
-        guard let metadata = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil) as? [String: Any] else {
-            return false
-        }
-        var metadataToBeWritten = metadata
-        guard let area = metadataToBeWritten["{\(from.area)}"] as? [String: Any] else {
-            return false
-        }
-        guard let value = area[from.key as String] else {
-            return false
-        }
-        guard var toArea = metadataToBeWritten["{\(to.area)}"] as? [String: Any] else {
-            return false
-        }
-        toArea[to.key as String] = value
-        metadataToBeWritten["{\(to.area)}"] = toArea
-        CGImageDestinationAddImageFromSource(imageDestination, imageSource, 0, metadataToBeWritten as CFDictionary)
-        CGImageDestinationFinalize(imageDestination)
-        return true
+        return false
     }
 
     func removeMetadata(key: MetadataKey) -> Bool {
-        guard let url = self.url else {
-            return false
-        }
-        guard let imageSource = CGImageSourceCreateWithURL(url as CFURL, nil) else {
-            return false
-        }
-        guard let imageDestination = CGImageDestinationCreateWithURL(url as CFURL, CGImageSourceGetType(imageSource)!, 1, nil) else {
-            return false
-        }
-        guard let metadata = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil) as? [String: Any] else {
-            return false
-        }
-        var metadataToBeWritten = metadata
-        guard var area = metadataToBeWritten["{\(key.area)}"] as? [String: Any] else {
-            return false
-        }
-        area.removeValue(forKey: key.key as String)
-        metadataToBeWritten["{\(key.area)}"] = area
-        CGImageDestinationAddImageFromSource(imageDestination, imageSource, 0, metadataToBeWritten as CFDictionary)
-        CGImageDestinationFinalize(imageDestination)
-        return true
+        return false
     }
 
     func addMetadata(key: MetadataKey, value: Any) -> Bool {
-        guard let url = self.url else {
-            return false
-        }
-        guard let imageSource = CGImageSourceCreateWithURL(url as CFURL, nil) else {
-            return false
-        }
-        guard let imageDestination = CGImageDestinationCreateWithURL(url as CFURL, CGImageSourceGetType(imageSource)!, 1, nil) else {
-            return false
-        }
-        guard let metadata = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil) as? [String: Any] else {
-            return false
-        }
-        var metadataToBeWritten = metadata
-        guard var area = metadataToBeWritten["{\(key.area)}"] as? [String: Any] else {
-            return false
-        }
-        area[key.key as String] = value
-        metadataToBeWritten["{\(key.area)}"] = area
-        CGImageDestinationAddImageFromSource(imageDestination, imageSource, 0, metadataToBeWritten as CFDictionary)
-        CGImageDestinationFinalize(imageDestination)
-        return true
+        return false
     }
 }
