@@ -158,9 +158,19 @@ struct ModifyMetadataView: View {
                     Button {
                         isPresented = true
                     } label: {
-                        Label("Metadata", systemImage: "info.circle")
+                        Label("Image Metadata", systemImage: "info.circle")
                     }
-                    .help("Metadata")
+                    .help("Image Metadata")
+                }
+                ToolbarItem {
+                    Button {
+                        if (selectedImage == nil || selectedImageMetadata == nil) {
+                            return
+                        }
+                        let _ = selectedImageMetadata!.syncImageDate(path: selectedImageMetadata!.url!.path)
+                    } label: {
+                        Label("Sync DateTimeOriginal to CreateDate", systemImage: "arrow.clockwise")
+                    }
                 }
                 ToolbarItem {
                     Button {
