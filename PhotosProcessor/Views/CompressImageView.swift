@@ -36,7 +36,6 @@ struct CompressImageView: View {
     var availableColorProfiles: [String] = listColorProfiles() + ["Follow Original"]
     
     @State var isShowingLogSheet = false
-    @StateObject private var executor = Executor()
     
     var yuvOptions = ["YUV 4:4:4", "YUV 4:2:2", "YUV 4:2:0", "YUV 4:0:0"]
     
