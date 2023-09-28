@@ -13,28 +13,30 @@ A multi-functional picture processor software for macOS. Written in Swift.
 > The core features are the most important features of the software, and the software cannot be used without them.
 
 - [x] Image compression **`🔧 Improving`**
-- [ ] Modifies image metadata **`⏳ In Progress`**
-- [ ] Adds a dark watermark **`⏳ In Progress`**
-- [ ] Menu bar processing **`🏷️ Planning`**
-- [ ] GPS location fix
+- [ ] Modify image metadata **`⏳ In Progress`**
+- [ ] Image dark watermark support **`⏳ In Progress. / ❓ Need help.`**
+- [ ] Menu bar item **`🏷️ Planning`**
+- [ ] GPS location fix **`❓ Need help. / 💣 Won't do in the near future.`**
 
 ### Performance Features
 
 > Performance features are features that improve the user experience.
 
-- [ ] Configuration Support **`⏳ In Progress`**
+- [x] Configuration Support **`🔧 Improving`**
 - [ ] Expert mode, common mode, noob mode
 - [ ] Supports batch processing **`🏷️ Planning`**
-- [x] Drag and drop processing **`🐛 Bug Occurred`**
+- [x] Drag and drop processing
 - [x] Log Display **`🐛 Bug Occurred`**
 - [x] Process Queue Support **`🔧 Improving`**
-- [ ] Supports multiple languages
-- [x] Support for loading external dependencies (avifenc, etc.) **`💣 Improve Later`**
+- [ ] Multiple languages (i18n)
+- [x] Support for loading external dependencies (avifenc, etc.) **`💣 Improve later?`**
 - [ ] Quickly process with quick actions
 
 ### Others
 
 - [ ] Refactor UI **`🏷️ Planning. After the core features are completed`**
+  - [ ] Standlone *Welcome page*
+  - [ ] Standlone *Settings Page*
 
 ## References
 
