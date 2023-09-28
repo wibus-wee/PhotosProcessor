@@ -47,6 +47,6 @@ struct AnyDataView: View {
       }
     }
     .padding()
-    .frame(minWidth: 400, minHeight: 300)
+    .frame(minWidth: 400, maxWidth: 600, minHeight: 300, maxHeight: 400)
   }
 }
