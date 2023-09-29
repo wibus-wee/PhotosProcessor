@@ -113,10 +113,10 @@ struct CompressImageView: View {
                             let config = CompressorConfig(
                                 quality: Int(compressionQuality * 100),
                                 yuv: yuvOptions[selectedYUVOption].replacingOccurrences(of: "YUV ", with: "").replacingOccurrences(of: ":", with: ""),
-                                speed: Int(compressionSpeed * 100),
-                                cleanExifInfo: cleanExifInfo,
-                                useColorProfiles: useColorProfiles,
-                                colorProfile: selectedColorProfile == "Follow Original" ? nil : selectedColorProfile
+                                speed: Int(compressionSpeed * 100)
+                                // cleanExifInfo: cleanExifInfo,
+                                // useColorProfiles: useColorProfiles,
+                                // colorProfile: selectedColorProfile == "Follow Original" ? nil : selectedColorProfile
                             )
                             let compressor = Compressor()
                             let compressCommand = compressor.avifencCommand(imagePath: selectedImagePath!, config: config)
@@ -260,31 +260,31 @@ struct CompressImageView: View {
                 .font(.caption)
                 .foregroundColor(.gray)
             
-            Toggle("Clean EXIF Info", isOn: $cleanExifInfo)
-            Text("Clean EXIF will also clear the Color Profiles, which may cause the image to not be displayed.")
-                .font(.caption)
-                .foregroundColor(.gray)
+            // Toggle("Clean EXIF Info", isOn: $cleanExifInfo)
+            // Text("Clean EXIF will also clear the Color Profiles, which may cause the image to not be displayed.")
+            //     .font(.caption)
+            //     .foregroundColor(.gray)
             
-            // Toggle("Color Profiles 覆盖", isOn: $useColorProfiles)
-            Toggle("Color Profiles Override", isOn: $useColorProfiles)
-            if cleanExifInfo && !useColorProfiles {
-                // Text("建议勾选此项，防止图片无法正常显示")
-                Text("It is recommended to check this option to prevent the image from not being displayed normally")
-                    .font(.caption)
-                    .foregroundColor(.yellow)
-            }
+            // // Toggle("Color Profiles 覆盖", isOn: $useColorProfiles)
+            // Toggle("Color Profiles Override", isOn: $useColorProfiles)
+            // if cleanExifInfo && !useColorProfiles {
+            //     // Text("建议勾选此项，防止图片无法正常显示")
+            //     Text("It is recommended to check this option to prevent the image from not being displayed normally")
+            //         .font(.caption)
+            //         .foregroundColor(.yellow)
+            // }
             
-            // Picker("选择 Color Profile", selection: $selectedColorProfile) {
-            Picker("Select Color Profile", selection: $selectedColorProfile) {
-                ForEach(availableColorProfiles, id: \.self) { profile in
-                    Text(profile)
-                }
-            }
-            .disabled(!useColorProfiles)
-            // Text("使用 Follow Original 将会始终恢复原始的 Color Profile, 但当系统内无此 Color Profile 时, 将会使用 sRGB")
-            Text("Using Follow Original will always restore the original Color Profile, but when there is no such Color Profile in the system, sRGB will be used")
-                .font(.caption)
-                .foregroundColor(.gray)
+            // // Picker("选择 Color Profile", selection: $selectedColorProfile) {
+            // Picker("Select Color Profile", selection: $selectedColorProfile) {
+            //     ForEach(availableColorProfiles, id: \.self) { profile in
+            //         Text(profile)
+            //     }
+            // }
+            // .disabled(!useColorProfiles)
+            // // Text("使用 Follow Original 将会始终恢复原始的 Color Profile, 但当系统内无此 Color Profile 时, 将会使用 sRGB")
+            // Text("Using Follow Original will always restore the original Color Profile, but when there is no such Color Profile in the system, sRGB will be used")
+            //     .font(.caption)
+            //     .foregroundColor(.gray)
             
         }
         .padding()

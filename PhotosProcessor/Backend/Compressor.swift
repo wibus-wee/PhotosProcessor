@@ -11,9 +11,9 @@ struct CompressorConfig {
     var quality: Int
     var yuv: String
     var speed: Int
-    var cleanExifInfo: Bool
-    var useColorProfiles: Bool
-    var colorProfile: String?
+    // var cleanExifInfo: Bool
+    // var useColorProfiles: Bool
+    // var colorProfile: String?
 }
 
 class Compressor {
@@ -68,24 +68,24 @@ class Compressor {
     }
 
     // @WIP
-    func profileProcess(imagePath: String, config: CompressorConfig) -> (command: String, arguments: [String])? {
-      let magickPath = Bundle.main.path(forResource: "magick", ofType: nil)
-      if magickPath == nil || magickPath!.isEmpty {
-        InternalKit.useAlert(
-          title: "无法找到 magick",
-          message: "请检查 magick 是否已安装",
-          primaryButton: "OK",
-          secondaryButton: "Cancel"
-        ) { _ in }
-        return nil
-      }
-      let colorProfilePath = "/System/Library/ColorSync/Profiles/" + config.colorProfile!
-      let arguments = [
-        imagePath,
-        "-profile",
-        colorProfilePath,
-        imagePath
-      ]
-      return (magickPath!, arguments)
-    }
+//    func profileProcess(imagePath: String, config: CompressorConfig) -> (command: String, arguments: [String])? {
+//      let magickPath = Bundle.main.path(forResource: "magick", ofType: nil)
+//      if magickPath == nil || magickPath!.isEmpty {
+//        InternalKit.useAlert(
+//          title: "无法找到 magick",
+//          message: "请检查 magick 是否已安装",
+//          primaryButton: "OK",
+//          secondaryButton: "Cancel"
+//        ) { _ in }
+//        return nil
+//      }
+//      let colorProfilePath = "/System/Library/ColorSync/Profiles/" + config.colorProfile!
+//      let arguments = [
+//        imagePath,
+//        "-profile",
+//        colorProfilePath,
+//        imagePath
+//      ]
+//      return (magickPath!, arguments)
+//    }
 }

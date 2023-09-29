@@ -275,10 +275,10 @@ struct ModifyMetadataView: View {
     var rightTop: some View {
         VStack(alignment: .leading) {
             Picker("Modify Type", selection: $modifyType) {
-                Text("Copy").tag("Copy")
-                Text("Edit").tag("Edit")
-                Text("Add").tag("Add")
-                Text("Remove").tag("Remove")
+                Text("Copy").tag(ModifyType.copy)
+                Text("Edit").tag(ModifyType.edit)
+                Text("Add").tag(ModifyType.add)
+                Text("Remove").tag(ModifyType.remove)
             }
             .pickerStyle(SegmentedPickerStyle())
             .help("Modify Type")
