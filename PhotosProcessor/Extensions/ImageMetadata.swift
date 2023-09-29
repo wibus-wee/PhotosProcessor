@@ -51,7 +51,7 @@ class ImageMetadata {
         if key.area.isEmpty {
             return metadata[key.key as String]
         }
-        guard let area = metadata[key.area] as? [String: Any] else {
+        guard let area = metadata["{\(key.area)}"] as? [String: Any] else {
             return nil
         }
         return area[key.key as String]
