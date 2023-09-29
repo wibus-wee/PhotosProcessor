@@ -11,12 +11,13 @@ import SwiftUI
 struct SidebarView: View {
     var body: some View {
         Group {
-            useNavigationLink {
-                WelcomeView()
-            } label: {
-                Label("Home", systemImage: "house")
+            Section("Basic") {
+                useNavigationLink {
+                    WelcomeView()
+                } label: {
+                    Label("Home", systemImage: "house")
+                }
             }
-
             Section("Features") {
                 useNavigationLink {
                     CompressImageView()

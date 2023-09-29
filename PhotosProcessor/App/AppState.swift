@@ -47,27 +47,41 @@ class AppState: ObservableObject {
                 print("[*] no selected file in Finder")
                 print("[*] get file from Pasteboard")
                 let pasteboard = NSPasteboard.general
-                //  let files = pasteboard.readObjects(forClasses: [NSURL.self], options: nil) as? [URL]
-                // 把黏贴板的图片保存到临时文件夹
-                let files = pasteboard.readObjects(forClasses: [NSImage.self], options: nil) as? [NSImage]
-                if files == nil || files!.count == 0 {
+                // 1. Local image
+                let files_URL = pasteboard.readObjects(forClasses: [NSURL.self], options: nil) as? [URL]
+                // if !(files_URL == nil) || !(files_URL!.count == 0) {
+                if let filesURL = files_URL, !filesURL.isEmpty {
+                    print("[*] get local image from Pasteboard")
+                    let file = files_URL![0]
+                    if !self.isImage(path: file.path) {
+                        return
+                    }
+                    path = file.path
+                    name = file.lastPathComponent
+                }
+                // 2. Internet image
+                let files_image = pasteboard.readObjects(forClasses: [NSImage.self], options: nil) as? [NSImage]
+                // Local image has higher priority
+                if let filesImage = files_image, !filesImage.isEmpty, (path == nil || name == nil) {
+                    let uuid = UUID().uuidString
+                    let file = files_image![0]
+                    let data = file.tiffRepresentation
+                    let imageRep = NSBitmapImageRep(data: data!)
+                    let imageData = imageRep!.representation(using: .jpeg, properties: [:])
+                    let tempPath = NSTemporaryDirectory() + "temp_\(uuid).jpeg"
+                    let url = URL(fileURLWithPath: tempPath)
+                    do {
+                        try imageData?.write(to: url)
+                    } catch {
+                        print(error)
+                    }
+                    path = tempPath
+                    name = "temp_\(uuid).jpeg"
+                }
+                if path == nil || name == nil {
                     print("[*] no image in pasteboard")
                     return
                 }
-                let uuid = UUID().uuidString
-                let file = files![0]
-                let data = file.tiffRepresentation
-                let imageRep = NSBitmapImageRep(data: data!)
-                let imageData = imageRep!.representation(using: .jpeg, properties: [:])
-                let tempPath = NSTemporaryDirectory() + "temp_\(uuid).jpeg"
-                let url = URL(fileURLWithPath: tempPath)
-                do {
-                    try imageData?.write(to: url)
-                } catch {
-                    print(error)
-                }
-                path = tempPath
-                name = "temp_\(uuid).jpeg"
                 type = "Pasteboard"
             }
             print("[*] \(String(describing: path)), \(String(describing: name))")
