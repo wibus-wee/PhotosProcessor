@@ -78,18 +78,9 @@ struct ImageGPSLocationView: View {
 
 struct MapView: View {
     let imageMetadata: ImageMetadata
-    @State private var metadataArray: [String] = []
 
     var body: some View {
-        Map(coordinateRegion: .constant(region(for: imageMetadata)), interactionModes: .all, showsUserLocation: true, userTrackingMode: .constant(.none))
-            .onAppear {
-              let annotation = MKPointAnnotation()
-              annotation.coordinate = region(for: imageMetadata).center
-              annotation.title = "Image Location"
-              annotation.subtitle = "Latitude: \(region(for: imageMetadata).center.latitude), Longitude: \(region(for: imageMetadata).center.longitude)"
-              let map = MKMapView()
-              map.addAnnotation(annotation)
-            }
+        Map(coordinateRegion: .constant(region(for: imageMetadata)), showsUserLocation: true)
     }
 
     private func region(for metadata: ImageMetadata) -> MKCoordinateRegion {
@@ -97,13 +88,17 @@ struct MapView: View {
               let longitude = metadata.getMetadata(key: MetadataKey(key: kCGImagePropertyGPSLongitude, area: "GPS")) as? NSNumber else {
             return MKCoordinateRegion(
                 center: CLLocationCoordinate2D(latitude: 0, longitude: 0),
-                span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+                // span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+                latitudinalMeters: 100,
+                longitudinalMeters: 100
             )
         }
 
         var region = MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: latitude.doubleValue, longitude: longitude.doubleValue),
-            span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+            // span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+            latitudinalMeters: 100,
+            longitudinalMeters: 100
         )
 
         let latitudeRefMetadataKey = MetadataKey(key: kCGImagePropertyGPSLatitudeRef, area: "GPS")
