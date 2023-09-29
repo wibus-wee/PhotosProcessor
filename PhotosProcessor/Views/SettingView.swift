@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import KeyboardShortcuts
 struct SettingView: View {
     @StateObject var config = configuration
     
@@ -103,8 +103,28 @@ struct SettingView: View {
                             }
                         }
                     )
-                    
                 }
+                useSetting(
+                    title: "Quickly Process Save Directory",
+                    description: "The app will save the processed image to this directory.",
+                    content: HStack {
+                        TextField("Quickly Process Save Directory", text: $config.quicklyprocessSaveDirectory)
+                            .textFieldStyle(.roundedBorder)
+                            .disabled(true)
+                        Button("Browse") {
+                            InternalKit.useDirectoryPanel(
+                                title: "Choose a directory",
+                                message: "Choose a directory to save the processed image",
+                                primaryButton: "OK",
+                                secondaryButton: "Cancel"
+                            ) { url in
+                                if url != nil {
+                                    config.quicklyprocessSaveDirectory = url!.path
+                                }
+                            }
+                        }
+                    }
+                )
                 }
 
                 Divider()
@@ -120,6 +140,18 @@ struct SettingView: View {
                         description: "Save As New File means the app will save the modified file as a new file.",
                         content: Toggle("", isOn: $config.metadataSaveAsNewFile)
                             .toggleStyle(.switch)
+                    )
+                }
+
+                Divider()
+
+                VStack(alignment: .leading, spacing: 8) {
+                    useSetting(
+                        title: "Quickly Compression",
+                        description: "Setup a keyboard shortcut to quickly compress the selected image.",
+                        content: HStack {
+                            KeyboardShortcuts.Recorder(for: .quicklyCompression)
+                        }
                     )
                 }
 

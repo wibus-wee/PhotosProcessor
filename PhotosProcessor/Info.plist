@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>com.apple.security.automation.apple-events</key>
-	<true/>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>This app requires access to Finder in order to manage files and perform file operations on your behalf.</string>
 </dict>
 </plist>

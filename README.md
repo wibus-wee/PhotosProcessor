@@ -32,7 +32,7 @@ A multi-functional picture processor software for macOS. Written in Swift.
 - [x] Process Queue Support **`🔧 Improving`**
 - [ ] Multiple languages (i18n)
 - [x] Support for loading external dependencies (avifenc, etc.) **`💣 Improve later?`**
-- [ ] Quickly process with quick actions
+- [x] Quickly compression with global hotkey
 
 ### Others
 

@@ -12,6 +12,8 @@ let commandQueue = CommandQueue.share
 
 @main
 struct PhotosProcessorApp: App {
+    @StateObject private var appState = AppState()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

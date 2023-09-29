@@ -36,6 +36,9 @@ class Configuration: NSObject, ObservableObject {
     @PublishedStorage(key: "\(Constants.appKey).metadata.saveAsNewFile", defaultValue: false)
     var metadataSaveAsNewFile: Bool // 是否将修改后的文件保存为新文件
 
+    @PublishedStorage(key: "\(Constants.appKey).quicklyprocess.saveDirectory", defaultValue: "")
+    var quicklyprocessSaveDirectory: String // 快速处理的保存目录
+
     public func switchAvifencLocation(_ value: String) {
         avifencLocation = value
         save()

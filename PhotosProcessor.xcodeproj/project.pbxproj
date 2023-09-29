@@ -12,6 +12,10 @@
 		3874B1EA2AC6AAEE00790925 /* NSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874B1E92AC6AAEE00790925 /* NSTextView.swift */; };
 		3874B1EC2AC6B14F00790925 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874B1EB2AC6B14F00790925 /* View.swift */; };
 		3874B1EF2AC6B1CD00790925 /* Colorful in Frameworks */ = {isa = PBXBuildFile; productRef = 3874B1EE2AC6B1CD00790925 /* Colorful */; };
+		3874B1F52AC6B4DC00790925 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 3874B1F42AC6B4DC00790925 /* KeyboardShortcuts */; };
+		3874B1F72AC6B50000790925 /* KeyboardShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874B1F62AC6B50000790925 /* KeyboardShortcuts.swift */; };
+		3874B1F92AC6BB3C00790925 /* SelectedFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874B1F82AC6BB3C00790925 /* SelectedFile.swift */; };
+		3874B1FC2AC6C62100790925 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874B1FB2AC6C62100790925 /* AppState.swift */; };
 		387B9D852AB60FAB002777DA /* Executor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B9D842AB60FAB002777DA /* Executor.swift */; };
 		387B9D872AB610DF002777DA /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B9D862AB610DF002777DA /* LogView.swift */; };
 		387B9D8B2AB6C46E002777DA /* CommandQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B9D8A2AB6C46E002777DA /* CommandQueue.swift */; };
@@ -44,6 +48,10 @@
 		3874B1E92AC6AAEE00790925 /* NSTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTextView.swift; sourceTree = "<group>"; };
 		3874B1EB2AC6B14F00790925 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		3874B1F22AC6B33900790925 /* screen.avif */ = {isa = PBXFileReference; lastKnownFileType = file; path = screen.avif; sourceTree = "<group>"; };
+		3874B1F62AC6B50000790925 /* KeyboardShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortcuts.swift; sourceTree = "<group>"; };
+		3874B1F82AC6BB3C00790925 /* SelectedFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFile.swift; sourceTree = "<group>"; };
+		3874B1FA2AC6C00D00790925 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3874B1FB2AC6C62100790925 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		387B9D842AB60FAB002777DA /* Executor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Executor.swift; sourceTree = "<group>"; };
 		387B9D862AB610DF002777DA /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
 		387B9D8A2AB6C46E002777DA /* CommandQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandQueue.swift; sourceTree = "<group>"; };
@@ -79,6 +87,7 @@
 			files = (
 				3874B1EF2AC6B1CD00790925 /* Colorful in Frameworks */,
 				38DC562C2ABFC15C00DC6408 /* LaunchAtLogin in Frameworks */,
+				3874B1F52AC6B4DC00790925 /* KeyboardShortcuts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +118,7 @@
 			children = (
 				38F8931F2AAD544D008414D9 /* PhotosProcessorApp.swift */,
 				38F893332AAD5701008414D9 /* Constants.swift */,
+				3874B1FB2AC6C62100790925 /* AppState.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -118,6 +128,7 @@
 			children = (
 				387B9D8E2AB6FE6A002777DA /* SendNotification.swift */,
 				38861CED2AAD679A005DD3B4 /* ListColorProfiles.swift */,
+				3874B1F82AC6BB3C00790925 /* SelectedFile.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -131,6 +142,7 @@
 				38861CF12AADCC4B005DD3B4 /* InternalKit.swift */,
 				3874B1E92AC6AAEE00790925 /* NSTextView.swift */,
 				3874B1EB2AC6B14F00790925 /* View.swift */,
+				3874B1F62AC6B50000790925 /* KeyboardShortcuts.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -165,6 +177,7 @@
 		38F8931E2AAD544D008414D9 /* PhotosProcessor */ = {
 			isa = PBXGroup;
 			children = (
+				3874B1FA2AC6C00D00790925 /* Info.plist */,
 				387B9D832AB60B31002777DA /* Backend */,
 				38861CF02AADCC40005DD3B4 /* Extensions */,
 				38861CEC2AAD678A005DD3B4 /* Utils */,
@@ -221,6 +234,7 @@
 			packageProductDependencies = (
 				38DC562B2ABFC15C00DC6408 /* LaunchAtLogin */,
 				3874B1EE2AC6B1CD00790925 /* Colorful */,
+				3874B1F42AC6B4DC00790925 /* KeyboardShortcuts */,
 			);
 			productName = PhotosProcessor;
 			productReference = 38F8931C2AAD544D008414D9 /* PhotosProcessor.app */;
@@ -253,6 +267,7 @@
 			packageReferences = (
 				38DC562A2ABFC15C00DC6408 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
 				3874B1ED2AC6B1CD00790925 /* XCRemoteSwiftPackageReference "Colorful" */,
+				3874B1F32AC6B4DC00790925 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
 			);
 			productRefGroup = 38F8931D2AAD544D008414D9 /* Products */;
 			projectDirPath = "";
@@ -281,9 +296,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3874B1F72AC6B50000790925 /* KeyboardShortcuts.swift in Sources */,
 				38F893342AAD5701008414D9 /* Constants.swift in Sources */,
 				380769722AC482A50066C7FE /* AnyDataView.swift in Sources */,
+				3874B1FC2AC6C62100790925 /* AppState.swift in Sources */,
 				387B9D8B2AB6C46E002777DA /* CommandQueue.swift in Sources */,
+				3874B1F92AC6BB3C00790925 /* SelectedFile.swift in Sources */,
 				38861CEE2AAD679A005DD3B4 /* ListColorProfiles.swift in Sources */,
 				38DC56302ABFC48100DC6408 /* SettingView.swift in Sources */,
 				38F63CA72AAE130C003D7156 /* Compressor.swift in Sources */,
@@ -439,8 +457,11 @@
 				DEVELOPMENT_ASSET_PATHS = "\"PhotosProcessor/Preview Content\"";
 				DEVELOPMENT_TEAM = 947UYU6LTQ;
 				ENABLE_HARDENED_RUNTIME = YES;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PhotosProcessor/Info.plist;
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -478,8 +499,11 @@
 				DEVELOPMENT_ASSET_PATHS = "\"PhotosProcessor/Preview Content\"";
 				DEVELOPMENT_TEAM = 947UYU6LTQ;
 				ENABLE_HARDENED_RUNTIME = YES;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PhotosProcessor/Info.plist;
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -537,6 +561,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		3874B1F32AC6B4DC00790925 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		38DC562A2ABFC15C00DC6408 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
@@ -552,6 +584,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3874B1ED2AC6B1CD00790925 /* XCRemoteSwiftPackageReference "Colorful" */;
 			productName = Colorful;
+		};
+		3874B1F42AC6B4DC00790925 /* KeyboardShortcuts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3874B1F32AC6B4DC00790925 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
+			productName = KeyboardShortcuts;
 		};
 		38DC562B2ABFC15C00DC6408 /* LaunchAtLogin */ = {
 			isa = XCSwiftPackageProductDependency;

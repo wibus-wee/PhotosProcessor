@@ -137,6 +137,26 @@ enum InternalKit {
             action(panel.url)
         }
     }
+
+    static func useDirectoryPanel(
+        title: String,
+        message: String,
+        primaryButton: String = "OK",
+        secondaryButton: String = "Cancel",
+        action: @escaping (URL?) -> Void
+    ) {
+        let panel = NSOpenPanel()
+        panel.title = title
+        panel.message = message
+        panel.prompt = primaryButton
+        panel.canChooseFiles = false
+        panel.canChooseDirectories = true
+        panel.canCreateDirectories = true
+        panel.allowsMultipleSelection = false
+        panel.beginSheetModal(for: NSApp.mainWindow!) { response in
+            action(panel.url)
+        }
+    }
     
     static func saveFilePanel(
         title: String,

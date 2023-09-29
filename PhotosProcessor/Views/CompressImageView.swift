@@ -122,18 +122,7 @@ struct CompressImageView: View {
                                 // colorProfile: selectedColorProfile == "Follow Original" ? nil : selectedColorProfile
                             )
                             let compressor = Compressor()
-                            let compressCommand = compressor.avifencCommand(imagePath: selectedImagePath!, config: config)
-                            if compressCommand == nil {
-                                return
-                            }
-                            // let id = commandQueue.enqueueBeta(compressCommand!.command, compressCommand!.arguments, parentId: nil, description: "Compress \(selectedImageName) to AVIF")
-                            let id = commandQueue.enqueue(compressCommand!.command, compressCommand!.arguments, description: "Compress \(selectedImageName!) to AVIF")
-                            queueId = id
-                            // Configuration: Execute command immediately
-                            if configuration.executeImmediately {
-                                commandQueue.execute(id: id)
-                            }
-                            // sendNotification(title: "\(selectedImageName) compressing", subtitle: "AVIF", informativeText: "Compressing \(selectedImageName) to AVIF")
+                            queueId = compressor.compress(path: selectedImagePath!, name: selectedImageName!, config: config)
                         }
                     } label: {
                         if queueId != nil {
