@@ -130,6 +130,10 @@ struct ModifyMetadataView: View {
                 let value = selectedImageMetadata?.getMetadata(key: MetadataKey(key: keyKey as CFString, area: String(areaKey!) as String))
                 print("[*] value: \(String(describing: value))")
                 oldProcessMetadataValue = "\(value ?? "")"
+                if (modifyType == .edit) {
+                    newProcessMetadataValue = "\(value ?? "")"
+                }
+                return
             }
             oldProcessMetadataValue = ""
             if (modifyType == .edit) {
