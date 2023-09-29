@@ -20,7 +20,6 @@ class Executor: ObservableObject {
         guard receipt.exitCode == 0, !username.isEmpty /* , username != "root" */ else {
             fatalError("Malformed application permissions.")
         }
-        print("[*] whoami \(username)")
     }
     
     func isCommandAvailable(_ command: String) -> (status: Bool, path: String) {

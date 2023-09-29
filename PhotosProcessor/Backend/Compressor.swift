@@ -11,6 +11,7 @@ struct CompressorConfig {
     var quality: Int
     var yuv: String
     var speed: Int
+    var arguments: String?
     // var cleanExifInfo: Bool
     // var useColorProfiles: Bool
     // var colorProfile: String?
@@ -35,16 +36,19 @@ class Compressor {
       }
       let type = imagePath.components(separatedBy: ".").last
       let avifImagePath = imagePath.replacingOccurrences(of: type!, with: "avif")
-      let arguments = [
+      var arguments = [
 //        "--qcolor", "\(config.quality)",
 //        "--qalpha", "\(config.quality)",
         "--speed", "\(config.speed)",
         "--yuv", "\(config.yuv)",
-        imagePath,
-        avifImagePath
       ]
+      if (config.arguments != nil && !config.arguments!.isEmpty) {
+        arguments.append(contentsOf: config.arguments!.components(separatedBy: " "))
+      }
+      arguments.append(imagePath)
+      arguments.append(avifImagePath)
       
-        return (avifencPath, arguments)
+      return (avifencPath, arguments)
     }
 
     // @WIP

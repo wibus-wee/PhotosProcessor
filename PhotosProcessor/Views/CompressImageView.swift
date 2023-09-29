@@ -30,10 +30,12 @@ struct CompressImageView: View {
     @State private var compressionQuality: CGFloat = 0.85
     @State private var compressionSpeed: CGFloat = 0.0
     @State private var selectedYUVOption = 2
-    @State private var useColorProfiles = true
-    @State private var cleanExifInfo = true
-    @State private var selectedColorProfile: String = "Follow Original"
-    var availableColorProfiles: [String] = listColorProfiles() + ["Follow Original"]
+    @State private var arguments = ""
+
+    // @State private var useColorProfiles = true
+    // @State private var cleanExifInfo = true
+    // @State private var selectedColorProfile: String = "Follow Original"
+    // var availableColorProfiles: [String] = listColorProfiles() + ["Follow Original"]
     
     @State var isShowingLogSheet = false
     
@@ -113,7 +115,8 @@ struct CompressImageView: View {
                             let config = CompressorConfig(
                                 quality: Int(compressionQuality * 100),
                                 yuv: yuvOptions[selectedYUVOption].replacingOccurrences(of: "YUV ", with: "").replacingOccurrences(of: ":", with: ""),
-                                speed: Int(compressionSpeed * 100)
+                                speed: Int(compressionSpeed * 100),
+                                arguments: arguments
                                 // cleanExifInfo: cleanExifInfo,
                                 // useColorProfiles: useColorProfiles,
                                 // colorProfile: selectedColorProfile == "Follow Original" ? nil : selectedColorProfile
@@ -192,7 +195,7 @@ struct CompressImageView: View {
                                 VStack {
                                     Text("\(commandResult.info.description)")
                                         .font(.system(.body, design: .rounded))
-                                    Text("\(commandResult.id) (Executed)")
+                                    Text("\(commandResult.id) (\(commandResult.executor.isRunning ? "Running" : "Finished"))")
                                         .foregroundColor(.secondary)
                                         .font(.system(.caption, design: .monospaced))
                                     Spacer()
@@ -259,6 +262,23 @@ struct CompressImageView: View {
             Text(yuvExplanation)
                 .font(.caption)
                 .foregroundColor(.gray)
+            Divider()
+            VStack(alignment: .leading) {
+                Text("Arguments")
+                Text("Arguments will be appended to the end of the command")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+                TextEditor(text: $arguments)
+                    .font(.system(.body, design: .monospaced))
+                    .frame(height: 100)
+                    .disableAutocorrection(true)
+                    .autocorrectionDisabled(true)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 4)
+                            .stroke(Color.clear, lineWidth: 1)
+                    )
+
+            }
             
             // Toggle("Clean EXIF Info", isOn: $cleanExifInfo)
             // Text("Clean EXIF will also clear the Color Profiles, which may cause the image to not be displayed.")
