@@ -6,6 +6,8 @@ A multi-functional picture processor software for macOS. Written in Swift.
 🧪 Working in Progress
 </pre>
 
+![screen](./Resources/screen.avif)
+
 ## Roadmap
 
 ### Core Features
@@ -48,5 +50,5 @@ A multi-functional picture processor software for macOS. Written in Swift.
 
 PhotosProcessor © Wibus, Released under AGPLv3. Created on Sep 11, 2023
 
-> [Personal Website](http://iucky.cn/) · [Blog](https://blog.iucky.cn/) · GitHub [@wibus-wee](https://github.com/wibus-wee/) · Telegram [@wibus✪](https://t.me/wibus_wee)
+> [Personal Website](http://wibus.ren/) · [Blog](https://blog.wibus.ren/) · GitHub [@wibus-wee](https://github.com/wibus-wee/) · Telegram [@wibus✪](https://t.me/wibus_wee)
 

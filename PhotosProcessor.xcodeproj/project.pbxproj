@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		380769702AC055F90066C7FE /* ImageUniversalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3807696F2AC055F90066C7FE /* ImageUniversalView.swift */; };
 		380769722AC482A50066C7FE /* AnyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380769712AC482A50066C7FE /* AnyDataView.swift */; };
-		3874B1EA2AC6AAEE00790925 /* NonSmartNSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874B1E92AC6AAEE00790925 /* NonSmartNSTextView.swift */; };
+		3874B1EA2AC6AAEE00790925 /* NSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874B1E92AC6AAEE00790925 /* NSTextView.swift */; };
+		3874B1EC2AC6B14F00790925 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874B1EB2AC6B14F00790925 /* View.swift */; };
+		3874B1EF2AC6B1CD00790925 /* Colorful in Frameworks */ = {isa = PBXBuildFile; productRef = 3874B1EE2AC6B1CD00790925 /* Colorful */; };
 		387B9D852AB60FAB002777DA /* Executor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B9D842AB60FAB002777DA /* Executor.swift */; };
 		387B9D872AB610DF002777DA /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B9D862AB610DF002777DA /* LogView.swift */; };
 		387B9D8B2AB6C46E002777DA /* CommandQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B9D8A2AB6C46E002777DA /* CommandQueue.swift */; };
@@ -39,7 +41,9 @@
 /* Begin PBXFileReference section */
 		3807696F2AC055F90066C7FE /* ImageUniversalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUniversalView.swift; sourceTree = "<group>"; };
 		380769712AC482A50066C7FE /* AnyDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyDataView.swift; sourceTree = "<group>"; };
-		3874B1E92AC6AAEE00790925 /* NonSmartNSTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonSmartNSTextView.swift; sourceTree = "<group>"; };
+		3874B1E92AC6AAEE00790925 /* NSTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTextView.swift; sourceTree = "<group>"; };
+		3874B1EB2AC6B14F00790925 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		3874B1F22AC6B33900790925 /* screen.avif */ = {isa = PBXFileReference; lastKnownFileType = file; path = screen.avif; sourceTree = "<group>"; };
 		387B9D842AB60FAB002777DA /* Executor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Executor.swift; sourceTree = "<group>"; };
 		387B9D862AB610DF002777DA /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
 		387B9D8A2AB6C46E002777DA /* CommandQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandQueue.swift; sourceTree = "<group>"; };
@@ -73,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3874B1EF2AC6B1CD00790925 /* Colorful in Frameworks */,
 				38DC562C2ABFC15C00DC6408 /* LaunchAtLogin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,6 +85,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3874B1F12AC6B32600790925 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3874B1F22AC6B33900790925 /* screen.avif */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		387B9D832AB60B31002777DA /* Backend */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,7 +129,8 @@
 				38DC56312ABFF35700DC6408 /* Watermark.swift */,
 				38DC562D2ABFC2C400DC6408 /* PublishedStorage.swift */,
 				38861CF12AADCC4B005DD3B4 /* InternalKit.swift */,
-				3874B1E92AC6AAEE00790925 /* NonSmartNSTextView.swift */,
+				3874B1E92AC6AAEE00790925 /* NSTextView.swift */,
+				3874B1EB2AC6B14F00790925 /* View.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -132,6 +146,7 @@
 		38F893132AAD544D008414D9 = {
 			isa = PBXGroup;
 			children = (
+				3874B1F12AC6B32600790925 /* Resources */,
 				38F63CAC2AAE1A61003D7156 /* bin */,
 				38861CEF2AAD7796005DD3B4 /* README.md */,
 				38F8931E2AAD544D008414D9 /* PhotosProcessor */,
@@ -205,6 +220,7 @@
 			name = PhotosProcessor;
 			packageProductDependencies = (
 				38DC562B2ABFC15C00DC6408 /* LaunchAtLogin */,
+				3874B1EE2AC6B1CD00790925 /* Colorful */,
 			);
 			productName = PhotosProcessor;
 			productReference = 38F8931C2AAD544D008414D9 /* PhotosProcessor.app */;
@@ -236,6 +252,7 @@
 			mainGroup = 38F893132AAD544D008414D9;
 			packageReferences = (
 				38DC562A2ABFC15C00DC6408 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
+				3874B1ED2AC6B1CD00790925 /* XCRemoteSwiftPackageReference "Colorful" */,
 			);
 			productRefGroup = 38F8931D2AAD544D008414D9 /* Products */;
 			projectDirPath = "";
@@ -272,6 +289,7 @@
 				38F63CA72AAE130C003D7156 /* Compressor.swift in Sources */,
 				38F893222AAD544D008414D9 /* ContentView.swift in Sources */,
 				38F893302AAD5476008414D9 /* CompressImageView.swift in Sources */,
+				3874B1EC2AC6B14F00790925 /* View.swift in Sources */,
 				380769702AC055F90066C7FE /* ImageUniversalView.swift in Sources */,
 				38DC56322ABFF35700DC6408 /* Watermark.swift in Sources */,
 				38DC56292ABFC0E100DC6408 /* Configuration.swift in Sources */,
@@ -285,7 +303,7 @@
 				38F893362AAD5723008414D9 /* SidebarView.swift in Sources */,
 				38F893382AAD5750008414D9 /* WelcomeView.swift in Sources */,
 				387B9D8F2AB6FE6A002777DA /* SendNotification.swift in Sources */,
-				3874B1EA2AC6AAEE00790925 /* NonSmartNSTextView.swift in Sources */,
+				3874B1EA2AC6AAEE00790925 /* NSTextView.swift in Sources */,
 				387B9D872AB610DF002777DA /* LogView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,6 +529,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3874B1ED2AC6B1CD00790925 /* XCRemoteSwiftPackageReference "Colorful" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Lakr233/Colorful";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		38DC562A2ABFC15C00DC6408 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
@@ -522,6 +548,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3874B1EE2AC6B1CD00790925 /* Colorful */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3874B1ED2AC6B1CD00790925 /* XCRemoteSwiftPackageReference "Colorful" */;
+			productName = Colorful;
+		};
 		38DC562B2ABFC15C00DC6408 /* LaunchAtLogin */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 38DC562A2ABFC15C00DC6408 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;

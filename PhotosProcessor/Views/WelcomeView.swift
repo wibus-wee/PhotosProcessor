@@ -7,49 +7,52 @@
 
 
 import SwiftUI
+import Colorful
 
 struct WelcomeView: View {
-    let timer = Timer
-        .publish(every: 1, on: .main, in: .common)
-        .autoconnect()
-    @State var dotAnimation: String = ""
+    // let timer = Timer
+    //     .publish(every: 1, on: .main, in: .common)
+    //     .autoconnect()
+    // @State var dotAnimation: String = ""
+
+    var version: String {
+        var ret = "Version: " +
+            (Constants.appVersion)
+            + " Build: " +
+            (Constants.appBuildVersion)
+        #if DEBUG
+            ret = "👾 \(ret) 👾"
+        #endif
+        return ret
+    }
 
     var body: some View {
         ZStack {
-            VStack {
+             ColorfulView(colorCount: 4)
+                    .ignoresSafeArea()
+            VStack(spacing: 4) {
                 Image("Avatar")
-                    .resizable()
                     .antialiased(true)
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 80, height: 80, alignment: .center)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 128, height: 128)
+
+                Spacer().frame(height: 16)
+
                 Text("Welcome to PhotosProcessor")
-                    .font(.system(.headline, design: .rounded, weight: .bold))
-                Rectangle()
-                    .frame(width: 100, height: 20, alignment: .center)
-                    .opacity(0)
+                    .font(.system(.headline, design: .rounded))
+                Text("A multi-functional picture processor software.")
+                    .font(.system(.body, design: .rounded))
+
+                Spacer().frame(height: 24)
             }
             VStack {
                 Spacer()
-                HStack {
-                    Text("Command Queue is working \(dotAnimation)")
-                    Spacer()
-                    Text("Made with love by @wibus-wee - v\(Constants.appVersion).b\(Constants.appBuildVersion)")
-                        .onTapGesture {
-                            NSWorkspace.shared.open(Constants.authorHomepageUrl)
-                        }
-                }
-                .font(.system(.caption, design: .rounded, weight: .bold))
-                .opacity(0.55)
+                Text(version)
+                    .font(.system(size: 12, weight: .semibold, design: .rounded))
+                    .opacity(0.5)
             }
             .padding()
-            .onReceive(timer) { _ in
-                    switch dotAnimation {
-                    case ".": dotAnimation = ".."
-                    case "..": dotAnimation = "..."
-                    case "...": dotAnimation = "...."
-                    default: dotAnimation = "."
-                    }
-                }
 
         }
         .toolbar {
@@ -57,11 +60,7 @@ struct WelcomeView: View {
             }
         }
         .frame(minWidth: 400, minHeight: 200)
-    }
-}
-
-struct WelcomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        WelcomeView()
+        .navigationTitle("PhotosProcessor")
+        .usePreferredContentSize()
     }
 }
