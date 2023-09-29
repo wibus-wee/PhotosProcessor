@@ -112,11 +112,20 @@ struct ModifyMetadataView: View {
                 for area in supportArea {
                     if preKey.starts(with: area) {
                         print("[*] area matched: \(area)")
-                        areaKey = preKey.split(separator: area)[0]
+                        areaKey = Substring(area)
                         break
                     }
                 }
-                let keyKey = preKey.split(separator: areaKey == nil ? "" : areaKey!)[0]
+                let keyKey: Substring
+                if let areaKey = areaKey {
+                    let spliter = preKey.split(separator: areaKey);
+                    print("[*] spliter: \(spliter)")
+                    keyKey = preKey.split(separator: areaKey)[0]
+                } else {
+                    keyKey = preKey
+                }
+                print("[*] keyKey: \(keyKey)")
+                
                 // End.
                 let value = selectedImageMetadata?.getMetadata(key: MetadataKey(key: keyKey as CFString, area: String(areaKey!) as String))
                 print("[*] value: \(String(describing: value))")
