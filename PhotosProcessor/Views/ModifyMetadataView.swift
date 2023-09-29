@@ -20,12 +20,14 @@ let supportMetadataKeys: [String: MetadataKey] = [
     "Make": MetadataKey(key: kCGImagePropertyTIFFMake, area: "TIFF"),
     // 设备型号
     "Model": MetadataKey(key: kCGImagePropertyTIFFModel, area: "TIFF"),
-    // 颜色空间
-    "ColorSpace": MetadataKey(key: kCGImagePropertyColorModel, area: ""),
+    // 颜色模式
+    "ColorModel": MetadataKey(key: kCGImagePropertyColorModel, area: ""),
     // 镜头型号
     "LensModel": MetadataKey(key: kCGImagePropertyExifAuxLensModel, area: "ExifAux"),
+    // 描述
+    "ImageDescription": MetadataKey(key: kCGImagePropertyTIFFImageDescription, area: "TIFF"),
     // 注释
-    "Comment": MetadataKey(key: kCGImagePropertyTIFFImageDescription, area: "TIFF"),
+    "UserComment": MetadataKey(key: kCGImagePropertyExifUserComment, area: "Exif"),
     // 软件
     "Software": MetadataKey(key: kCGImagePropertyTIFFSoftware, area: "TIFF"),
 ]
@@ -40,9 +42,17 @@ let supportArea: [String] = [
 
 
 struct ModifyMetadataView: View {
+
+    enum ModifyType: String {
+        case copy = "Copy"
+        case edit = "Edit"
+        case remove = "Remove"
+        case add = "Add"
+    }
+
     @State private var isPresented: Bool = false
 
-    @State private var modifyType: String = "Copy" // Copy, Edit, Remove, Add
+    @State private var modifyType: ModifyType = .copy
     
     @State private var selectedImage: NSImage? = nil {
         didSet {
@@ -66,7 +76,7 @@ struct ModifyMetadataView: View {
     @State private var newProcessMetadataValue: String = ""
     
     func updateProcessMetadataValue() {
-        if (modifyType == "Copy" ){
+        if (modifyType == .copy ){
             let copyFromKey = supportMetadataKeys[self.copyFromKey]
             if (copyFromKey == nil) {
                 newProcessMetadataValue = ""
@@ -76,7 +86,7 @@ struct ModifyMetadataView: View {
             let newMetadataValue = selectedImageMetadata?.getMetadata(key: copyFromKey!)
             newProcessMetadataValue = "\(newMetadataValue ?? "")"
         }
-        if modifyType == "Remove" {
+        if modifyType == .remove {
             newProcessMetadataValue = "nil"
         }
         let key = supportMetadataKeys[self.processMetadataKey]
@@ -113,14 +123,14 @@ struct ModifyMetadataView: View {
                 oldProcessMetadataValue = "\(value ?? "")"
             }
             oldProcessMetadataValue = ""
-            if (modifyType == "Edit") {
+            if (modifyType == .edit) {
                 newProcessMetadataValue = ""
             }
             return
         }
         // let oldMetadataValue = getImageMetadata(url: selectedImageURL!, key: key!)
         let oldMetadataValue = selectedImageMetadata?.getMetadata(key: key!)
-        if (modifyType == "Edit") {
+        if (modifyType == .edit) {
             newProcessMetadataValue = "\(oldMetadataValue ?? "")"
         }
         oldProcessMetadataValue = "\(oldMetadataValue ?? "")"
@@ -197,35 +207,40 @@ struct ModifyMetadataView: View {
                         if (selectedImage == nil || selectedImageMetadata == nil) {
                             return
                         }
+                        var res = false
                         let metadata = selectedImageMetadata!
-                        if modifyType == "Copy" {
+                        if modifyType == .copy {
                             let copyFromKey = supportMetadataKeys[self.copyFromKey]
                             let processKey = supportMetadataKeys[self.processMetadataKey]
                             if (copyFromKey == nil || processKey == nil) {
                                 return
                             }
-                            // let _ = metadata.copyMetadata(from: copyFromKey!, to: processKey!)
+                            res = metadata.copyMetadata(from: copyFromKey!, to: processKey!)
                         }
-                        if modifyType == "Edit" {
+                        if modifyType == .edit {
                             let processKey = supportMetadataKeys[self.processMetadataKey]
                             if (processKey == nil) {
                                 return
                             }
-                            let _ = metadata.editMetadata(key: processKey!, value: newProcessMetadataValue)
+                            res = metadata.editMetadata(key: processKey!, value: newProcessMetadataValue)
                         }
-                        if modifyType == "Remove" {
+                        if modifyType == .remove {
                             let processKey = supportMetadataKeys[self.processMetadataKey]
                             if (processKey == nil) {
                                 return
                             }
-                            // let _ = metadata.removeMetadata(key: processKey!)
+                            res = metadata.removeMetadata(key: processKey!)
                         }
-                        if modifyType == "Add" {
+                        if modifyType == .add {
                             let processKey = supportMetadataKeys[self.processMetadataKey]
                             if (processKey == nil) {
                                 return
                             }
-                            // let _ = metadata.addMetadata(key: processKey!, value: newProcessMetadataValue)
+                            res = metadata.addMetadata(key: processKey!, value: newProcessMetadataValue)
+                        }
+                        if (!res) {
+                            print("[E] Bug occurred when edit metadata")
+                            InternalKit.eazyAlert(title: "Error", message: "Bug occurred when edit metadata")
                         }
                     } label: {
                         Label("Modify", systemImage: "hammer")
@@ -495,13 +510,13 @@ struct ModifyMetadataView: View {
             
             rightTop
             Divider()
-            if modifyType == "Copy" {
+            if modifyType == .copy {
                 copyView
-            } else if modifyType == "Edit" {
+            } else if modifyType == .edit {
                 editView
-            } else if modifyType == "Remove" {
+            } else if modifyType == .remove {
                 removeView
-            } else if modifyType == "Add" {
+            } else if modifyType == .add {
                 addView
             }
             Divider()
@@ -519,7 +534,7 @@ struct ModifyMetadataView: View {
                     Text(modifyType)
                         .font(.caption)
                 }
-                if modifyType == "Copy" {
+                if modifyType == .copy {
                     HStack {
                         Text("Copy from")
                             .font(.caption)
@@ -550,7 +565,7 @@ struct ModifyMetadataView: View {
                         .font(.caption)
                         .foregroundColor(.secondary)
                     Spacer()
-                    if modifyType == "Remove" {
+                    if modifyType == .remove {
                         Text("nil")
                             .font(.caption)
                     } else {
