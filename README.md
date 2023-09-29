@@ -12,8 +12,8 @@ A multi-functional picture processor software for macOS. Written in Swift.
 
 > The core features are the most important features of the software, and the software cannot be used without them.
 
-- [x] Image compression **`🔧 Improving`**
-- [ ] Modify image metadata **`⏳ In Progress`**
+- [x] Image compression **`✅ & 🔧 Improving`**
+- [x] Modify image metadata **`✅ & 🔧 Improving`**
 - [ ] Image dark watermark support **`⏳ In Progress. / ❓ Need help.`**
 - [ ] Menu bar item **`🏷️ Planning`**
 - [ ] GPS location fix **`❓ Need help. / 💣 Won't do in the near future.`**
