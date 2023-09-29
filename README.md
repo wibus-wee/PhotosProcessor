@@ -25,12 +25,10 @@ A multi-functional picture processor software for macOS. Written in Swift.
 > Performance features are features that improve the user experience.
 
 - [x] Configuration Support **`🔧 Improving`**
-- [ ] Expert mode, common mode, noob mode
 - [ ] Supports batch processing **`🏷️ Planning`**
 - [x] Drag and drop processing
 - [x] Log Display **`🐛 Bug Occurred`**
 - [x] Process Queue Support **`🔧 Improving`**
-- [ ] Multiple languages (i18n)
 - [x] Support for loading external dependencies (avifenc, etc.) **`💣 Improve later?`**
 - [x] Quickly compression with global hotkey
 
@@ -39,6 +37,7 @@ A multi-functional picture processor software for macOS. Written in Swift.
 - [ ] Refactor UI **`🏷️ Planning. After the core features are completed`**
   - [ ] Standlone *Welcome page*
   - [ ] Standlone *Settings Page*
+- [ ] Multiple languages (i18n)
 
 ## References
 
