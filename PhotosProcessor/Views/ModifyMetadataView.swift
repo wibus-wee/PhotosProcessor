@@ -531,7 +531,7 @@ struct ModifyMetadataView: View {
                         .font(.caption)
                         .foregroundColor(.secondary)
                     Spacer()
-                    Text(modifyType)
+                    Text(modifyType.rawValue)
                         .font(.caption)
                 }
                 if modifyType == .copy {
