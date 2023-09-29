@@ -42,7 +42,6 @@
 		387B9D862AB610DF002777DA /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
 		387B9D8A2AB6C46E002777DA /* CommandQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandQueue.swift; sourceTree = "<group>"; };
 		387B9D8E2AB6FE6A002777DA /* SendNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendNotification.swift; sourceTree = "<group>"; };
-		387B9D922AB71CD0002777DA /* exiftool */ = {isa = PBXFileReference; lastKnownFileType = folder; name = exiftool; path = ../../../../Desktop/exiftool; sourceTree = "<group>"; };
 		38861CED2AAD679A005DD3B4 /* ListColorProfiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListColorProfiles.swift; sourceTree = "<group>"; };
 		38861CEF2AAD7796005DD3B4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		38861CF12AADCC4B005DD3B4 /* InternalKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalKit.swift; sourceTree = "<group>"; };
@@ -122,7 +121,6 @@
 		38F63CAC2AAE1A61003D7156 /* bin */ = {
 			isa = PBXGroup;
 			children = (
-				387B9D922AB71CD0002777DA /* exiftool */,
 				38F63CAA2AAE1A53003D7156 /* avifenc */,
 			);
 			path = bin;
