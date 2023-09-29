@@ -34,6 +34,11 @@ struct SidebarView: View {
                 } label: {
                     Label("Watermark", systemImage: "drop.fill")
                 }
+                useNavigationLink {
+                    ImageGPSLocationView()
+                } label: {
+                    Label("GPS Location", systemImage: "location.circle")
+                }
             }
 
             Section("Misc") {

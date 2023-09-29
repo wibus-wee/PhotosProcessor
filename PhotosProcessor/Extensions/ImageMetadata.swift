@@ -45,13 +45,16 @@ class ImageMetadata {
     }
     
     func getMetadata(key: MetadataKey) -> Any? {
+        print("[I] Get metadata: key=\(key.key), area=\(key.area)")
         guard let metadata = self.metadata else {
             return nil
         }
         if key.area.isEmpty {
+            print("[I] Get metadata: area is empty")
             return metadata[key.key as String]
         }
         guard let area = metadata["{\(key.area)}"] as? [String: Any] else {
+            print("[I] Get metadata: area is nil")
             return nil
         }
         return area[key.key as String]

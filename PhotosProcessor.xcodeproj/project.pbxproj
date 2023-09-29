@@ -16,6 +16,7 @@
 		3874B1F72AC6B50000790925 /* KeyboardShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874B1F62AC6B50000790925 /* KeyboardShortcuts.swift */; };
 		3874B1F92AC6BB3C00790925 /* SelectedFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874B1F82AC6BB3C00790925 /* SelectedFile.swift */; };
 		3874B1FC2AC6C62100790925 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874B1FB2AC6C62100790925 /* AppState.swift */; };
+		3874B2002AC6E64000790925 /* ImageGPSLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874B1FF2AC6E64000790925 /* ImageGPSLocationView.swift */; };
 		387B9D852AB60FAB002777DA /* Executor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B9D842AB60FAB002777DA /* Executor.swift */; };
 		387B9D872AB610DF002777DA /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B9D862AB610DF002777DA /* LogView.swift */; };
 		387B9D8B2AB6C46E002777DA /* CommandQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B9D8A2AB6C46E002777DA /* CommandQueue.swift */; };
@@ -52,6 +53,7 @@
 		3874B1F82AC6BB3C00790925 /* SelectedFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFile.swift; sourceTree = "<group>"; };
 		3874B1FA2AC6C00D00790925 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3874B1FB2AC6C62100790925 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		3874B1FF2AC6E64000790925 /* ImageGPSLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGPSLocationView.swift; sourceTree = "<group>"; };
 		387B9D842AB60FAB002777DA /* Executor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Executor.swift; sourceTree = "<group>"; };
 		387B9D862AB610DF002777DA /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
 		387B9D8A2AB6C46E002777DA /* CommandQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandQueue.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				38F893312AAD54A5008414D9 /* ModifyMetadataView.swift */,
 				38DC56332AC012FE00DC6408 /* WaterMarkView.swift */,
 				38F8932F2AAD5476008414D9 /* CompressImageView.swift */,
+				3874B1FF2AC6E64000790925 /* ImageGPSLocationView.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				38DC562E2ABFC2C400DC6408 /* PublishedStorage.swift in Sources */,
 				38F893202AAD544D008414D9 /* PhotosProcessorApp.swift in Sources */,
 				38861CF22AADCC4B005DD3B4 /* InternalKit.swift in Sources */,
+				3874B2002AC6E64000790925 /* ImageGPSLocationView.swift in Sources */,
 				38F893322AAD54A5008414D9 /* ModifyMetadataView.swift in Sources */,
 				38861CF42AADD1E7005DD3B4 /* ImageMetadata.swift in Sources */,
 				387B9D852AB60FAB002777DA /* Executor.swift in Sources */,
@@ -477,7 +481,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PhotosProcessor/Info.plist;
-				INFOPLIST_KEY_NSAppleEventsUsageDescription = "";
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "This app requires access to Finder in order to manage files and perform file operations on your behalf.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -519,7 +523,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PhotosProcessor/Info.plist;
-				INFOPLIST_KEY_NSAppleEventsUsageDescription = "";
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "This app requires access to Finder in order to manage files and perform file operations on your behalf.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
