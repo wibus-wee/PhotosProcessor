@@ -5,13 +5,14 @@
 //  Created by wibus on 2023/9/17.
 //
 
-import SwiftUI
+import UserNotifications
 
-// @wip
-func sendNotification(title: String, subtitle: String, informativeText: String) {
-    let notification = NSUserNotification()
-    notification.title = title
-    notification.subtitle = subtitle
-    notification.informativeText = informativeText
-    NSUserNotificationCenter.default.deliver(notification)
+func sendNotification(title: String, body: String, delayInSeconds: TimeInterval) {
+    let content = UNMutableNotificationContent()
+    content.title = title
+    content.body = body
+    content.sound = UNNotificationSound.default
+    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: delayInSeconds, repeats: false)
+    let request = UNNotificationRequest(identifier: "PhotosProcessor", content: content, trigger: trigger)
+    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
 }

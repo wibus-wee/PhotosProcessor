@@ -65,7 +65,7 @@ struct WaterMarkView: View {
                 ToolbarItem {
                     Button {
                         if selectedImage != nil {
-                            let image = watermark.addWatermark(selectedImage!, text: watermarkText) { image in
+                            watermark.addWatermark(selectedImage!, text: watermarkText) { image in
                                 if let image = image {
                                     selectedImage = image
                                     InternalKit.saveFilePanel(title: "Save Image", message: "Select the location to save the compressed image", action: { url in

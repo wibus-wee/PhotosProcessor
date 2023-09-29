@@ -31,7 +31,7 @@ struct CompressImageView: View {
     @State private var compressionSpeed: CGFloat = 0.0
     @State private var selectedYUVOption = 2
     @State private var arguments = ""
-
+    
     // @State private var useColorProfiles = true
     // @State private var cleanExifInfo = true
     // @State private var selectedColorProfile: String = "Follow Original"
@@ -254,8 +254,8 @@ struct CompressImageView: View {
             }
             
             Picker("YUV Sampling", selection: $selectedYUVOption) {
-                ForEach(0..<yuvOptions.count) {
-                    Text(yuvOptions[$0])
+                ForEach(0..<Int(yuvOptions.count)) { index in
+                    Text(yuvOptions[index])
                 }
             }
             
@@ -277,7 +277,7 @@ struct CompressImageView: View {
                         RoundedRectangle(cornerRadius: 4)
                             .stroke(Color.clear, lineWidth: 1)
                     )
-
+                
             }
             
             // Toggle("Clean EXIF Info", isOn: $cleanExifInfo)

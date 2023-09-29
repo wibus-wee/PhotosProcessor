@@ -25,7 +25,7 @@ class Compressor {
       } else {
         avifencPath = configuration.avifencLocation
       }
-        if avifencPath == nil || avifencPath.isEmpty {
+        if avifencPath.isEmpty {
         InternalKit.useAlert(
           title: "Avifenc Not Found",
           message: "Please check if avifenc is installed, or set the location type to Built-in in the settings",
