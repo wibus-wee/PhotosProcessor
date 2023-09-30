@@ -23,11 +23,43 @@ struct SettingView: View {
                 .foregroundColor(.secondary)
         }
     }
+
+
+    var activatorView: some View {
+        HStack(alignment: .top, spacing: 16) {
+            VStack {
+                Image("Avatar")
+                    .resizable()
+                    .frame(width: 64, height: 64)
+            }
+            VStack(alignment: .leading) {
+                Text("Activate the app")
+                        .font(.system(.headline))
+                if config.activated {
+                    Text("You are using the full version of the app. Enjoy it!")
+                        .font(.system(.footnote))
+                        .foregroundColor(.secondary)
+                } else {
+                    Text("You are using the free version of the app. Please activate the app to use all the features.")
+                        .font(.system(.footnote))
+                        .foregroundColor(.secondary)
+                }
+                Toggle("", isOn: $config.activated)
+                    .toggleStyle(.switch)
+            }
+        }
+        .padding()
+        .background(Color(.darkGray))
+        .cornerRadius(8)
+    }
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                
+                // VStack(alignment: .leading, spacing: 8) {
+                //     activatorView
+                // }
+                // Divider()
                 VStack(alignment: .leading, spacing: 8) {
                     // Text("Basic Setting") 
                     //     .font(.system(.title2, design: .rounded, weight: .thin))
@@ -159,5 +191,12 @@ struct SettingView: View {
             .padding()
         }
         .navigationTitle("App Configuration")
+    }
+}
+
+
+struct SettingView_Previews: PreviewProvider {
+    static var previews: some View {
+        SettingView()
     }
 }

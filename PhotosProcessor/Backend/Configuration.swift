@@ -24,6 +24,9 @@ class Configuration: NSObject, ObservableObject {
             .store(in: &cancellable)
     }
 
+    @PublishedStorage(key: "\(Constants.appKey).activated", defaultValue: false)
+    var activated: Bool
+
     @PublishedStorage(key: "\(Constants.appKey).autostartup", defaultValue: false)
     var autostartup: Bool
 
