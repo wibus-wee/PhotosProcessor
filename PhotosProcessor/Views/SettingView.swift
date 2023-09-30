@@ -193,10 +193,3 @@ struct SettingView: View {
         .navigationTitle("App Configuration")
     }
 }
-
-
-struct SettingView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingView()
-    }
-}
