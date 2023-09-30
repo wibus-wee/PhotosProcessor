@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class ProcessImage: NSObject, ObservableObject {
     static let shared = ProcessImage()
@@ -16,11 +17,16 @@ class ProcessImage: NSObject, ObservableObject {
     @Published var url: URL?
     @Published var path: String?
     @Published var inited: Bool = false
+    @Published var image: NSImage?
     
     /// Compress image
     /// - Parameter config: CompressorConfig
     /// - Returns: UUID
     func compress(config: CompressorConfig) -> UUID? {
+        if !self.inited {
+            print("[W] Image not inited. Compress failed.")
+            return nil
+        }
         let id = compressor.compress(path: path!, name: name!, config: config)
         return id;
     }
@@ -31,6 +37,7 @@ class ProcessImage: NSObject, ObservableObject {
         self.name = nil
         self.url = nil
         self.path = nil
+        self.image = nil
         self.inited = false
         print("[I] Reset image")
     }
@@ -43,8 +50,20 @@ class ProcessImage: NSObject, ObservableObject {
             self.metadata = self.imageMetadata?.getMetadata()
             self.name = url!.lastPathComponent
             self.path = url!.path
+            self.image = NSImage(contentsOf: url!)
             self.inited = true
             print("[I] Loaded image: \(self.url!)")
         })
+    }
+
+    func setup(url: URL) {
+        self.url = url
+        self.imageMetadata = ImageMetadata(url: url)
+        self.metadata = self.imageMetadata?.getMetadata()
+        self.name = url.lastPathComponent
+        self.path = url.path
+        self.image = NSImage(contentsOf: url)
+        self.inited = true
+        print("[I] Loaded image: \(self.url!)")
     }
 }

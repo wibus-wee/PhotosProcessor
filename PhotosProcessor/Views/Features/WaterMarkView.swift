@@ -108,18 +108,7 @@ struct WaterMarkView: View {
     }
     
     var leftColumn: some View {
-        ImageUniversalView(
-            selectedImage: $selectedImage,
-            selectedImagePath: $selectedImagePath,
-            selectedImageName: $selectedImageName,
-            selectedImageMetadata: $selectedImageMetadata,
-            dropAction: { url in
-                selectedImage = NSImage(contentsOf: url)
-                selectedImagePath = url.path
-                selectedImageName = url.lastPathComponent
-                selectedImageMetadata = ImageMetadata(url: url)
-            }
-        )
+        ImageUniversalView()
     }
     
     var rightColumn: some View {
