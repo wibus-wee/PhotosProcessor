@@ -25,7 +25,7 @@ struct CommandResult {
 
 
 class CommandQueue: ObservableObject {
-    static let share = CommandQueue()
+    static let shared = CommandQueue()
 
     @Published var commands: [Command] = []
     @Published var commandResults: [CommandResult] = []

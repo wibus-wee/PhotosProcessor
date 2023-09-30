@@ -8,7 +8,8 @@
 import SwiftUI
 
 let configuration = Configuration.shared
-let commandQueue = CommandQueue.share
+let commandQueue = CommandQueue.shared
+let processImage = ProcessImage.shared
 
 @main
 struct PhotosProcessorApp: App {
