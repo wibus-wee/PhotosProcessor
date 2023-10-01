@@ -18,7 +18,8 @@ A multi-functional picture processor software for macOS. Written in Swift.
 - [x] Modify image metadata **`✅ & 🔧 Improving`**
 - [ ] Image dark watermark support **`⏳ In Progress. / ❓ Need help.`**
 - [ ] Menu bar item **`🏷️ Planning`**
-- [ ] GPS location fix **`❓ Need help. / 💣 Won't do in the near future.`**
+- [ ] GPS location fix **`⏳ In Progress. / ❓ Need help.`**
+- [ ] Stitching images
 
 ### Performance Features
 
