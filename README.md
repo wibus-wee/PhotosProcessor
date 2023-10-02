@@ -19,14 +19,16 @@ A multi-functional picture processor software for macOS. Written in Swift.
 - [ ] Image dark watermark support **`⏳ In Progress. / ❓ Need help.`**
 - [ ] Menu bar item **`🏷️ Planning`**
 - [ ] GPS location fix **`⏳ In Progress. / ❓ Need help.`**
-- [ ] Stitching images
+- [ ] Stitching images **`🏷️ Planning`**
+- [ ] Characteristic watermark support
 
 ### Performance Features
 
 > Performance features are features that improve the user experience.
 
-- [x] Configuration Support **`🔧 Improving`**
-- [ ] Supports batch processing **`🏷️ Planning`**
+- [x] Configuration Support
+- [ ] Supports batch processing one time **`🏷️ Planning`**
+- [x] Shared processing image
 - [x] Drag and drop processing
 - [x] Log Display **`🐛 Bug Occurred`**
 - [x] Process Queue Support **`🔧 Improving`**
@@ -38,7 +40,7 @@ A multi-functional picture processor software for macOS. Written in Swift.
 - [ ] Refactor UI **`🏷️ Planning. After the core features are completed`**
   - [ ] Standlone *Welcome page*
   - [ ] Standlone *Settings Page*
-- [ ] Multiple languages (i18n)
+- [ ] Multiple languages (i18n) **`🥷 May implemented in the future`**
 
 ## References
 
