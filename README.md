@@ -49,9 +49,10 @@ A multi-functional picture processor software for macOS. Written in Swift.
 
 - [ ] Curves (RGB/CMYK)
 - [ ] Automatic Adjustment
-- [ ] Fork all features of CleanShot X & Shottr
-  - [ ] Enhance highlight circle function (CleanShot X --> Shottr)
-  - [ ] Brush memory function (Shottr --> CleanShot X)
+- [ ] Fork all features of **CleanShot X & Shottr**
+  - [ ] Enhance highlight circle function `(CleanShot X --> Shottr)`
+  - [ ] Brush memory function `(Shottr --> CleanShot X)`
+  - [ ] Mosaic enhancement `(Shottr --> CleanShot X)`
 
 ## References
 
