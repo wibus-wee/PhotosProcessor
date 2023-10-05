@@ -14,11 +14,11 @@ A multi-functional picture processor software for macOS. Written in Swift.
 
 > The core features are the most important features of the software, and the software cannot be used without them.
 
-- [x] Image compression **`✅ & 🔧 Improving`**
-- [x] Modify image metadata **`✅ & 🔧 Improving`**
-- [ ] Image dark watermark support **`⏳ In Progress. / ❓ Need help.`**
+- [x] Image compression **`✅`** | **`🔧 Improving`**
+- [x] Modify image metadata **`✅`** | **`🔧 Improving`**
+- [ ] Image dark watermark support **`⏳ In Progress.`** | **`❓ Need help.`**
 - [ ] Menu bar item **`🏷️ Planning`**
-- [ ] GPS location fix **`⏳ In Progress. / ❓ Need help.`**
+- [ ] GPS location fix **`⏳ In Progress.`** | **`❓ Need help.`**
 - [ ] Stitching images **`🏷️ Planning`**
 - [ ] Characteristic watermark support
 
@@ -31,9 +31,10 @@ A multi-functional picture processor software for macOS. Written in Swift.
 - [x] Shared processing image
 - [x] Drag and drop processing
 - [x] Log Display **`🐛 Bug Occurred`**
-- [x] Process Queue Support **`🔧 Improving`**
-- [x] Support for loading external dependencies (avifenc, etc.) **`💣 Improve later?`**
-- [x] Quickly compression with global hotkey
+- [x] Process Queue Support **`🔧 Improving`** | **`🛞 Configurable`**
+- [x] Support for loading external dependencies (avifenc, etc.) **`💣 Improve later?`** | **`🛞 Configurable`**
+- [x] Quickly compression with global hotkey **`🛞 Configurable`**
+- [ ] Support image processing after processing **`🏷️ Planning`** | **`🛞 Configurable`**
 
 ### Others
 
@@ -41,6 +42,16 @@ A multi-functional picture processor software for macOS. Written in Swift.
   - [ ] Standlone *Welcome page*
   - [ ] Standlone *Settings Page*
 - [ ] Multiple languages (i18n) **`🥷 May implemented in the future`**
+
+### May not be implemented features
+
+> This part of the content may be very complex, and the performance after implementation may not be excellent.
+
+- [ ] Curves (RGB/CMYK)
+- [ ] Automatic Adjustment
+- [ ] Fork all features of CleanShot X & Shottr
+  - [ ] Enhance highlight circle function (CleanShot X --> Shottr)
+  - [ ] Brush memory function (Shottr --> CleanShot X)
 
 ## References
 
