@@ -11,20 +11,6 @@ struct CompressImageView: View {
     @State private var isStatusPopoverShown = false
     @State var showingLogSheetID = ""
     
-    @State private var selectedImage: NSImage? = nil {
-        didSet {
-            if selectedImage == nil {
-                selectedImagePath = ""
-                selectedImageName = ""
-                selectedImageMetadata = nil
-                queueId = nil
-            }
-        }
-    }
-    @State private var selectedImagePath: String?
-    @State private var selectedImageName: String?
-    @State private var selectedImageMetadata: ImageMetadata?
-    
     @State private var queueId: UUID?
     
     @State private var compressionQuality: CGFloat = 0.85
@@ -95,24 +81,7 @@ struct CompressImageView: View {
             Group {
                 ToolbarItem {
                     Button {
-                        InternalKit.useFilePanel(title: "Choose Image", message: "Select the image file to compress", action: { url in
-                            if let selectedURL = url {
-                                selectedImage = NSImage(contentsOf: selectedURL)
-                                selectedImagePath = selectedURL.path
-                                selectedImageName = selectedURL.lastPathComponent
-                                // selectedImageMetadata = getImageMetadata(image: selectedImage!)
-                                selectedImageMetadata = ImageMetadata(url: selectedURL)
-                            }
-                        })
-                    } label: {
-                        Label("Choose Image", systemImage: "photo")
-                    }
-                    .help("Choose Image")
-                }
-                ToolbarItem {
-                    Button {
-                        if selectedImage != nil {
-                            let config = CompressorConfig(
+                        let config = CompressorConfig(
                                 quality: Int(compressionQuality * 100),
                                 yuv: yuvOptions[selectedYUVOption].replacingOccurrences(of: "YUV ", with: "").replacingOccurrences(of: ":", with: ""),
                                 speed: Int(compressionSpeed * 100),
@@ -121,17 +90,10 @@ struct CompressImageView: View {
                                 // useColorProfiles: useColorProfiles,
                                 // colorProfile: selectedColorProfile == "Follow Original" ? nil : selectedColorProfile
                             )
-                            let compressor = Compressor()
-                            queueId = compressor.compress(path: selectedImagePath!, name: selectedImageName!, config: config)
-                        }
+                        processImage.compress(config: config)
                     } label: {
-                        if queueId != nil {
-                            Label("Start Compressing", systemImage: "play.fill")
-                        } else {
-                            Label("Start Compressing", systemImage: "play")
-                        }
+                        Label("Start Compressing", systemImage: "play")
                     }
-                    .disabled(selectedImage == nil || queueId != nil)
                 }
                 ToolbarItem {
                     Button {
@@ -208,18 +170,7 @@ struct CompressImageView: View {
     }
     
     var leftColumn: some View {
-        ImageUniversalView(
-            selectedImage: $selectedImage,
-            selectedImagePath: $selectedImagePath,
-            selectedImageName: $selectedImageName,
-            selectedImageMetadata: $selectedImageMetadata,
-            dropAction: { url in
-                selectedImage = NSImage(contentsOf: url)
-                selectedImagePath = url.path
-                selectedImageName = url.lastPathComponent
-                selectedImageMetadata = ImageMetadata(url: url)
-            }
-        )
+        ImageUniversalView()
     }
     
     var rightColumn: some View {

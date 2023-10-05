@@ -266,21 +266,8 @@ struct ModifyMetadataView: View {
     
     var leftColumn: some View {
         ImageUniversalView(
-            selectedImage: $selectedImage,
-            selectedImagePath: $selectedImagePath,
-            selectedImageName: $selectedImageName,
-            selectedImageMetadata: $selectedImageMetadata,
             dropAction: { url in
-                selectedImage = NSImage(contentsOf: url)
-                selectedImageURL = url
-                selectedImagePath = url.path
-                selectedImageName = url.lastPathComponent
-                selectedImageMetadata = ImageMetadata(url: url)
                 updateProcessMetadataValue()
-                // let newProcessMetadataValue = getImageMetadata(url: selectedImageURL!, key: supportMetadataKeys[copyFromKey]!)
-                // self.newProcessMetadataValue = "\(newProcessMetadataValue ?? "")"
-                //                let meta = getImageMetadata(url: url)
-                //                print("[*] getImageMetadata: dropAction \(String(describing: meta))")
             }
         )
     }

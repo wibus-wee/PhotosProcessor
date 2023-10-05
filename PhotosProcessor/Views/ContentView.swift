@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var processimg = ProcessImage.shared
     
     init() {
         let url = URL(fileURLWithPath: "/System/Library/ColorSync/Profiles")
@@ -32,6 +33,23 @@ struct ContentView: View {
                     )
                 } label: {
                     Label("Toggle Sidebar", systemImage: "sidebar.leading")
+                }
+            }
+
+            ToolbarItem {
+                Button {
+                    processimg.reset()
+                } label: {
+                    Label("reset image", systemImage: "trash")
+                }
+                .disabled(!processimg.inited)
+            }
+
+            ToolbarItem {
+                Button {
+                    processimg.setup()
+                } label: {
+                    Label("setup image", systemImage: "photo")
                 }
             }
         }

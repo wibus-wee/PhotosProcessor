@@ -8,16 +8,19 @@
 import SwiftUI
 
 struct ImageUniversalView: View {
-    @Binding var selectedImage: NSImage?
-    @Binding var selectedImagePath: String?
-    @Binding var selectedImageName: String?
-    @Binding var selectedImageMetadata: ImageMetadata?
+    @StateObject var processImage = ProcessImage.shared
+    
+    /// Deprecated. Use `ProcessImage.shared`` instead.
+    // @Binding var selectedImage: NSImage?
+    // @Binding var selectedImagePath: String?
+    // @Binding var selectedImageName: String?
+    // @Binding var selectedImageMetadata: ImageMetadata?
 
-    var dropAction: (_ url: URL) -> Void
+    var dropAction: (_ urls: URL) -> Void = { _ in }
     
     var body: some View {
         VStack {
-            if let image = selectedImage {
+            if let image = processImage.image {
                 VStack {
                     Image(nsImage: image)
                         .resizable()
@@ -28,6 +31,7 @@ struct ImageUniversalView: View {
                             if let provider = providers.first(where: { $0.canLoadObject(ofClass: URL.self) } ) {
                                 let _ = provider.loadObject(ofClass: URL.self) { object, error in
                                     if let url = object {
+                                        processImage.setup(url: url)
                                         dropAction(url)
                                     }
                                 }
@@ -48,6 +52,7 @@ struct ImageUniversalView: View {
                         if let provider = providers.first(where: { $0.canLoadObject(ofClass: URL.self) } ) {
                             let _ = provider.loadObject(ofClass: URL.self) { object, error in
                                 if let url = object {
+                                    processImage.setup(url: url)
                                     dropAction(url)
                                 }
                             }
@@ -59,13 +64,13 @@ struct ImageUniversalView: View {
             }
             Divider()
             VStack() {
-                Text("Name: \(selectedImageName ?? "No Image Selected")")
+                Text("Name: \(processImage.name ?? "No Image Selected")")
                     .font(.caption)
                     .foregroundColor(.gray)
-                Text("Size: \(Int(selectedImage?.size.width ?? 0)) x \(Int(selectedImage?.size.height ?? 0))")
+                Text("Size: \(Int(processImage.image?.size.width ?? 0)) x \(Int(processImage.image?.size.height ?? 0))")
                     .font(.caption)
                     .foregroundColor(.gray)
-                if let metadata = selectedImageMetadata {
+                if let metadata = processImage.imageMetadata {
                     if let profileName = metadata.getMetadata(key: kCGImagePropertyExifColorSpace) as? String {
                         Text("Color Profile: \(profileName)")
                             .font(.caption)
