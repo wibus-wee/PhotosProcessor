@@ -49,21 +49,6 @@ struct WaterMarkView: View {
             Group {
                 ToolbarItem {
                     Button {
-                        InternalKit.useFilePanel(title: "Choose Image", message: "Select the image file to compress", action: { url in
-                            if let selectedURL = url {
-                                selectedImage = NSImage(contentsOf: selectedURL)
-                                selectedImagePath = selectedURL.path
-                                selectedImageName = selectedURL.lastPathComponent
-                                selectedImageMetadata = ImageMetadata(url: selectedURL)
-                            }
-                        })
-                    } label: {
-                        Label("Choose Image", systemImage: "photo")
-                    }
-                    .help("Choose Image")
-                }
-                ToolbarItem {
-                    Button {
                         if selectedImage != nil {
                             watermark.addWatermark(selectedImage!, text: watermarkText) { image in
                                 if let image = image {

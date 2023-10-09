@@ -195,25 +195,6 @@ struct ModifyMetadataView: View {
                         Label("Sync DateTimeOriginal to CreateDate", systemImage: "arrow.clockwise")
                     }
                 }
-                ToolbarItem {
-                    Button {
-                        InternalKit.useFilePanel(title: "Choose Image", message: "Select the image file to compress", action: { url in
-                            if let selectedURL = url {
-                                selectedImage = NSImage(contentsOf: selectedURL)
-                                selectedImageURL = selectedURL
-                                selectedImagePath = selectedURL.path
-                                selectedImageName = selectedURL.lastPathComponent
-                                selectedImageMetadata = ImageMetadata(url: selectedURL)
-                                updateProcessMetadataValue()
-                                // let newProcessMetadataValue = getImageMetadata(url: selectedImageURL!, key: supportMetadataKeys[copyFromKey]!)
-                                // self.newProcessMetadataValue = "\(newProcessMetadataValue ?? "")"
-                            }
-                        })
-                    } label: {
-                        Label("Choose Image", systemImage: "photo")
-                    }
-                    .help("Choose Image")
-                }
                 // Start Modify
                 ToolbarItem {
                     Button {
