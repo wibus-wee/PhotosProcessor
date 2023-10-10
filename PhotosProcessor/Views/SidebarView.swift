@@ -40,14 +40,6 @@ struct SidebarView: View {
                     Label("GPS Location", systemImage: "location.circle")
                 }
             }
-
-            Section("Misc") {
-                NavigationLink {
-                    SettingView()
-                } label: {
-                    Label("Setting", systemImage: "gear")
-                }
-            }
         }
         .listStyle(SidebarListStyle())
     }

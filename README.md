@@ -40,7 +40,7 @@ A multi-functional picture processor software for macOS. Written in Swift.
 
 - [ ] Refactor UI **`🏷️ Planning. After the core features are completed`**
   - [ ] Standlone *Welcome page*
-  - [ ] Standlone *Settings Page*
+  - [x] Standlone *Settings Page*
 - [ ] Multiple languages (i18n) **`🥷 May implemented in the future`**
 
 ### May not be implemented features

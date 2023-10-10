@@ -21,5 +21,9 @@ struct PhotosProcessorApp: App {
         }
         .windowResizability(.contentSize)
         .commands { SidebarCommands() }
+
+        Settings {
+            SettingView()
+        }
     }
 }
