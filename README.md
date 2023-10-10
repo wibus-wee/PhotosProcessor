@@ -56,9 +56,10 @@ A multi-functional picture processor software for macOS. Written in Swift.
 
 ## References
 
-- [新一.enp1s1 on X](https://twitter.com/_a_wing/status/1700586549065155043)
+- [新一.enp1s1 on X](https://twitter.com/_a_wing/status/1700586549065155043). 
 - [Lakr233/ActionBee](https://github.com/Lakr233/ActionBee)
 - [Lakr233/CameraTools](https://github.com/Lakr233/CameraTools)
+- [ISStego](https://github.com/isena/ISStego). We create a Swift implementation of the ISStego algorithm. Full credits to the original authors.
 
 ## Author
 
