@@ -31,7 +31,9 @@ struct ImageUniversalView: View {
                             if let provider = providers.first(where: { $0.canLoadObject(ofClass: URL.self) } ) {
                                 let _ = provider.loadObject(ofClass: URL.self) { object, error in
                                     if let url = object {
-                                        processImage.setup(url: url)
+                                        DispatchQueue.main.async {
+                                            processImage.setup(url: url)
+                                        }
                                         dropAction(url)
                                     }
                                 }
@@ -52,7 +54,9 @@ struct ImageUniversalView: View {
                         if let provider = providers.first(where: { $0.canLoadObject(ofClass: URL.self) } ) {
                             let _ = provider.loadObject(ofClass: URL.self) { object, error in
                                 if let url = object {
-                                    processImage.setup(url: url)
+                                    DispatchQueue.main.async {
+                                        processImage.setup(url: url)
+                                    }
                                     dropAction(url)
                                 }
                             }
