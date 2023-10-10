@@ -8,18 +8,6 @@
 import SwiftUI
 
 struct WaterMarkView: View {
-    @State private var selectedImage: NSImage? = nil {
-        didSet {
-            if selectedImage == nil {
-                selectedImagePath = ""
-                selectedImageName = ""
-                selectedImageMetadata = nil
-            }
-        }
-    }
-    @State private var selectedImagePath: String?
-    @State private var selectedImageName: String?
-    @State private var selectedImageMetadata: ImageMetadata?
     
     @State private var watermarkText: String = ""
     @State private var watermarkFontSize: String = ""
@@ -49,20 +37,19 @@ struct WaterMarkView: View {
             Group {
                 ToolbarItem {
                     Button {
-                        if selectedImage != nil {
-                            watermark.addWatermark(selectedImage!, text: watermarkText) { image in
-                                if let image = image {
-                                    selectedImage = image
-                                    InternalKit.saveFilePanel(title: "Save Image", message: "Select the location to save the compressed image", action: { url in
-                                        if let selectedURL = url {
-                                            let data = image.tiffRepresentation
-                                            let bitmap = NSBitmapImageRep(data: data!)
-                                            let jpeg = bitmap?.representation(using: .jpeg, properties: [:])
-                                            try? jpeg?.write(to: selectedURL)
-                                        }
-                                    })
-                                }
-                            }
+                        if processImage.image != nil {
+                            let processedUrl = watermark.addWatermark(processImage.image!, text: watermarkText)
+                                processImage.setup(url: processedUrl)
+                                    // InternalKit.saveFilePanel(title: "Save Image", message: "Select the location to save the compressed image", action: { url in
+                                    //     if let saveLocationURL = url {
+                                    //         do {
+                                    //             try FileManager.default.copyItem(at: processedUrl, to: saveLocationURL)
+                                    //             print("[I] Saved image to \(saveLocationURL)")
+                                    //         } catch {
+                                    //             print("[E] Failed to save image to \(saveLocationURL)")
+                                    //         }
+                                    //     }
+                                    // })
                         }
                     } label: {
                         Label("Save Image", systemImage: "square.and.arrow.down")
@@ -71,17 +58,10 @@ struct WaterMarkView: View {
                 }
                 ToolbarItem {
                     Button {
-                        if selectedImage != nil {
-                            let image = watermark.visibleWatermark(selectedImage!)
-                            selectedImage = image
-                            InternalKit.saveFilePanel(title: "Save Image", message: "Select the location to save the compressed image", action: { url in
-                                if let selectedURL = url {
-                                    let data = image.tiffRepresentation
-                                    let bitmap = NSBitmapImageRep(data: data!)
-                                    let jpeg = bitmap?.representation(using: .jpeg, properties: [:])
-                                    try? jpeg?.write(to: selectedURL)
-                                }
-                            })
+                        if processImage.image != nil {
+                            let image = watermark.visibleWatermark(processImage.image!)
+                            
+                            print("[*] \(image)")
                         }
                     } label: {
                         Label("Visible Watermark", systemImage: "eye")

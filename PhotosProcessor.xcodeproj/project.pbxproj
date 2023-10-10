@@ -25,6 +25,11 @@
 		38861CF22AADCC4B005DD3B4 /* InternalKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38861CF12AADCC4B005DD3B4 /* InternalKit.swift */; };
 		38861CF42AADD1E7005DD3B4 /* ImageMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38861CF32AADD1E7005DD3B4 /* ImageMetadata.swift */; };
 		388CBC3D2AC7D06F0095D447 /* ProcessImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CBC3C2AC7D06F0095D447 /* ProcessImage.swift */; };
+		38AEC5692AD5A5AF002F6C63 /* Utlities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AEC5682AD5A5AF002F6C63 /* Utlities.swift */; };
+		38AEC56B2AD5A5BB002F6C63 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AEC56A2AD5A5BB002F6C63 /* Decoder.swift */; };
+		38AEC56D2AD5A5C1002F6C63 /* Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AEC56C2AD5A5C1002F6C63 /* Encoder.swift */; };
+		38AEC5702AD5A5DA002F6C63 /* LSBWatermark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AEC56F2AD5A5DA002F6C63 /* LSBWatermark.swift */; };
+		38AEC5722AD5A5FD002F6C63 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AEC5712AD5A5FD002F6C63 /* String.swift */; };
 		38DC56292ABFC0E100DC6408 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DC56282ABFC0E100DC6408 /* Configuration.swift */; };
 		38DC562C2ABFC15C00DC6408 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 38DC562B2ABFC15C00DC6408 /* LaunchAtLogin */; };
 		38DC562E2ABFC2C400DC6408 /* PublishedStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DC562D2ABFC2C400DC6408 /* PublishedStorage.swift */; };
@@ -64,6 +69,11 @@
 		38861CF12AADCC4B005DD3B4 /* InternalKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalKit.swift; sourceTree = "<group>"; };
 		38861CF32AADD1E7005DD3B4 /* ImageMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMetadata.swift; sourceTree = "<group>"; };
 		388CBC3C2AC7D06F0095D447 /* ProcessImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessImage.swift; sourceTree = "<group>"; };
+		38AEC5682AD5A5AF002F6C63 /* Utlities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utlities.swift; sourceTree = "<group>"; };
+		38AEC56A2AD5A5BB002F6C63 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
+		38AEC56C2AD5A5C1002F6C63 /* Encoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encoder.swift; sourceTree = "<group>"; };
+		38AEC56F2AD5A5DA002F6C63 /* LSBWatermark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSBWatermark.swift; sourceTree = "<group>"; };
+		38AEC5712AD5A5FD002F6C63 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		38DC56282ABFC0E100DC6408 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		38DC562D2ABFC2C400DC6408 /* PublishedStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishedStorage.swift; sourceTree = "<group>"; };
 		38DC562F2ABFC48100DC6408 /* SettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -162,15 +172,36 @@
 		38861CF02AADCC40005DD3B4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				38AEC5672AD5A58F002F6C63 /* Watermark */,
 				38861CF32AADD1E7005DD3B4 /* ImageMetadata.swift */,
-				38DC56312ABFF35700DC6408 /* Watermark.swift */,
 				38DC562D2ABFC2C400DC6408 /* PublishedStorage.swift */,
 				38861CF12AADCC4B005DD3B4 /* InternalKit.swift */,
 				3874B1E92AC6AAEE00790925 /* NSTextView.swift */,
 				3874B1EB2AC6B14F00790925 /* View.swift */,
 				3874B1F62AC6B50000790925 /* KeyboardShortcuts.swift */,
+				38AEC5712AD5A5FD002F6C63 /* String.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		38AEC5672AD5A58F002F6C63 /* Watermark */ = {
+			isa = PBXGroup;
+			children = (
+				38AEC56E2AD5A5C8002F6C63 /* LSB */,
+				38DC56312ABFF35700DC6408 /* Watermark.swift */,
+			);
+			path = Watermark;
+			sourceTree = "<group>";
+		};
+		38AEC56E2AD5A5C8002F6C63 /* LSB */ = {
+			isa = PBXGroup;
+			children = (
+				38AEC5682AD5A5AF002F6C63 /* Utlities.swift */,
+				38AEC56A2AD5A5BB002F6C63 /* Decoder.swift */,
+				38AEC56C2AD5A5C1002F6C63 /* Encoder.swift */,
+				38AEC56F2AD5A5DA002F6C63 /* LSBWatermark.swift */,
+			);
+			path = LSB;
 			sourceTree = "<group>";
 		};
 		38F63CAC2AAE1A61003D7156 /* bin */ = {
@@ -322,14 +353,17 @@
 				38F893342AAD5701008414D9 /* Constants.swift in Sources */,
 				380769722AC482A50066C7FE /* AnyDataView.swift in Sources */,
 				388CBC3D2AC7D06F0095D447 /* ProcessImage.swift in Sources */,
+				38AEC5702AD5A5DA002F6C63 /* LSBWatermark.swift in Sources */,
 				3874B1FC2AC6C62100790925 /* AppState.swift in Sources */,
 				387B9D8B2AB6C46E002777DA /* CommandQueue.swift in Sources */,
 				3874B1F92AC6BB3C00790925 /* SelectedFile.swift in Sources */,
 				38861CEE2AAD679A005DD3B4 /* ListColorProfiles.swift in Sources */,
+				38AEC56D2AD5A5C1002F6C63 /* Encoder.swift in Sources */,
 				38DC56302ABFC48100DC6408 /* SettingView.swift in Sources */,
 				38F63CA72AAE130C003D7156 /* Compressor.swift in Sources */,
 				38F893222AAD544D008414D9 /* ContentView.swift in Sources */,
 				38F893302AAD5476008414D9 /* CompressImageView.swift in Sources */,
+				38AEC5722AD5A5FD002F6C63 /* String.swift in Sources */,
 				3874B1EC2AC6B14F00790925 /* View.swift in Sources */,
 				380769702AC055F90066C7FE /* ImageUniversalView.swift in Sources */,
 				38DC56322ABFF35700DC6408 /* Watermark.swift in Sources */,
@@ -339,9 +373,11 @@
 				38861CF22AADCC4B005DD3B4 /* InternalKit.swift in Sources */,
 				3874B2002AC6E64000790925 /* ImageGPSLocationView.swift in Sources */,
 				38F893322AAD54A5008414D9 /* ModifyMetadataView.swift in Sources */,
+				38AEC56B2AD5A5BB002F6C63 /* Decoder.swift in Sources */,
 				38861CF42AADD1E7005DD3B4 /* ImageMetadata.swift in Sources */,
 				387B9D852AB60FAB002777DA /* Executor.swift in Sources */,
 				38DC56342AC012FE00DC6408 /* WaterMarkView.swift in Sources */,
+				38AEC5692AD5A5AF002F6C63 /* Utlities.swift in Sources */,
 				38F893362AAD5723008414D9 /* SidebarView.swift in Sources */,
 				38F893382AAD5750008414D9 /* WelcomeView.swift in Sources */,
 				387B9D8F2AB6FE6A002777DA /* SendNotification.swift in Sources */,
