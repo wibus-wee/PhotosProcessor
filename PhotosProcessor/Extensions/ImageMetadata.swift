@@ -127,7 +127,7 @@ class ImageMetadata {
         }
         
         // Replace file
-        if !configuration.metadataSaveAsNewFile {
+        if !configuration.saveAsNewFile {
             do {
                 try self.fileManager.removeItem(at: url)
                 try self.fileManager.moveItem(at: newFileURL, to: url)
@@ -138,7 +138,7 @@ class ImageMetadata {
         }
         
         // Sync file date
-        let syncPath = configuration.metadataSaveAsNewFile ? newFilePath.path : url.path
+        let syncPath = configuration.saveAsNewFile ? newFilePath.path : url.path
         let sync = syncImageDate(path: syncPath, original: creationDate, digitized: modificationDate)
         if !sync {
             print("[E] Bug occurred when edit metadata (sync file date)")
