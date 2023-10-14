@@ -63,8 +63,8 @@ class LSBEncoder {
         
         var dataLength = UInt32(messageToHide.count)
         
-        // if (dataLength <= INT_MAX && dataLength * BITS_PER_COMPONENT < size - SizeOfInfoLength())
-        if dataLength <= UInt32(Int.max) && dataLength * UInt32(LSBUtlities.BITS_PER_COMPONENT) < UInt32(size - LSBUtlities.sizeOfInfoLength()) {
+        if dataLength * UInt32(LSBUtlities.BITS_PER_COMPONENT) < UInt32(size - LSBUtlities.sizeOfInfoLength()) {
+        //  dataLength <= UInt32(Int.max) && 
             reset()
             
             let data = Data(bytes: &dataLength, count: LSBUtlities.BYTES_OF_LENGTH)
@@ -138,6 +138,41 @@ class LSBEncoder {
             if success {
                 if let newCGImage = context?.makeImage() {
                     processedImage = LSBUtlities.image(imageRef: newCGImage)
+                }
+            }
+        } else {
+            throw LSBUtlities.errorForDomainCode(code: LSBUtlities.ErrorDomainCode.imageTooSmall)
+        }
+        
+        return processedImage
+    }
+    
+    func stegoImageForImage(image: CGImage, data: String) throws -> CGImage? {
+        let width = image.width
+        let height = image.height
+        let size = height * width
+        
+        var pixels = [UInt32](repeating: 0, count: size)
+        
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let context = CGContext(data: &pixels,
+                                width: width,
+                                height: height,
+                                bitsPerComponent: LSBUtlities.BITS_PER_COMPONENT,
+                                bytesPerRow: LSBUtlities.BYTES_PER_PIXEL * width,
+                                space: colorSpace,
+                                bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.byteOrder32Big.rawValue).rawValue)
+        
+        context?.draw(image, in: CGRect(x: 0, y: 0, width: width, height: height))
+        
+        var processedImage: CGImage?
+        
+        if size >= LSBUtlities.minPixels() {
+            let success = try self.hideData(data, in: &pixels, withSize: size)
+            
+            if success {
+                if let newCGImage = context?.makeImage() {
+                    processedImage = newCGImage
                 }
             }
         } else {

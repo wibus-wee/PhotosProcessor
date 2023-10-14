@@ -38,18 +38,15 @@ struct WaterMarkView: View {
                 ToolbarItem {
                     Button {
                         if processImage.image != nil {
-                            let processedUrl = watermark.addWatermark(processImage.image!, text: watermarkText)
-                                processImage.setup(url: processedUrl)
-                                    // InternalKit.saveFilePanel(title: "Save Image", message: "Select the location to save the compressed image", action: { url in
-                                    //     if let saveLocationURL = url {
-                                    //         do {
-                                    //             try FileManager.default.copyItem(at: processedUrl, to: saveLocationURL)
-                                    //             print("[I] Saved image to \(saveLocationURL)")
-                                    //         } catch {
-                                    //             print("[E] Failed to save image to \(saveLocationURL)")
-                                    //         }
-                                    //     }
-                                    // })
+                            watermark.encode(processImage.image!, text: watermarkText) { (image, error) in
+                                if let error = error {
+                                    print(error)
+                                } else {
+                                    if let image = image {
+                                        processImage.image = NSImage(cgImage: image, size: NSSize(width: image.width, height: image.height))
+                                    }
+                                }
+                            }
                         }
                     } label: {
                         Label("Save Image", systemImage: "square.and.arrow.down")
@@ -59,9 +56,7 @@ struct WaterMarkView: View {
                 ToolbarItem {
                     Button {
                         if processImage.image != nil {
-                            let image = watermark.visibleWatermark(processImage.image!)
-                            
-                            print("[*] \(image)")
+                            watermark.decode(processImage.image!)
                         }
                     } label: {
                         Label("Visible Watermark", systemImage: "eye")

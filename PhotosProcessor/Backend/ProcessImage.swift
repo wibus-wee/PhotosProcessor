@@ -66,4 +66,25 @@ class ProcessImage: NSObject, ObservableObject {
         self.inited = true
         print("[I] Loaded image: \(self.url!)")
     }
+
+    func setup(image: NSImage) {
+        print("[E] Not implemented")
+        return Void()
+        self.name = "Untitled(\(UUID().uuidString))"
+        let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(self.name!)
+        let data = image.tiffRepresentation
+        do {
+            try data?.write(to: url)
+        } catch {
+            print("[E] Failed to write image to temp file: \(error)")
+            return
+        }
+        self.imageMetadata = ImageMetadata(url: url)
+        self.metadata = self.imageMetadata?.getMetadata()
+        self.url = url
+        self.path = url.path
+        self.image = image
+        self.inited = true
+        print("[I] Loaded image: \(self.url!)")
+    }
 }

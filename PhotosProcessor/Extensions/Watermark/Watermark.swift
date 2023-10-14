@@ -6,17 +6,54 @@
 //
 
 import SwiftUI
+import CoreGraphics
+
 
 class Watermark {
+    private var impl = LSBWatermark()
 
-    func visibleWatermark(_ image: NSImage) -> Any {
-//        let bitmap = NSBitmapImageRep(data: image.tiffRepresentation!)!
-//        let text = extractText(bitmap)
-//        return text.fromBinary()
-        return 0
+    init() {
+        impl = LSBWatermark()
     }
 
-    func addWatermark(_ image: NSImage, text: String) -> Any {
-       return 0
+    func decode(_ image: NSImage) -> Void {
+        // Change to CGImage
+        let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil)
+        impl.decode(from: cgImage!) { (data, error) in
+            if let error = error {
+                print(error)
+            } else {
+                if let data = data {
+                    let string = String(data: data, encoding: .utf8)
+                    print(string)
+                }
+            }
+        }
+    }
+
+    func encode(_ image: NSImage, text: String) -> Void {
+        let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil)
+        impl.encode(data: text, image: cgImage!) { (image, error) in
+            if let error = error {
+                print(error)
+            } else {
+                if let image = image {
+                    
+                }
+            }
+        }
+    }
+
+    func encode(_ image: NSImage, text: String, completionBlock: @escaping (CGImage?, Error?) -> Void) -> Void {
+        let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil)
+        impl.encode(data: text, image: cgImage!) { (image, error) in
+            if let error = error {
+                print(error)
+            } else {
+                if let image = image {
+                    completionBlock(image, nil)
+                }
+            }
+        }
     }
 }
