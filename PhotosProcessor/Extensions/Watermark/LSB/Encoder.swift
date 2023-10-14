@@ -13,6 +13,95 @@ class LSBEncoder {
     private var currentCharacter = 0
     private var step: UInt32 = 0
     private var currentDataToHide: String = ""
+
+    static func base64(from data: String) -> String {
+        let dataOfString = data.data(using: .utf8)
+        return dataOfString!.base64EncodedString(options: .init(rawValue: 0))
+    }
+
+    func reset() {
+        currentShift = LSBUtlities.INITIAL_SHIFT
+        currentCharacter = 0
+        // step = 0
+        // currentDataToHide = ""
+    }
+
+    func message(toHide data: String) -> String {
+        let base64 = LSBEncoder.base64(from: data)
+        return "\(LSBUtlities.DATA_PREFIX)\(base64)\(LSBUtlities.DATA_SUFFIX)"
+    }
+
+    func newPixel(_ pixel: UInt32) -> UInt32 {
+        let color = newColor(pixel)
+        step += 1
+        return color
+    }
+
+    func newColor(_ color: UInt32) -> UInt32 {
+        if currentDataToHide.count > currentCharacter {
+            let asciiCode = currentDataToHide[currentDataToHide.index(currentDataToHide.startIndex, offsetBy: currentCharacter)].asciiValue!
+            
+            let shiftedBits = asciiCode >> UInt8(currentShift)
+            
+            if currentShift == 0 {
+                currentShift = LSBUtlities.INITIAL_SHIFT
+                currentCharacter += 1
+            } else {
+                currentShift -= 1
+            }
+            
+            return LSBUtlities.newPixel(color, shiftedBits: UInt32(shiftedBits), shift: Int(step))
+        }
+        
+        return color
+    }
+
+    func hideData(_ data: String, in pixels: inout [UInt32], withSize size: Int) throws -> Bool {
+        var success = false
+        
+        let messageToHide = message(toHide: data)
+        
+        var dataLength = UInt32(messageToHide.count)
+        
+        // if (dataLength <= INT_MAX && dataLength * BITS_PER_COMPONENT < size - SizeOfInfoLength())
+        if dataLength <= UInt32(Int.max) && dataLength * UInt32(LSBUtlities.BITS_PER_COMPONENT) < UInt32(size - LSBUtlities.sizeOfInfoLength()) {
+            reset()
+            
+            let data = Data(bytes: &dataLength, count: LSBUtlities.BYTES_OF_LENGTH)
+            
+            let lengthDataInfo = String(data: data, encoding: .ascii)
+            
+            var pixelPosition: UInt32 = 0
+            
+            currentDataToHide = lengthDataInfo!
+            
+            while pixelPosition < LSBUtlities.sizeOfInfoLength() {
+                pixels[Int(pixelPosition)] = newPixel(pixels[Int(pixelPosition)])
+                pixelPosition += 1
+            }
+            
+            reset()
+            
+            let pixelsToHide = messageToHide.count * LSBUtlities.BITS_PER_COMPONENT
+            
+            currentDataToHide = messageToHide
+            
+            let ratio = Double(size - Int(pixelPosition))/Double(pixelsToHide)
+            
+            let salt = Int(ratio)
+            
+            while pixelPosition <= UInt32(size) {
+                pixels[Int(pixelPosition)] = newPixel(pixels[Int(pixelPosition)])
+                pixelPosition += UInt32(salt)
+            }
+            
+            success = true
+        } else {
+            throw LSBUtlities.errorForDomainCode(code: LSBUtlities.ErrorDomainCode.dataTooBig)
+        }
+        
+        return success
+    }
     
     func stegoImage(for image: Any, data: Any) throws -> Any? {
         // guard let inputImage = image as? CGImage else {
@@ -44,7 +133,7 @@ class LSBEncoder {
         var processedImage: Any?
         
         if size >= LSBUtlities.minPixels() {
-            let success = try hideData(dataString, in: &pixels, withSize: size)
+            let success = try self.hideData(dataString, in: &pixels, withSize: size)
             
             if success {
                 if let newCGImage = context?.makeImage() {
