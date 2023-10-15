@@ -41,6 +41,16 @@ struct ImageUniversalView: View {
                             }
                             return false
                         }
+                        .onTapGesture {
+                            InternalKit.useFilePanel(title: "Choose Image", message: "Select the image file to process", action: { url in
+                            if url == nil {
+                                print("[E] No image selected")
+                                return
+                            }
+                            processImage.setup(url: url!)
+                        })
+                        }
+                        
                 }
                 
             } else {
@@ -63,6 +73,15 @@ struct ImageUniversalView: View {
                             return true
                         }
                         return false
+                    }
+                    .onTapGesture {
+                        InternalKit.useFilePanel(title: "Choose Image", message: "Select the image file to process", action: { url in
+                            if url == nil {
+                                print("[E] No image selected")
+                                return
+                            }
+                            processImage.setup(url: url!)
+                        })
                     }
                 
             }
