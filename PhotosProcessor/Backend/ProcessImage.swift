@@ -45,6 +45,10 @@ class ProcessImage: NSObject, ObservableObject {
     func setup() {
         self.reset()
         InternalKit.useFilePanel(title: "Choose Image", message: "Select the image file to process", action: { url in
+            if url == nil {
+                print("[E] No image selected")
+                return
+            }
             self.url = url
             self.imageMetadata = ImageMetadata(url: url!)
             self.metadata = self.imageMetadata?.getMetadata()
