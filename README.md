@@ -15,11 +15,11 @@ A multi-functional picture processor software for macOS. Written in Swift.
 > The core features are the most important features of the software, and the software cannot be used without them.
 
 - [x] Image compression **`✅`** | **`🔧 Improving`**
-- [x] Modify image metadata **`✅`** | **`🔧 Improving`**
+- [x] Modify image metadata **`✅`** | **`🔧 Improving`** ｜ **`🐛 Bug Occurred`**
 - [ ] Image dark watermark support **`⏳ In Progress.`** | **`❓ Need help.`**
-- [ ] Menu bar item **`🏷️ Planning`**
+- [ ] Menu bar ite
 - [ ] GPS location fix **`⏳ In Progress.`** | **`❓ Need help.`**
-- [ ] Stitching images **`🏷️ Planning`**
+- [ ] Stitching images
 - [ ] Characteristic watermark support
 
 ### Performance Features
@@ -35,6 +35,7 @@ A multi-functional picture processor software for macOS. Written in Swift.
 - [x] Support for loading external dependencies (avifenc, etc.) **`💣 Improve later?`** | **`🛞 Configurable`**
 - [x] Quickly compression with global hotkey **`🛞 Configurable`**
 - [ ] Support image processing after processing **`🏷️ Planning`** | **`🛞 Configurable`**
+- [ ] Gaussian blur effect **`🏷️ Planning`**
 
 ### Others
 
@@ -43,16 +44,16 @@ A multi-functional picture processor software for macOS. Written in Swift.
   - [x] Standlone *Settings Page*
 - [ ] Multiple languages (i18n) **`🥷 May implemented in the future`**
 
-### May not be implemented features
+### May NOT be implemented features
 
 > This part of the content may be very complex, and the performance after implementation may not be excellent.
 
 - [ ] Curves (RGB/CMYK)
 - [ ] Automatic Adjustment
-- [ ] Fork all features of **CleanShot X & Shottr**
-  - [ ] Enhance highlight circle function `(CleanShot X --> Shottr)`
-  - [ ] Brush memory function `(Shottr --> CleanShot X)`
-  - [ ] Mosaic enhancement `(Shottr --> CleanShot X)`
+- [ ] ~~Fork all features of **CleanShot X & Shottr**~~ (It will be implemented as a new project: **`Shot Max`**)
+<!--  - [ ] Enhance highlight circle function `(CleanShot X --> Shottr)` -->
+<!--  - [ ] Brush memory function `(Shottr --> CleanShot X)` -->
+<!--  - [ ] Mosaic enhancement `(Shottr --> CleanShot X)` -->
 
 ## References
 
