@@ -235,10 +235,10 @@
 			isa = PBXGroup;
 			children = (
 				3874B1FA2AC6C00D00790925 /* Info.plist */,
+				38861CEB2AAD589C005DD3B4 /* App */,
 				387B9D832AB60B31002777DA /* Backend */,
 				38861CF02AADCC40005DD3B4 /* Extensions */,
 				38861CEC2AAD678A005DD3B4 /* Utils */,
-				38861CEB2AAD589C005DD3B4 /* App */,
 				38F8932E2AAD5464008414D9 /* Views */,
 				38F893232AAD544E008414D9 /* Assets.xcassets */,
 				38F893252AAD544E008414D9 /* PhotosProcessor.entitlements */,

@@ -51,23 +51,7 @@ struct ModifyMetadataView: View {
     }
 
     @State private var isPresented: Bool = false
-
     @State private var modifyType: ModifyType = .copy
-    
-    @State private var selectedImage: NSImage? = nil {
-        didSet {
-            if selectedImage == nil {
-                selectedImageURL = nil
-                selectedImagePath = ""
-                selectedImageName = ""
-                selectedImageMetadata = nil
-            }
-        }
-    }
-    @State private var selectedImageURL: URL?
-    @State private var selectedImagePath: String?
-    @State private var selectedImageName: String?
-    @State private var selectedImageMetadata: ImageMetadata?
     
     @State private var copyFromKey: String = "DateTimeOriginal"
     @State private var processMetadataKeyInputType: String = "Picker"
@@ -82,8 +66,7 @@ struct ModifyMetadataView: View {
                 newProcessMetadataValue = ""
                 return
             }
-            // let newMetadataValue = getImageMetadata(url: selectedImageURL!, key: copyFromKey!)
-            let newMetadataValue = selectedImageMetadata?.getMetadata(key: copyFromKey!)
+            let newMetadataValue = processImage.imageMetadata?.getMetadata(key: copyFromKey!)
             newProcessMetadataValue = "\(newMetadataValue ?? "")"
         }
         if modifyType == .remove {
@@ -127,7 +110,7 @@ struct ModifyMetadataView: View {
                 print("[*] keyKey: \(keyKey)")
                 
                 // End.
-                let value = selectedImageMetadata?.getMetadata(key: MetadataKey(key: keyKey as CFString, area: String(areaKey!) as String))
+                let value = processImage.imageMetadata?.getMetadata(key: MetadataKey(key: keyKey as CFString, area: String(areaKey!) as String))
                 print("[*] value: \(String(describing: value))")
                 oldProcessMetadataValue = "\(value ?? "")"
                 if (modifyType == .edit) {
@@ -142,7 +125,7 @@ struct ModifyMetadataView: View {
             return
         }
         // let oldMetadataValue = getImageMetadata(url: selectedImageURL!, key: key!)
-        let oldMetadataValue = selectedImageMetadata?.getMetadata(key: key!)
+        let oldMetadataValue = processImage.imageMetadata?.getMetadata(key: key!)
         if (modifyType == .edit) {
             newProcessMetadataValue = "\(oldMetadataValue ?? "")"
         }
@@ -171,7 +154,7 @@ struct ModifyMetadataView: View {
         }
         .sheet(isPresented: $isPresented) {
             let title: Binding<String> = .constant("Image Metadata")
-            let data: Binding<Any?> = .constant(selectedImageMetadata?.metadata)
+            let data: Binding<Any?> = .constant(processImage.imageMetadata?.metadata)
             AnyDataView(title: title, data: data)
         }   
         .navigationTitle("Modify Metadata")
@@ -184,25 +167,28 @@ struct ModifyMetadataView: View {
                         Label("Image Metadata", systemImage: "info.circle")
                     }
                     .help("Image Metadata")
+                    .disabled(processImage.inited == false || processImage.imageMetadata == nil)
                 }
                 ToolbarItem {
                     Button {
-                        if (selectedImage == nil || selectedImageMetadata == nil) {
+                        if (processImage.inited == false || processImage.imageMetadata == nil) {
                             return
                         }
-                        let _ = selectedImageMetadata!.syncImageDate(path: selectedImageMetadata!.url!.path)
+                        let _ = processImage.imageMetadata!.syncImageDate(path: processImage.imageMetadata!.url!.path)
                     } label: {
                         Label("Sync DateTimeOriginal to CreateDate", systemImage: "arrow.clockwise")
                     }
+                    .help("Sync DateTimeOriginal to CreateDate")
+                    .disabled(processImage.inited == false || processImage.imageMetadata == nil)
                 }
                 // Start Modify
                 ToolbarItem {
                     Button {
-                        if (selectedImage == nil || selectedImageMetadata == nil) {
+                        if (processImage.inited == false || processImage.imageMetadata == nil) {
                             return
                         }
                         var res = false
-                        let metadata = selectedImageMetadata!
+                        let metadata = processImage.imageMetadata!
                         if modifyType == .copy {
                             let copyFromKey = supportMetadataKeys[self.copyFromKey]
                             let processKey = supportMetadataKeys[self.processMetadataKey]
@@ -240,17 +226,14 @@ struct ModifyMetadataView: View {
                         Label("Modify", systemImage: "hammer")
                     }
                     .help("Modify")
+                    .disabled(processImage.inited == false || processImage.imageMetadata == nil)
                 }           
             }
         }
     }
     
     var leftColumn: some View {
-        ImageUniversalView(
-            dropAction: { url in
-                updateProcessMetadataValue()
-            }
-        )
+        ImageUniversalView()
     }
     
     var rightTop: some View {
@@ -278,7 +261,7 @@ struct ModifyMetadataView: View {
                 .onChange(of: copyFromKey) { _ in
                     updateProcessMetadataValue()
                 }
-                .disabled(selectedImageMetadata == nil)
+                
                 .help("Copy from")
                 Text("Select a metadata key to copy from.")
                     .font(.caption)
@@ -305,7 +288,7 @@ struct ModifyMetadataView: View {
                     .foregroundColor(.secondary)
                 if processMetadataKeyInputType == "Input" {
                     TextField("Process metadata key", text: $processMetadataKey)
-                        .disabled(selectedImageMetadata == nil)
+                        
                         .help("Process metadata key")
                     // .onChange(of: processMetadataKey) { _ in
                     //     updateProcessMetadataValue()
@@ -321,7 +304,7 @@ struct ModifyMetadataView: View {
                     }
                     .pickerStyle(MenuPickerStyle())
                     // .frame(width: 300, height: 30)
-                    .disabled(selectedImageMetadata == nil)
+                    
                     .help("Process metadata key")
                     .onChange(of: processMetadataKey) { _ in
                         updateProcessMetadataValue()
@@ -355,7 +338,7 @@ struct ModifyMetadataView: View {
             if processMetadataKeyInputType == "Input" {
                 TextField("New metadata key", text: $processMetadataKey)
                 // .frame(width: 300, height: 30)
-                    .disabled(selectedImageMetadata == nil)
+                    
                     .help("New metadata key")
                 // .onChange(of: processMetadataKey) { _ in
                 //     updateProcessMetadataValue()
@@ -371,7 +354,7 @@ struct ModifyMetadataView: View {
                 }
                 .pickerStyle(MenuPickerStyle())
                 // .frame(width: 300, height: 30)
-                .disabled(selectedImageMetadata == nil)
+                
                 .help("Metadata key")
                 .onChange(of: processMetadataKey) { _ in
                     updateProcessMetadataValue()
@@ -386,7 +369,7 @@ struct ModifyMetadataView: View {
                 .font(.system(size: 12, design: .monospaced))
                 .background(Color(NSColor.textBackgroundColor))
                 .frame(height: 100)
-                .disabled(selectedImageMetadata == nil)
+                
                 .help("Metadata value")
                 // .onChange(of: newProcessMetadataValue) { _ in
                 //     updateProcessMetadataValue()
@@ -417,7 +400,7 @@ struct ModifyMetadataView: View {
             if processMetadataKeyInputType == "Input" {
                 TextField("Metadata key", text: $processMetadataKey)
                 // .frame(width: 300, height: 30)
-                    .disabled(selectedImageMetadata == nil)
+                    
                     .help("Metadata key")
                 // .onChange(of: processMetadataKey) { _ in
                 //     updateProcessMetadataValue()
@@ -433,7 +416,7 @@ struct ModifyMetadataView: View {
                 }
                 .pickerStyle(MenuPickerStyle())
                 // .frame(width: 300, height: 30)
-                .disabled(selectedImageMetadata == nil)
+                
                 .help("Metadata key")
                 .onChange(of: processMetadataKey) { _ in
                     updateProcessMetadataValue()
@@ -465,7 +448,7 @@ struct ModifyMetadataView: View {
             if processMetadataKeyInputType == "Input" {
                 TextField("Metadata key", text: $processMetadataKey)
                 // .frame(width: 300, height: 30)
-                    .disabled(selectedImageMetadata == nil)
+                    
                     .help("Metadata key")
             } else {
                 Picker("Metadata key", selection: $processMetadataKey) {
@@ -475,13 +458,13 @@ struct ModifyMetadataView: View {
                 }
                 .pickerStyle(MenuPickerStyle())
                 // .frame(width: 300, height: 30)
-                .disabled(selectedImageMetadata == nil)
+                
                 .help("Metadata key")
             }
             
             TextField("Metadata value", text: $newProcessMetadataValue)
             // .frame(width: 300, height: 30)
-                .disabled(selectedImageMetadata == nil)
+                
                 .help("Metadata value")
         }
     }
