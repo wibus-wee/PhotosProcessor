@@ -17,6 +17,8 @@ struct CompressImageView: View {
     @State private var compressionSpeed: CGFloat = 0.0
     @State private var selectedYUVOption = 2
     @State private var arguments = ""
+
+    @State private var imageViewBlurRadius: Double = 0
     
     // @State private var useColorProfiles = true
     // @State private var cleanExifInfo = true
@@ -90,7 +92,15 @@ struct CompressImageView: View {
                                 // useColorProfiles: useColorProfiles,
                                 // colorProfile: selectedColorProfile == "Follow Original" ? nil : selectedColorProfile
                             )
-                        processImage.compress(config: config)
+                        let id = processImage.compress(config: config)
+                        withAnimation(.easeInOut(duration: 0.5)) {
+                            imageViewBlurRadius = 10
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                            withAnimation(.easeInOut(duration: 0.5)) {
+                                imageViewBlurRadius = 0
+                            }
+                        }
                     } label: {
                         Label("Start Compressing", systemImage: "play")
                     }
@@ -171,6 +181,7 @@ struct CompressImageView: View {
     
     var leftColumn: some View {
         ImageUniversalView()
+            .blur(radius: CGFloat(imageViewBlurRadius))
     }
     
     var rightColumn: some View {

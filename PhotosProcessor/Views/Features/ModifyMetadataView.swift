@@ -58,6 +58,8 @@ struct ModifyMetadataView: View {
     @State private var processMetadataKey: String = "DateTimeOriginal"
     @State private var oldProcessMetadataValue: String = ""
     @State private var newProcessMetadataValue: String = ""
+
+    @State private var imageViewBlurRadius: Double = 0
     
     func updateProcessMetadataValue() {
         if (modifyType == .copy ){
@@ -188,6 +190,10 @@ struct ModifyMetadataView: View {
                         if (processImage.inited == false || processImage.imageMetadata == nil) {
                             return
                         }
+                        // set blur radius to 10 gradually
+                        withAnimation(.easeInOut(duration: 0.5)) {
+                            imageViewBlurRadius = 10
+                        }
                         var res = false
                         let metadata = processImage.imageMetadata!
                         if modifyType == .copy {
@@ -224,6 +230,10 @@ struct ModifyMetadataView: View {
                             InternalKit.eazyAlert(title: "Error", message: "Bug occurred when edit metadata")
                         }
                         processImage.refresh()
+                        // set blur radius to 0 gradually
+                        withAnimation(.easeInOut(duration: 0.5)) {
+                            imageViewBlurRadius = 0
+                        }
                     } label: {
                         Label("Modify", systemImage: "hammer")
                     }
@@ -236,6 +246,7 @@ struct ModifyMetadataView: View {
     
     var leftColumn: some View {
         ImageUniversalView()
+            .blur(radius: CGFloat(imageViewBlurRadius))
     }
     
     var rightTop: some View {
