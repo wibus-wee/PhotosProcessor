@@ -27,6 +27,9 @@ class Configuration: NSObject, ObservableObject {
     @PublishedStorage(key: "\(Constants.appKey).activated", defaultValue: false)
     var activated: Bool
 
+    @PublishedStorage(key: "\(Constants.appKey).commandqueue.dryrun", defaultValue: false)
+    var commandqueueDryrun: Bool
+
     @PublishedStorage(key: "\(Constants.appKey).autostartup", defaultValue: false)
     var autostartup: Bool
 

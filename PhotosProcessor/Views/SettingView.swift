@@ -105,6 +105,14 @@ struct SettingView: View {
                 )
                 
                 Divider()
+
+                useSetting(
+                    title: "Dry Run:",
+                    description: "The app will not execute the command queue when you add it into Commands List.",
+                    content: Toggle("Dry Run", isOn: $config.commandqueueDryrun)
+                )
+
+                Divider()
                 
                 useSetting(
                     title: "Quickly Compression:",

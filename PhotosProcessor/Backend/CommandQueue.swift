@@ -54,8 +54,13 @@ class CommandQueue: ObservableObject {
         guard commands.first(where: { $0.id == id }) != nil else {
             return
         }
-        let _executor = Executor()
         let commandIndex = commands.firstIndex(where: { $0.id == id })!
+        if configuration.commandqueueDryrun {
+            print("[I] Dry run mode is enabled. The command will not be executed.")
+            commands.remove(at: commandIndex)
+            return
+        }
+        let _executor = Executor()
         let command = commands[commandIndex].command
         let arguments = commands[commandIndex].arguments
         _executor.executeAsync(command, arguments)
