@@ -175,6 +175,7 @@ struct ModifyMetadataView: View {
                             return
                         }
                         let _ = processImage.imageMetadata!.syncImageDate(path: processImage.imageMetadata!.url!.path)
+                        processImage.refresh()
                     } label: {
                         Label("Sync DateTimeOriginal to CreateDate", systemImage: "arrow.clockwise")
                     }
@@ -222,6 +223,7 @@ struct ModifyMetadataView: View {
                             print("[E] Bug occurred when edit metadata")
                             InternalKit.eazyAlert(title: "Error", message: "Bug occurred when edit metadata")
                         }
+                        processImage.refresh()
                     } label: {
                         Label("Modify", systemImage: "hammer")
                     }

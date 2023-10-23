@@ -91,4 +91,13 @@ class ProcessImage: NSObject, ObservableObject {
         self.inited = true
         print("[I] Loaded image: \(self.url!)")
     }
+
+    func refresh() {
+        if !self.inited {
+            print("[W] Image not inited. Refresh failed.")
+            return
+        }
+        print("[I] Refreshed image: \(self.url!)")
+        self.setup(url: self.url!)
+    }
 }
