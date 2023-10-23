@@ -171,7 +171,12 @@ class ImageMetadata {
         print("[I] Sync image date: path=\(path), original=\(original?.description ?? "nil"), digitized=\(digitized?.description ?? "nil")")
         let ExifDateTimeOriginal = self.getMetadata(key: MetadataKey(key: kCGImagePropertyExifDateTimeOriginal, area: "Exif"))
         let ExifDateTimeDigitized = self.getMetadata(key: MetadataKey(key: kCGImagePropertyExifDateTimeDigitized, area: "Exif"))
-        
+        // Fix: ExifDateTimeOriginal and ExifDateTimeDigitized are nil and crash
+        if ExifDateTimeOriginal == nil || ExifDateTimeDigitized == nil {
+            print("[W] Sync image date: ExifDateTimeOriginal and ExifDateTimeDigitized are nil")
+            InternalKit.eazyAlert(title: "Sync Error", message: "ExifDateTimeOriginal or ExifDateTimeDigitized is nil")
+            return false
+        }
         let DateTimeOriginal = original ?? dateFormatter.date(from: ExifDateTimeOriginal as! String)
         let DateTimeDigitized = digitized ?? dateFormatter.date(from: ExifDateTimeDigitized as! String)
         print("[I] Sync image date: DateTimeOriginal=\(DateTimeOriginal?.description ?? "nil"), DateTimeDigitized=\(DateTimeDigitized?.description ?? "nil")")
