@@ -230,9 +230,11 @@ struct ModifyMetadataView: View {
                             InternalKit.eazyAlert(title: "Error", message: "Bug occurred when edit metadata")
                         }
                         processImage.refresh()
-                        // set blur radius to 0 gradually
-                        withAnimation(.easeInOut(duration: 0.5)) {
-                            imageViewBlurRadius = 0
+                        // set blur radius to 0 gradually. now + 1s
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            withAnimation(.easeInOut(duration: 0.5)) {
+                                imageViewBlurRadius = 0
+                            }
                         }
                     } label: {
                         Label("Modify", systemImage: "hammer")
