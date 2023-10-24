@@ -20,7 +20,7 @@ A multi-functional picture processor software for macOS. Written in Swift.
 - [ ] Menu bar ite
 - [ ] GPS location fix **`⏳ In Progress.`** | **`❓ Need help.`**
 - [ ] Stitching images
-- [ ] Characteristic watermark support
+- [ ] DAMA
 
 ### Performance Features
 
