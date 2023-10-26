@@ -21,6 +21,7 @@ A multi-functional picture processor software for macOS. Written in Swift.
 - [ ] GPS location fix **`⏳ In Progress.`** | **`❓ Need help.`**
 - [ ] Stitching images
 - [ ] DAMA
+- [ ] Noise generator
 
 ### Performance Features
 
