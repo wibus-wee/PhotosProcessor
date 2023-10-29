@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CompressImageView: View {
+    @StateObject var processImage = ProcessImage.shared
+    
     @State private var isStatusPopoverShown = false
     @State var showingLogSheetID = ""
     
@@ -104,6 +106,7 @@ struct CompressImageView: View {
                     } label: {
                         Label("Start Compressing", systemImage: "play")
                     }
+                    .disabled(!processImage.inited)
                 }
                 ToolbarItem {
                     Button {

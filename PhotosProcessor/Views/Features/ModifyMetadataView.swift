@@ -42,6 +42,7 @@ let supportArea: [String] = [
 
 
 struct ModifyMetadataView: View {
+    @StateObject var processImage = ProcessImage.shared
 
     enum ModifyType: String {
         case copy = "Copy"
@@ -169,11 +170,11 @@ struct ModifyMetadataView: View {
                         Label("Image Metadata", systemImage: "info.circle")
                     }
                     .help("Image Metadata")
-                    .disabled(processImage.inited == false || processImage.imageMetadata == nil)
+                    .disabled(!processImage.inited)
                 }
                 ToolbarItem {
                     Button {
-                        if (processImage.inited == false || processImage.imageMetadata == nil) {
+                        if (!processImage.inited) {
                             return
                         }
                         let _ = processImage.imageMetadata!.syncImageDate(path: processImage.imageMetadata!.url!.path)
@@ -182,12 +183,12 @@ struct ModifyMetadataView: View {
                         Label("Sync DateTimeOriginal to CreateDate", systemImage: "arrow.clockwise")
                     }
                     .help("Sync DateTimeOriginal to CreateDate")
-                    .disabled(processImage.inited == false || processImage.imageMetadata == nil)
+                    .disabled(!processImage.inited)
                 }
                 // Start Modify
                 ToolbarItem {
                     Button {
-                        if (processImage.inited == false || processImage.imageMetadata == nil) {
+                        if (!processImage.inited) {
                             return
                         }
                         // set blur radius to 10 gradually
@@ -237,17 +238,21 @@ struct ModifyMetadataView: View {
                             }
                         }
                     } label: {
-                        Label("Modify", systemImage: "hammer")
+                        Label("Modify", systemImage: "play")
                     }
                     .help("Modify")
-                    .disabled(processImage.inited == false || processImage.imageMetadata == nil)
+                    .disabled(!processImage.inited)
                 }           
             }
         }
     }
     
     var leftColumn: some View {
-        ImageUniversalView()
+        ImageUniversalView(
+            dropAction: { url in
+                updateProcessMetadataValue()
+            }
+        )
             .blur(radius: CGFloat(imageViewBlurRadius))
     }
     
@@ -276,7 +281,7 @@ struct ModifyMetadataView: View {
                 .onChange(of: copyFromKey) { _ in
                     updateProcessMetadataValue()
                 }
-                
+                .disabled(!processImage.inited)
                 .help("Copy from")
                 Text("Select a metadata key to copy from.")
                     .font(.caption)
@@ -289,6 +294,7 @@ struct ModifyMetadataView: View {
                     Text("Input").tag("Input")
                 }
                 .pickerStyle(SegmentedPickerStyle())
+                .disabled(!processImage.inited)
                 // .frame(width: 300, height: 30)
                 .onChange(of: processMetadataKeyInputType) { newValue in
                     if newValue == "Input" {
@@ -303,7 +309,7 @@ struct ModifyMetadataView: View {
                     .foregroundColor(.secondary)
                 if processMetadataKeyInputType == "Input" {
                     TextField("Process metadata key", text: $processMetadataKey)
-                        
+                        .disabled(!processImage.inited)
                         .help("Process metadata key")
                     // .onChange(of: processMetadataKey) { _ in
                     //     updateProcessMetadataValue()
@@ -319,7 +325,7 @@ struct ModifyMetadataView: View {
                     }
                     .pickerStyle(MenuPickerStyle())
                     // .frame(width: 300, height: 30)
-                    
+                    .disabled(!processImage.inited)
                     .help("Process metadata key")
                     .onChange(of: processMetadataKey) { _ in
                         updateProcessMetadataValue()
@@ -337,7 +343,7 @@ struct ModifyMetadataView: View {
                 Text("Input").tag("Input")
             }
             .pickerStyle(SegmentedPickerStyle())
-            // .frame(width: 300, height: 30)
+            .disabled(!processImage.inited)
             .onChange(of: processMetadataKeyInputType) { newValue in
                 if newValue == "Input" {
                     processMetadataKey = ""
@@ -353,7 +359,7 @@ struct ModifyMetadataView: View {
             if processMetadataKeyInputType == "Input" {
                 TextField("New metadata key", text: $processMetadataKey)
                 // .frame(width: 300, height: 30)
-                    
+                    .disabled(!processImage.inited)
                     .help("New metadata key")
                 // .onChange(of: processMetadataKey) { _ in
                 //     updateProcessMetadataValue()
@@ -369,7 +375,7 @@ struct ModifyMetadataView: View {
                 }
                 .pickerStyle(MenuPickerStyle())
                 // .frame(width: 300, height: 30)
-                
+                .disabled(!processImage.inited)
                 .help("Metadata key")
                 .onChange(of: processMetadataKey) { _ in
                     updateProcessMetadataValue()
@@ -384,7 +390,7 @@ struct ModifyMetadataView: View {
                 .font(.system(size: 12, design: .monospaced))
                 .background(Color(NSColor.textBackgroundColor))
                 .frame(height: 100)
-                
+                .disabled(!processImage.inited)
                 .help("Metadata value")
                 // .onChange(of: newProcessMetadataValue) { _ in
                 //     updateProcessMetadataValue()
@@ -399,7 +405,7 @@ struct ModifyMetadataView: View {
                 Text("Input").tag("Input")
             }
             .pickerStyle(SegmentedPickerStyle())
-            // .frame(width: 300, height: 30)
+            .disabled(!processImage.inited)
             .onChange(of: processMetadataKeyInputType) { newValue in
                 if newValue == "Input" {
                     processMetadataKey = ""
@@ -415,7 +421,7 @@ struct ModifyMetadataView: View {
             if processMetadataKeyInputType == "Input" {
                 TextField("Metadata key", text: $processMetadataKey)
                 // .frame(width: 300, height: 30)
-                    
+                    .disabled(!processImage.inited)
                     .help("Metadata key")
                 // .onChange(of: processMetadataKey) { _ in
                 //     updateProcessMetadataValue()
@@ -431,7 +437,7 @@ struct ModifyMetadataView: View {
                 }
                 .pickerStyle(MenuPickerStyle())
                 // .frame(width: 300, height: 30)
-                
+                .disabled(!processImage.inited)
                 .help("Metadata key")
                 .onChange(of: processMetadataKey) { _ in
                     updateProcessMetadataValue()
@@ -447,6 +453,7 @@ struct ModifyMetadataView: View {
                 Text("Picker").tag("Picker")
                 Text("Input").tag("Input")
             }
+            .disabled(!processImage.inited)
             .pickerStyle(SegmentedPickerStyle())
             // .frame(width: 300, height: 30)
             .onChange(of: processMetadataKeyInputType) { newValue in
@@ -463,7 +470,7 @@ struct ModifyMetadataView: View {
             if processMetadataKeyInputType == "Input" {
                 TextField("Metadata key", text: $processMetadataKey)
                 // .frame(width: 300, height: 30)
-                    
+                    .disabled(!processImage.inited)
                     .help("Metadata key")
             } else {
                 Picker("Metadata key", selection: $processMetadataKey) {
@@ -473,13 +480,13 @@ struct ModifyMetadataView: View {
                 }
                 .pickerStyle(MenuPickerStyle())
                 // .frame(width: 300, height: 30)
-                
+                .disabled(!processImage.inited)
                 .help("Metadata key")
             }
             
             TextField("Metadata value", text: $newProcessMetadataValue)
             // .frame(width: 300, height: 30)
-                
+                .disabled(!processImage.inited)
                 .help("Metadata value")
         }
     }
