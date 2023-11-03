@@ -13,11 +13,6 @@ struct SettingView: View {
     @State private var quicklyProcessSaveDirectoryOptions: [String] = []
     @State private var avifencLocationOptions: [String] = []
     
-    init() {
-        _quicklyProcessSaveDirectoryOptions = State(initialValue: [config.quicklyprocessSaveDirectory] + ["Others"])
-        _avifencLocationOptions = State(initialValue: [config.avifencLocation] + ["Others"])
-    }
-    
     private enum Tabs: Hashable {
         case general
         case compression
@@ -82,7 +77,7 @@ struct SettingView: View {
                     title: "Quickly Process save directory:",
                     description: "The app will save the processed image to this directory.",
                     content: Picker("", selection: $config.quicklyprocessSaveDirectory) {
-                        ForEach(quicklyProcessSaveDirectoryOptions, id: \.self) { option in
+                        ForEach(quicklyProcessSaveDirectoryOptions + ["Others"], id: \.self) { option in
                             Text(option)
                         }
                     }
@@ -96,7 +91,7 @@ struct SettingView: View {
                                 ) { url in
                                     if url != nil {
                                         config.quicklyprocessSaveDirectory = url!.path
-                                        quicklyProcessSaveDirectoryOptions = [config.quicklyprocessSaveDirectory] + ["Others"]
+                                        quicklyProcessSaveDirectoryOptions = [config.quicklyprocessSaveDirectory]
                                     }
                                 }
                             }
@@ -151,7 +146,7 @@ struct SettingView: View {
                     title: "Executable Avifenc location",
                     description: "The app will use the avifenc binary file you specified.",
                     content: Picker("", selection: $config.avifencLocation) {
-                        ForEach(avifencLocationOptions, id: \.self) { option in
+                        ForEach(avifencLocationOptions + ["Others"], id: \.self) { option in
                             Text(option)
                         }
                     }
