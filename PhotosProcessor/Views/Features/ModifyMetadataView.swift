@@ -43,14 +43,14 @@ let supportArea: [String] = [
 
 struct ModifyMetadataView: View {
     @StateObject var processImage = ProcessImage.shared
-
+    
     enum ModifyType: String {
         case copy = "Copy"
         case edit = "Edit"
         case remove = "Remove"
         case add = "Add"
     }
-
+    
     @State private var isPresented: Bool = false
     @State private var modifyType: ModifyType = .copy
     
@@ -59,8 +59,77 @@ struct ModifyMetadataView: View {
     @State private var processMetadataKey: String = "DateTimeOriginal"
     @State private var oldProcessMetadataValue: String = ""
     @State private var newProcessMetadataValue: String = ""
-
+    
     @State private var imageViewBlurRadius: Double = 0
+    
+    func customKeyRegex() {
+        // Feature: Regex Support.
+        // 如果是正则表达式，那么就用正则表达式去匹配
+        if (self.processMetadataKey.starts(with: "/") && self.processMetadataKey.ends(with: "/")) {
+            print("[*] \(self.processMetadataKey) is a regex.")
+            let regex = try! NSRegularExpression(pattern: self.processMetadataKey)
+            let metadata = processImage.imageMetadata?.metadata
+            for (key, value) in metadata! {
+                let keyString = "\(key)"
+                let valueString = "\(value)"
+                let range = NSRange(location: 0, length: keyString.utf16.count)
+                if regex.firstMatch(in: keyString, options: [], range: range) != nil {
+                    print("[*] \(keyString) matched.")
+                    oldProcessMetadataValue = "\(valueString)"
+                    if (modifyType == .edit) {
+                        newProcessMetadataValue = "\(valueString)"
+                    }
+                    return
+                }
+            }
+        }
+    }
+    
+    func customKcgKey() {
+        // Feature: 如果以 kCGImageProperty 开头，表明是 Core Graphics 的 key
+        if (self.processMetadataKey.starts(with: "kCGImageProperty")) {
+            print("[*] \(self.processMetadataKey) is a Core Graphics key. Try to analyze it.")
+            // kCGImageProperty 的构成为：kCGImageProperty + Area(Optional) + Key
+            // 例如：kCGImagePropertyExifDateTimeOriginal, kCGImagePropertyColorModel
+            // Start.
+            let spliter = self.processMetadataKey.split(separator: "kCGImageProperty")
+            print("[*] spliter: \(spliter)")
+            // 检查一下后面还有没有东西
+            if spliter.count < 1 {
+                print("[*] There is no key after kCGImageProperty.")
+                return
+            }
+            let preKey = spliter[0]
+            print("[*] preKey: \(preKey)")
+            // 尝试分割 Area, 把 supportArea 中的每个元素都尝试一遍
+            var areaKey: Substring? = nil
+            for area in supportArea {
+                if preKey.starts(with: area) {
+                    print("[*] area matched: \(area)")
+                    areaKey = Substring(area)
+                    break
+                }
+            }
+            let keyKey: Substring
+            if let areaKey = areaKey {
+                let spliter = preKey.split(separator: areaKey);
+                print("[*] spliter: \(spliter)")
+                keyKey = preKey.split(separator: areaKey)[0]
+            } else {
+                keyKey = preKey
+            }
+            print("[*] keyKey: \(keyKey)")
+            
+            // End.
+            let value = processImage.imageMetadata?.getMetadata(key: MetadataKey(key: keyKey as CFString, area: String(areaKey!) as String))
+            print("[*] value: \(String(describing: value))")
+            oldProcessMetadataValue = "\(value ?? "")"
+            if (modifyType == .edit) {
+                newProcessMetadataValue = "\(value ?? "")"
+            }
+            return
+        }
+    }
     
     func updateProcessMetadataValue() {
         if (modifyType == .copy ){
@@ -78,49 +147,10 @@ struct ModifyMetadataView: View {
         let key = supportMetadataKeys[self.processMetadataKey]
         if (key == nil) { // 如果不在默认的支持列表中，表明是自定义的 key
             print("[*] \(self.processMetadataKey) is not in supportMetadataKeys. And try to use it as custom key.")
-            // 如果以 kCGImageProperty 开头，表明是 Core Graphics 的 key
-            if (self.processMetadataKey.starts(with: "kCGImageProperty")) {
-                print("[*] \(self.processMetadataKey) is a Core Graphics key. Try to analyze it.")
-                // kCGImageProperty 的构成为：kCGImageProperty + Area(Optional) + Key
-                // 例如：kCGImagePropertyExifDateTimeOriginal, kCGImagePropertyColorModel
-                // Start.
-                let spliter = self.processMetadataKey.split(separator: "kCGImageProperty")
-                print("[*] spliter: \(spliter)")
-                // 检查一下后面还有没有东西
-                if spliter.count < 1 {
-                    print("[*] There is no key after kCGImageProperty.")
-                    return
-                }
-                let preKey = spliter[0]
-                print("[*] preKey: \(preKey)")
-                // 尝试分割 Area, 把 supportArea 中的每个元素都尝试一遍
-                var areaKey: Substring? = nil
-                for area in supportArea {
-                    if preKey.starts(with: area) {
-                        print("[*] area matched: \(area)")
-                        areaKey = Substring(area)
-                        break
-                    }
-                }
-                let keyKey: Substring
-                if let areaKey = areaKey {
-                    let spliter = preKey.split(separator: areaKey);
-                    print("[*] spliter: \(spliter)")
-                    keyKey = preKey.split(separator: areaKey)[0]
-                } else {
-                    keyKey = preKey
-                }
-                print("[*] keyKey: \(keyKey)")
-                
-                // End.
-                let value = processImage.imageMetadata?.getMetadata(key: MetadataKey(key: keyKey as CFString, area: String(areaKey!) as String))
-                print("[*] value: \(String(describing: value))")
-                oldProcessMetadataValue = "\(value ?? "")"
-                if (modifyType == .edit) {
-                    newProcessMetadataValue = "\(value ?? "")"
-                }
-                return
-            }
+
+            customKeyRegex()
+            customKcgKey()
+            
             oldProcessMetadataValue = ""
             if (modifyType == .edit) {
                 newProcessMetadataValue = ""
@@ -159,7 +189,7 @@ struct ModifyMetadataView: View {
             let title: Binding<String> = .constant("Image Metadata")
             let data: Binding<Any?> = .constant(processImage.imageMetadata?.metadata)
             AnyDataView(title: title, data: data)
-        }   
+        }
         .navigationTitle("Modify Metadata")
         .toolbar {
             Group {
@@ -242,7 +272,7 @@ struct ModifyMetadataView: View {
                     }
                     .help("Modify")
                     .disabled(!processImage.inited)
-                }           
+                }
             }
         }
     }
@@ -253,7 +283,7 @@ struct ModifyMetadataView: View {
                 updateProcessMetadataValue()
             }
         )
-            .blur(radius: CGFloat(imageViewBlurRadius))
+        .blur(radius: CGFloat(imageViewBlurRadius))
     }
     
     var rightTop: some View {
@@ -392,9 +422,9 @@ struct ModifyMetadataView: View {
                 .frame(height: 100)
                 .disabled(!processImage.inited)
                 .help("Metadata value")
-                // .onChange(of: newProcessMetadataValue) { _ in
-                //     updateProcessMetadataValue()
-                // }
+            // .onChange(of: newProcessMetadataValue) { _ in
+            //     updateProcessMetadataValue()
+            // }
         }
     }
     
