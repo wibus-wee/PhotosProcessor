@@ -15,11 +15,23 @@ A multi-functional picture processor software for macOS. Written in Swift.
 > The core features are the most important features of the software, and the software cannot be used without them.
 
 - [x] Image compression **`✅`** | **`🔧 Improving`**
+  - [x] AVIF
+  - [ ] HEIC
+  - [ ] WebP
+  - [ ] JPEG
+  - [ ] PNG
+  - [ ] GIF
 - [x] Modify image metadata **`✅`** | **`🔧 Improving`** ｜ **`🐛 Bug Occurred`**
+  - [ ] Regex support ([#10](https://github.com/wibus-wee/PhotosProcessor/issues/10))
+  - [ ] Clone ([#8](https://github.com/wibus-wee/PhotosProcessor/issues/8))
 - [ ] Image dark watermark support **`⏳ In Progress.`** | **`❓ Need help.`**
-- [ ] Menu bar item
 - [ ] GPS location fix **`⏳ In Progress.`** | **`❓ Need help.`**
+- [ ] Menu bar item
 - [ ] Stitching images
+  - [ ] Horizontal
+  - [ ] Vertical
+  - [ ] Grid
+  - [ ] Custom
 - [ ] DAMA
 - [ ] Noise generator
 
@@ -31,12 +43,12 @@ A multi-functional picture processor software for macOS. Written in Swift.
 - [ ] Supports batch processing one time **`🏷️ Planning`**
 - [x] Shared processing image
 - [x] Drag and drop processing
-- [x] Log Display **`🐛 Bug Occurred`**
+- [x] Log Display **`🐛 Bug Occurred` ([#1](https://github.com/wibus-wee/PhotosProcessor/issues/1))**
 - [x] Process Queue Support **`🔧 Improving`** | **`🛞 Configurable`**
 - [x] Support for loading external dependencies (avifenc, etc.) **`💣 Improve later?`** | **`🛞 Configurable`**
 - [x] Quickly compression with global hotkey **`🛞 Configurable`**
 - [ ] Support image processing after processing **`🏷️ Planning`** | **`🛞 Configurable`**
-- [ ] Gaussian blur effect **`🏷️ Planning`**
+- [ ] Gaussian blur effect when processing ([#6](https://github.com/wibus-wee/PhotosProcessor/issues/6)) **`🏷️ Planning`**
 
 ### Others
 
