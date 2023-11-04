@@ -40,10 +40,10 @@ A multi-functional picture processor software for macOS. Written in Swift.
 > Performance features are features that improve the user experience.
 
 - [x] Configuration Support
-- [ ] Supports batch processing one time **`🏷️ Planning`**
+- [ ] Supports batch processing one time **`🏷️ Planning`** | **`❓ Need help.`**
 - [x] Shared processing image
 - [x] Drag and drop processing
-- [x] Log Display **`🐛 Bug Occurred` ([#1](https://github.com/wibus-wee/PhotosProcessor/issues/1))**
+- [x] Log Display **`🐛 Bug Occurred` ([`#1`](https://github.com/wibus-wee/PhotosProcessor/issues/1))**
 - [x] Process Queue Support **`🔧 Improving`** | **`🛞 Configurable`**
 - [x] Support for loading external dependencies (avifenc, etc.) **`💣 Improve later?`** | **`🛞 Configurable`**
 - [x] Quickly compression with global hotkey **`🛞 Configurable`**
