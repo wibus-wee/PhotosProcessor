@@ -65,7 +65,7 @@ struct ModifyMetadataView: View {
     func customKeyRegex() {
         // Feature: Regex Support.
         // 如果是正则表达式，那么就用正则表达式去匹配
-        if (self.processMetadataKey.starts(with: "/") && self.processMetadataKey.ends(with: "/")) {
+        if (self.processMetadataKey.starts(with: "/")) {
             print("[*] \(self.processMetadataKey) is a regex.")
             let regex = try! NSRegularExpression(pattern: self.processMetadataKey)
             let metadata = processImage.imageMetadata?.metadata
