@@ -22,6 +22,10 @@
 
 PhotosProcessor is a photo processing software that can process photos in batches. It is mainly used to compress photos and modify photo metadata. At the same time, it also supports many other functions, such as stitching photos, adding watermarks, etc.
 
+Also, it is the first Swift project I have ever developed, so it may not be very good. I still have a lot to learn. If you have any suggestions, please feel free to open an issue or pull request. Thank you very much!
+
+<br />
+
 <div align="center">
 
 [![GitHub release](https://img.shields.io/github/v/release/wibus-wee/PhotosProcessor?color=orange&label=latest%20release&sort=semver&style=flat-square)](https://github.com/wibus-wee/PhotosProcessor/releases/latest)
@@ -35,9 +39,11 @@ PhotosProcessor is a photo processing software that can process photos in batche
 
 ## Motivation
 
-I have been using many different tools to compress photos for a long time, but I found that it is not very convenient to use. These functions are scattered in different software. I need to open multiple software to modify them to complete my work. So I decided to develop a software that integrates these functions.
+I have been using many different tools to compress photos for a long time, but I found that it is not very convenient to use. 
 
-Moreover, I saw [_a_wing on X](https://twitter.com/_a_wing/status/1700586549065155043) sharing his image compression workflow, which inspired me to want to package it into a tool. After completing this function, I found that I could add more interesting functions, so PhotoProcesser gradually became more functional.
+These functions are scattered in different software. I need to open multiple software to modify them to complete my work. So I decided to develop a software that integrates these functions.
+
+Moreover, I saw [_a_wing on X](https://twitter.com/_a_wing/status/1700586549065155043) sharing his image compression workflow, which inspired me to want to package it into a tool!
 
 ## Roadmap
 
