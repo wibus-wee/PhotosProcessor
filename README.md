@@ -43,11 +43,11 @@ Also, it is the first Swift project I have ever developed, so it may not be very
 
 ## Motivation
 
-I have been using many different tools to compress photos for a long time, but I found that it is not very convenient to use. 
+At first, [_a_wing on X](https://twitter.com/_a_wing/status/1700586549065155043) sharing his image compression workflow, which inspired me to want to package it into a tool. "It will be very convenient to use." I thought.
 
-These functions are scattered in different software. I need to open multiple software to modify them to complete my work. So I decided to develop a software that integrates these functions.
+I have been using many different tools to compress photos for a long time, but I found that it is not very convenient to use. These functions are scattered in different software. I need to open multiple software to modify them to complete my work. 
 
-Moreover, I saw [_a_wing on X](https://twitter.com/_a_wing/status/1700586549065155043) sharing his image compression workflow, which inspired me to want to package it into a tool!
+So I decided to develop a software that integrates these functions.
 
 ## Roadmap
 
