@@ -4,23 +4,25 @@
   </p>
 	<h1 align="center"><b>PhotosProcessor</b></h1>
 	<p align="center">
-		Beautiful, multi-functional picture processor software
+		Multi-functional photo processor software. Open source. Free forever.
     <br />
-    <a href="#readme"><strong>Project Homepage »</strong></a>
+    <a href="#readme"><strong>Homepage (not yet) »</strong></a>
     <br />
     <br />
     <b>Download for </b>
-		macOS
+		macOS · [Source Code](https://github.com/wibus-wee/PhotosProcessor/archive/refs/heads/main.zip)
     <br />
-    <i>~ Links will be added once a release is available. ~</i>
+    <i>~ Links for macOS will be added once a release is available. ~</i>
   </p>
 </p>
+
+PhotosProcessor is a photo processing software with multiple functions
 
 <br />
 
 > NOTE: **PhotosProcessor is currently in development and not yet ready for production use.** If you have any ideas or suggestions, please feel free to open an issue or pull request.
 
-PhotosProcessor is a photo processing software that can process photos in batches. It is mainly used to compress photos and modify photo metadata. At the same time, it also supports many other functions, such as stitching photos, adding watermarks, etc.
+Process everything you want to do with photos in one place. With a simple and easy-to-use interface, you can easily complete many operations on photos. And it is completely free and open source.
 
 Also, it is the first Swift project I have ever developed, so it may not be very good. I still have a lot to learn. If you have any suggestions, please feel free to open an issue or pull request. Thank you very much!
 
