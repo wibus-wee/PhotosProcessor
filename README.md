@@ -18,11 +18,11 @@
 
 <br />
 
-PhotosProcessor is a photo processing software. With multiple functions, you can easily complete many operations on photos, to meet your needs for photo processing.
+> **PhotosProcessor is currently in development and not yet ready for production use.** If you have any ideas or suggestions, please feel free to open an issue or pull request.
 
 <br />
 
-> **PhotosProcessor is currently in development and not yet ready for production use.** If you have any ideas or suggestions, please feel free to open an issue or pull request.
+PhotosProcessor is a photo processing software. With multiple functions, you can easily complete many operations on photos, to meet your needs for photo processing.
 
 Process everything you want to do with photos in one place. With a simple and easy-to-use interface, you can easily complete many operations on photos. And it is completely free and open source.
 
@@ -53,13 +53,7 @@ You can view the roadmap in [issues with the label `roadmap`](https://github.com
 
 ## Contributing
 
-> [!NOTE]
-> It is the first Swift project I have ever developed, so it may not be very good. I still have a lot to learn. If you have any suggestions, please feel free to open an issue or pull request. Thank you very much!
-
----
-
-> [!IMPORTANT]
-> Contributions are **not yet accepted**, because the project is still in the early stages of development and I am not ready to accept contributions. If you have any ideas or suggestions, please feel free to open an issue or pull request. But anyways, **thank you for your support and interest in this project ❤️.**
+> NOTE: Contributions are **not yet accepted**, because the project is still in the early stages of development and I am not ready to accept contributions. If you have any ideas or suggestions, please feel free to open an issue or pull request. But anyways, **thank you for your support and interest in this project ❤️.**
 
 
 ## References
