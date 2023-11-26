@@ -1,6 +1,20 @@
-# PhotosProcessor For Mac
-
-A multi-functional picture processor software for macOS. Written in Swift.
+<p align="center">
+  <p align="center">
+   <img width="150" height="150" src="/PhotosProcessor/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.pngg" alt="Logo">
+  </p>
+	<h1 align="center"><b>PhotosProcessor</b></h1>
+	<p align="center">
+		Beautiful, multi-functional picture processor software
+    <br />
+    <!-- <a href="https://cap.so"><strong>cap.so »</strong></a> -->
+    <!-- <br /> -->
+    <br />
+    <b>Download for </b>
+		macOS
+    <br />
+    <i>~ Links will be added once a release is available. ~</i>
+  </p>
+</p>
 
 <pre align="center">
 🧪 Working in Progress
