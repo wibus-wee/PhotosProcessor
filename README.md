@@ -22,11 +22,10 @@
 
 ![screen](./Resources/screen.avif)
 
-[![GitHub release](https://img.shields.io/github/v/release/PhotosProcessor/PhotosProcessor?color=orange&label=latest%20release&sort=semver&style=flat-square)](https://github.com/PhotosProcessor/PhotosProcessor/releases/latest)
-[![All Contributors](https://img.shields.io/badge/all_contributors-32-orange.svg?style=flat-square)](#contributors-)
-[![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/PhotosProcessor/PhotosProcessor/build.yml?style=flat-square)](https://github.com/PhotosProcessor/PhotosProcessor/actions/workflows/build.yml)
-[![GitHub Repo stars](https://img.shields.io/github/stars/PhotosProcessor/PhotosProcessor?style=flat-square)](https://github.com/PhotosProcessor/PhotosProcessor/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/PhotosProcessor/PhotosProcessor?style=flat-square)](https://github.com/PhotosProcessor/PhotosProcessor/forks)
+[![GitHub release](https://img.shields.io/github/v/release/wibus-wee/PhotosProcessor?color=orange&label=latest%20release&sort=semver&style=flat-square)](https://github.com/wibus-wee/PhotosProcessor/releases/latest)
+[![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/wibus-wee/PhotosProcessor/build.yml?style=flat-square)](https://github.com/wibus-wee/PhotosProcessor/actions/workflows/build.yml)
+[![GitHub Repo stars](https://img.shields.io/github/stars/wibus-wee/PhotosProcessor?style=flat-square)](https://github.com/wibus-wee/PhotosProcessor/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/wibus-wee/PhotosProcessor?style=flat-square)](https://github.com/wibus-wee/PhotosProcessor/forks)
 
 ## Roadmap
 
