@@ -37,8 +37,6 @@ Process everything you want to do with photos in one place. With a simple and ea
 
 </div>
 
-![screen](./Resources/screen.avif)
-
 ## Motivation
 
 At first, [_a_wing on X](https://twitter.com/_a_wing/status/1700586549065155043) sharing his image compression workflow, which inspired me to want to package it into a tool. "It will be very convenient to use." I thought.
