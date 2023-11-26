@@ -1,6 +1,6 @@
 <p align="center">
   <p align="center">
-   <img width="150" height="150" src="/PhotosProcessor/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.pngg" alt="Logo">
+   <img width="150" height="150" src="/PhotosProcessor/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.png" alt="Logo">
   </p>
 	<h1 align="center"><b>PhotosProcessor</b></h1>
 	<p align="center">
