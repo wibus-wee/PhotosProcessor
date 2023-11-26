@@ -35,7 +35,9 @@ PhotosProcessor is a photo processing software that can process photos in batche
 
 ## Motivation
 
-I have been using many different tools to compress photos for a long time, but I found that it is not very convenient to use. Moreover, these functions are scattered in different software. I need to open multiple software to modify them to complete my work. So I decided to develop a software that integrates these functions.
+I have been using many different tools to compress photos for a long time, but I found that it is not very convenient to use. These functions are scattered in different software. I need to open multiple software to modify them to complete my work. So I decided to develop a software that integrates these functions.
+
+Moreover, I saw [_a_wing on X](https://twitter.com/_a_wing/status/1700586549065155043) sharing his image compression workflow, which inspired me to want to package it into a tool. After completing this function, I found that I could add more interesting functions, so PhotoProcesser gradually became more functional.
 
 ## Roadmap
 
@@ -43,7 +45,7 @@ You can view the roadmap in [issues with the label `roadmap`](https://github.com
 
 ## Contributing
 
-> NOTE: Contributions are not yet accepted, because the project is still in the early stages of development and I am not ready to accept contributions. If you have any ideas or suggestions, please feel free to open an issue or pull request. But anyways, thank you for your support and interest in this project ❤️.
+> NOTE: Contributions are **not yet accepted**, because the project is still in the early stages of development and I am not ready to accept contributions. If you have any ideas or suggestions, please feel free to open an issue or pull request. But anyways, **thank you for your support and interest in this project ❤️.**
 
 ## References
 
