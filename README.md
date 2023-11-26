@@ -10,13 +10,15 @@
     <br />
     <br />
     <b>Download for </b>
-		macOS · [Source Code](https://github.com/wibus-wee/PhotosProcessor/archive/refs/heads/main.zip)
+		macOS · <a href="https://github.com/wibus-wee/PhotosProcessor/archive/refs/heads/main.zip">Source Code</a>
     <br />
     <i>~ Links for macOS will be added once a release is available. ~</i>
   </p>
 </p>
 
-PhotosProcessor is a photo processing software with multiple functions
+<br />
+
+PhotosProcessor is a photo processing software. With multiple functions, you can easily complete many operations on photos, to meet your needs for photo processing.
 
 <br />
 
