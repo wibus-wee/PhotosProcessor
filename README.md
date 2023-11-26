@@ -16,11 +16,17 @@
   </p>
 </p>
 
-<pre align="center">
-🧪 Working in Progress
-</pre>
+<br />
+
+> NOTE: PhotosProcessor is currently in development and not yet ready for production use. You can help us by testing it and reporting issues, or even contributing to the project.
 
 ![screen](./Resources/screen.avif)
+
+[![GitHub release](https://img.shields.io/github/v/release/PhotosProcessor/PhotosProcessor?color=orange&label=latest%20release&sort=semver&style=flat-square)](https://github.com/PhotosProcessor/PhotosProcessor/releases/latest)
+[![All Contributors](https://img.shields.io/badge/all_contributors-32-orange.svg?style=flat-square)](#contributors-)
+[![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/PhotosProcessor/PhotosProcessor/build.yml?style=flat-square)](https://github.com/PhotosProcessor/PhotosProcessor/actions/workflows/build.yml)
+[![GitHub Repo stars](https://img.shields.io/github/stars/PhotosProcessor/PhotosProcessor?style=flat-square)](https://github.com/PhotosProcessor/PhotosProcessor/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/PhotosProcessor/PhotosProcessor?style=flat-square)](https://github.com/PhotosProcessor/PhotosProcessor/forks)
 
 ## Roadmap
 
