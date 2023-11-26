@@ -39,14 +39,14 @@ I have been using many different tools to compress photos for a long time, but I
 
 ## Roadmap
 
-You can view the roadmap in [issues](https://github.com/wibus-wee/PhotosProcessor/issues?q=is:issue+is:open+sort:updated-desc+label:roadmap) with the label `roadmap`.
+You can view the roadmap in [issues with the label `roadmap`](https://github.com/wibus-wee/PhotosProcessor/issues?q=is:issue+is:open+sort:updated-desc+label:roadmap).
 
 ## References
 
-- [新一.enp1s1 on X](https://twitter.com/_a_wing/status/1700586549065155043). 
-- [Lakr233/ActionBee](https://github.com/Lakr233/ActionBee)
-- [Lakr233/CameraTools](https://github.com/Lakr233/CameraTools)
-- [ISStego](https://github.com/isena/ISStego). We create a Swift implementation of the ISStego algorithm. (Based on [Fork of ISStego by nob3rise](https://github.com/nob3rise/ISStego)) Full credits to the original authors.
+- [_a_wing on X](https://twitter.com/_a_wing/status/1700586549065155043) for original idea
+- [Lakr233/ActionBee](https://github.com/Lakr233/ActionBee) for implementation inspiration
+- [Lakr233/CameraTools](https://github.com/Lakr233/CameraTools) for implementation inspiration
+- [ISStego](https://github.com/isena/ISStego). We create a Swift implementation of the ISStego algorithm. (Based on [Fork of ISStego by `nob3rise`](https://github.com/nob3rise/ISStego))
 
 ## Author
 
