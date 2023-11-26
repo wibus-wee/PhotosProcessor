@@ -1,79 +1,67 @@
-# PhotosProcessor For Mac
+<p align="center">
+  <p align="center">
+   <img width="150" height="150" src="/PhotosProcessor/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.png" alt="Logo">
+  </p>
+	<h1 align="center"><b>PhotosProcessor</b></h1>
+	<p align="center">
+		Multi-functional photo processor software. Open source. Free forever.
+    <br />
+    <a href="#readme"><strong>Homepage (not yet) »</strong></a>
+    <br />
+    <br />
+    <b>Download for </b>
+		<a href="https://github.com/wibus-wee/PhotosProcessor/archive/refs/heads/main.zip">Source Code</a> · macOS
+    <br />
+    <i>~ Links for macOS will be added once a release is available. ~</i>
+  </p>
+</p>
 
-A multi-functional picture processor software for macOS. Written in Swift.
+<br />
 
-<pre align="center">
-🧪 Working in Progress
-</pre>
+> **PhotosProcessor is currently in development and not yet ready for production use.** If you have any ideas or suggestions, please feel free to open an issue or pull request.
+
+<br />
+
+PhotosProcessor is a photo processing software. With multiple functions, you can easily complete many operations on photos, to meet your needs for photo processing.
+
+Process everything you want to do with photos in one place. With a simple and easy-to-use interface, you can easily complete many operations on photos. And it is completely free and open source.
+
+<br />
+
+<div align="center">
+
+[![GitHub release](https://img.shields.io/github/v/release/wibus-wee/PhotosProcessor?color=orange&label=latest%20release&sort=semver&style=flat-square)](https://github.com/wibus-wee/PhotosProcessor/releases/latest)
+[![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/wibus-wee/PhotosProcessor/build.yml?style=flat-square)](https://github.com/wibus-wee/PhotosProcessor/actions/workflows/build.yml)
+[![GitHub Repo stars](https://img.shields.io/github/stars/wibus-wee/PhotosProcessor?style=flat-square)](https://github.com/wibus-wee/PhotosProcessor/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/wibus-wee/PhotosProcessor?style=flat-square)](https://github.com/wibus-wee/PhotosProcessor/forks)
+
+</div>
 
 ![screen](./Resources/screen.avif)
 
+## Motivation
+
+At first, [_a_wing on X](https://twitter.com/_a_wing/status/1700586549065155043) sharing his image compression workflow, which inspired me to want to package it into a tool. "It will be very convenient to use." I thought.
+
+I have been using many different tools to compress photos for a long time, but I found that it is not very convenient to use. These functions are scattered in different software. I need to open multiple software to modify them to complete my work. 
+
+So I decided to develop a software that integrates these functions.
+
 ## Roadmap
 
-### Core Features
+You can view the roadmap in [issues with the label `roadmap`](https://github.com/wibus-wee/PhotosProcessor/issues?q=is:issue+is:open+sort:updated-desc+label:roadmap).
 
-> The core features are the most important features of the software, and the software cannot be used without them.
+## Contributing
 
-- [x] Image compression **`✅`** | **`🔧 Improving`**
-  - [x] AVIF
-  - [ ] HEIC
-  - [ ] WebP
-  - [ ] JPEG
-  - [ ] PNG
-  - [ ] GIF
-- [x] Modify image metadata **`✅`** | **`🔧 Improving`** ｜ **`🐛 Bug Occurred`**
-  - [ ] Regex support ([#10](https://github.com/wibus-wee/PhotosProcessor/issues/10))
-  - [ ] Clone ([#8](https://github.com/wibus-wee/PhotosProcessor/issues/8))
-- [ ] Image dark watermark support **`⏳ In Progress.`** | **`❓ Need help.`**
-- [ ] GPS location fix **`⏳ In Progress.`** | **`❓ Need help.`**
-- [ ] Menu bar item
-- [ ] Stitching images
-  - [ ] Horizontal
-  - [ ] Vertical
-  - [ ] Grid
-  - [ ] Custom
-- [ ] DAMA
-- [ ] Noise generator
+> NOTE: Contributions are **not yet accepted**, because the project is still in the early stages of development and I am not ready to accept contributions. If you have any ideas or suggestions, please feel free to open an issue or pull request. But anyways, **thank you for your support and interest in this project ❤️.**
 
-### Performance Features
-
-> Performance features are features that improve the user experience.
-
-- [x] Configuration Support
-- [ ] Supports batch processing one time **`🏷️ Planning`** | **`❓ Need help.`**
-- [x] Shared processing image
-- [x] Drag and drop processing
-- [x] Log Display **`🐛 Bug Occurred` ([`#1`](https://github.com/wibus-wee/PhotosProcessor/issues/1))**
-- [x] Process Queue Support **`🔧 Improving`** | **`🛞 Configurable`**
-- [x] Support for loading external dependencies (avifenc, etc.) **`💣 Improve later?`** | **`🛞 Configurable`**
-- [x] Quickly compression with global hotkey **`🛞 Configurable`**
-- [ ] Support image processing after processing **`🏷️ Planning`** | **`🛞 Configurable`**
-- [ ] Gaussian blur effect when processing ([#6](https://github.com/wibus-wee/PhotosProcessor/issues/6)) **`🏷️ Planning`**
-
-### Others
-
-- [ ] Refactor UI **`🏷️ Planning. After the core features are completed`**
-  - [ ] Standlone *Welcome page*
-  - [x] Standlone *Settings Page*
-- [ ] Multiple languages (i18n) **`🥷 May implemented in the future`**
-
-### May NOT be implemented features
-
-> This part of the content may be very complex, and the performance after implementation may not be excellent.
-
-- [ ] Curves (RGB/CMYK)
-- [ ] Automatic Adjustment
-- [ ] ~~Fork all features of **CleanShot X & Shottr**~~ (It will be implemented as a new project: **`Shot Max`**)
-<!--  - [ ] Enhance highlight circle function -->
-<!--  - [ ] Brush memory function  -->
-<!--  - [ ] Mosaic enhancement -->
 
 ## References
 
-- [新一.enp1s1 on X](https://twitter.com/_a_wing/status/1700586549065155043). 
-- [Lakr233/ActionBee](https://github.com/Lakr233/ActionBee)
-- [Lakr233/CameraTools](https://github.com/Lakr233/CameraTools)
-- [ISStego](https://github.com/isena/ISStego). We create a Swift implementation of the ISStego algorithm. (Based on [Fork of ISStego by nob3rise](https://github.com/nob3rise/ISStego)) Full credits to the original authors.
+- [_a_wing on X](https://twitter.com/_a_wing/status/1700586549065155043) for original idea
+- [Lakr233/ActionBee](https://github.com/Lakr233/ActionBee) for implementation inspiration
+- [Lakr233/CameraTools](https://github.com/Lakr233/CameraTools) for implementation inspiration
+- [ISStego](https://github.com/isena/ISStego). We create a Swift implementation of the ISStego algorithm. (Based on [Fork of ISStego by `nob3rise`](https://github.com/nob3rise/ISStego))
 
 ## Author
 
