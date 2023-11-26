@@ -6,8 +6,8 @@
 	<p align="center">
 		Beautiful, multi-functional picture processor software
     <br />
-    <!-- <a href="https://cap.so"><strong>cap.so »</strong></a> -->
-    <!-- <br /> -->
+    <a href="#readme"><strong>Project Homepage »</strong></a>
+    <br />
     <br />
     <b>Download for </b>
 		macOS
@@ -40,6 +40,10 @@ I have been using many different tools to compress photos for a long time, but I
 ## Roadmap
 
 You can view the roadmap in [issues with the label `roadmap`](https://github.com/wibus-wee/PhotosProcessor/issues?q=is:issue+is:open+sort:updated-desc+label:roadmap).
+
+## Contributing
+
+> NOTE: Contributions are not yet accepted, because the project is still in the early stages of development and I am not ready to accept contributions. If you have any ideas or suggestions, please feel free to open an issue or pull request. But anyways, thank you for your support and interest in this project ❤️.
 
 ## References
 
