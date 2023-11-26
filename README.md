@@ -18,76 +18,22 @@
 
 <br />
 
-> NOTE: PhotosProcessor is currently in development and not yet ready for production use. You can help us by testing it and reporting issues, or even contributing to the project.
+> NOTE: **PhotosProcessor is currently in development and not yet ready for production use.** If you have any ideas or suggestions, please feel free to open an issue or pull request.
 
-![screen](./Resources/screen.avif)
+PhotosProcessor is a photo processing software that can process photos in batches. It is mainly used to compress photos and modify photo metadata. At the same time, it also supports many other functions, such as stitching photos, adding watermarks, etc.
+
+<div align="center">
 
 [![GitHub release](https://img.shields.io/github/v/release/wibus-wee/PhotosProcessor?color=orange&label=latest%20release&sort=semver&style=flat-square)](https://github.com/wibus-wee/PhotosProcessor/releases/latest)
 [![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/wibus-wee/PhotosProcessor/build.yml?style=flat-square)](https://github.com/wibus-wee/PhotosProcessor/actions/workflows/build.yml)
 [![GitHub Repo stars](https://img.shields.io/github/stars/wibus-wee/PhotosProcessor?style=flat-square)](https://github.com/wibus-wee/PhotosProcessor/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/wibus-wee/PhotosProcessor?style=flat-square)](https://github.com/wibus-wee/PhotosProcessor/forks)
 
-## Roadmap
+</div>
 
-### Core Features
+![screen](./Resources/screen.avif)
 
-> The core features are the most important features of the software, and the software cannot be used without them.
-
-- [x] Image compression **`✅`** | **`🔧 Improving`**
-  - [x] AVIF
-  - [ ] HEIC
-  - [ ] WebP
-  - [ ] JPEG
-  - [ ] PNG
-  - [ ] GIF
-- [x] Modify image metadata **`✅`** | **`🔧 Improving`** ｜ **`🐛 Bug Occurred`**
-  - [ ] Regex support ([#10](https://github.com/wibus-wee/PhotosProcessor/issues/10))
-  - [ ] Clone ([#8](https://github.com/wibus-wee/PhotosProcessor/issues/8))
-- [ ] Image dark watermark support **`⏳ In Progress.`** | **`❓ Need help.`**
-- [ ] GPS location fix **`⏳ In Progress.`** | **`❓ Need help.`**
-- [ ] Menu bar item
-- [ ] Stitching images
-  - [ ] Horizontal
-  - [ ] Vertical
-  - [ ] Grid
-  - [ ] Custom
-- [ ] DAMA
-- [ ] Noise generator
-
-### Performance Features
-
-> Performance features are features that improve the user experience.
-
-- [x] Configuration Support
-- [ ] Supports batch processing one time **`🏷️ Planning`** | **`❓ Need help.`**
-- [x] Shared processing image
-- [x] Drag and drop processing
-- [x] Log Display **`🐛 Bug Occurred` ([`#1`](https://github.com/wibus-wee/PhotosProcessor/issues/1))**
-- [x] Process Queue Support **`🔧 Improving`** | **`🛞 Configurable`**
-- [x] Support for loading external dependencies (avifenc, etc.) **`💣 Improve later?`** | **`🛞 Configurable`**
-- [x] Quickly compression with global hotkey **`🛞 Configurable`**
-- [ ] Support image processing after processing **`🏷️ Planning`** | **`🛞 Configurable`**
-- [ ] Gaussian blur effect when processing ([#6](https://github.com/wibus-wee/PhotosProcessor/issues/6)) **`🏷️ Planning`**
-
-### Others
-
-- [ ] Refactor UI **`🏷️ Planning. After the core features are completed`**
-  - [ ] Standlone *Welcome page*
-  - [x] Standlone *Settings Page*
-- [ ] Multiple languages (i18n) **`🥷 May implemented in the future`**
-
-### May NOT be implemented features
-
-> This part of the content may be very complex, and the performance after implementation may not be excellent.
-
-- [ ] Curves (RGB/CMYK)
-- [ ] Automatic Adjustment
-- [ ] ~~Fork all features of **CleanShot X & Shottr**~~ (It will be implemented as a new project: **`Shot Max`**)
-<!--  - [ ] Enhance highlight circle function -->
-<!--  - [ ] Brush memory function  -->
-<!--  - [ ] Mosaic enhancement -->
-
-## References
+## Credits
 
 - [新一.enp1s1 on X](https://twitter.com/_a_wing/status/1700586549065155043). 
 - [Lakr233/ActionBee](https://github.com/Lakr233/ActionBee)
