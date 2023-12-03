@@ -19,7 +19,7 @@ struct CompressorConfig {
 }
 
 class Compressor {
-    func avifencCommand(imagePath: String, config: CompressorConfig) -> (command: String, arguments: [String])? {
+    func avifencCommand(imagePath: String, config: CompressorConfig) -> (command: String, arguments: [String], processedPath: String)? {
       var avifencPath = ""
       if (configuration.avifencLocationType == "built-in") {
           avifencPath = Bundle.main.path(forResource: "avifenc", ofType: nil)!
@@ -55,10 +55,10 @@ class Compressor {
       arguments.append(imagePath)
       arguments.append(avifImagePath)
       
-      return (avifencPath, arguments)
+      return (avifencPath, arguments, avifImagePath)
     }
 
-    func compress(path: String, name: String, config: CompressorConfig) -> UUID? {
+    func compress(path: String, name: String, config: CompressorConfig) -> (id: UUID, processedPath: String)? {
         let compressCommand = self.avifencCommand(imagePath: path, config: config)
         if compressCommand == nil {
             return nil
@@ -69,6 +69,6 @@ class Compressor {
         if configuration.executeImmediately {
             commandQueue.execute(id: id)
         }
-        return id;
+        return (id, compressCommand!.processedPath)
     }
 }
