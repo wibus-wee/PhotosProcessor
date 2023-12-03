@@ -107,6 +107,12 @@ struct SettingView: View {
                     content: Toggle("Dry Run", isOn: $config.commandqueueDryrun)
                 )
 
+                useSetting(
+                    title: "Use Processed File To Process:",
+                    description: "The app will use the processed file to process.",
+                    content: Toggle("Continue processing", isOn: $config.useProcessedFileToProcess)
+                )
+
                 Divider()
                 
                 useSetting(

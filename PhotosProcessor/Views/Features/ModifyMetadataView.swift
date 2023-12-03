@@ -208,7 +208,9 @@ struct ModifyMetadataView: View {
                             return
                         }
                         let _ = processImage.imageMetadata!.syncImageDate(path: processImage.imageMetadata!.url!.path)
-                        processImage.refresh()
+                        if (configuration.useProcessedFileToProcess) {
+                            processImage.refresh()
+                        }
                     } label: {
                         Label("Sync DateTimeOriginal to CreateDate", systemImage: "arrow.clockwise")
                     }
@@ -260,7 +262,9 @@ struct ModifyMetadataView: View {
                             print("[E] Bug occurred when edit metadata")
                             InternalKit.eazyAlert(title: "Error", message: "Bug occurred when edit metadata")
                         }
-                        processImage.refresh()
+                        if (configuration.useProcessedFileToProcess) {
+                            processImage.refresh()
+                        }
                         // set blur radius to 0 gradually. now + 1s
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                             withAnimation(.easeInOut(duration: 0.5)) {

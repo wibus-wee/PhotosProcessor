@@ -42,6 +42,9 @@ class Configuration: NSObject, ObservableObject {
     @PublishedStorage(key: "\(Constants.appKey).saveAsNewFile", defaultValue: false)
     var saveAsNewFile: Bool // 是否将修改后的文件保存为新文件
 
+    @PublishedStorage(key: "\(Constants.appKey).useProcessedFileToProcess", defaultValue: false)
+    var useProcessedFileToProcess: Bool // 是否使用处理后的文件继续处理
+
     @PublishedStorage(key: "\(Constants.appKey).quicklyprocess.saveDirectory", defaultValue: "")
     var quicklyprocessSaveDirectory: String // 快速处理的保存目录
 

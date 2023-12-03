@@ -27,7 +27,19 @@ class ProcessImage: NSObject, ObservableObject {
             print("[W] Image not inited. Compress failed.")
             return nil
         }
-        let id = compressor.compress(path: path!, name: name!, config: config)
+        // let id = compressor.compress(path: path!, name: name!, config: config)
+        let compress = compressor.compress(path: path!, name: name!, config: config)
+        if (compress == nil) {
+            print("[E] Compress failed.")
+            return nil
+        }
+        let id = compress!.id
+        let processedPath = compress!.processedPath
+        if (configuration.useProcessedFileToProcess) {
+            self.setup(url: URL(fileURLWithPath: processedPath))
+        } else {
+            self.refresh()
+        }
         return id;
     }
     
