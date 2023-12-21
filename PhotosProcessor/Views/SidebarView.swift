@@ -29,6 +29,9 @@ struct SidebarView: View {
                 } label: {
                     Label("Metadata", systemImage: "tag.circle")
                 }
+            }
+            #if DEBUG
+            Section("WIP") {
                 useNavigationLink {
                     WaterMarkView()
                 } label: {
@@ -40,6 +43,7 @@ struct SidebarView: View {
                     Label("GPS Location", systemImage: "location.circle")
                 }
             }
+            #endif
         }
         .listStyle(SidebarListStyle())
     }
