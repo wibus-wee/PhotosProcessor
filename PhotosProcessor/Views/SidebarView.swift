@@ -44,6 +44,31 @@ struct SidebarView: View {
                 }
             }
             #endif
+            #if DEBUG
+            Section("Planing") {
+                // Stitching images
+                useNavigationLink {
+                    // ImageStitchingView()
+                    WelcomeView()
+                } label: {
+                    Label("Stitching", systemImage: "slider.horizontal.below.square.and.square.filled")
+                }
+                // DAMA
+                useNavigationLink {
+                    // DAMAView()
+                    WelcomeView()
+                } label: {
+                    Label("DAMA", systemImage: "bandage")
+                }
+                // Noise generator
+                useNavigationLink {
+                    // NoiseGeneratorView()
+                    WelcomeView()
+                } label: {
+                    Label("Noise Generator", systemImage: "paintbrush")
+                }
+            }
+            #endif
         }
         .listStyle(SidebarListStyle())
     }
