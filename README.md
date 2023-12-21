@@ -59,7 +59,8 @@ You can view the roadmap in [issues with the label `roadmap`](https://github.com
 - [_a_wing on X](https://twitter.com/_a_wing/status/1700586549065155043) for original idea
 - [Lakr233/ActionBee](https://github.com/Lakr233/ActionBee) for implementation inspiration
 - [Lakr233/CameraTools](https://github.com/Lakr233/CameraTools) for implementation inspiration
-- [ISStego](https://github.com/isena/ISStego). We create a Swift implementation of the ISStego algorithm. (Based on [Fork of ISStego by `nob3rise`](https://github.com/nob3rise/ISStego))
+- [isena/ISStego](https://github.com/isena/ISStego). We create a Swift implementation of the ISStego algorithm. (Based on [Fork of ISStego by `nob3rise`](https://github.com/nob3rise/ISStego))
+- [ZiPic](https://zipic.5km.tech) for *Compress Image* implementation inspiration
 
 ## Author
 
