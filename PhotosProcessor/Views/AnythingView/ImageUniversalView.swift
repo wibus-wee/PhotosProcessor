@@ -94,7 +94,7 @@ struct ImageUniversalView: View {
                     .font(.caption)
                     .foregroundColor(.gray)
                 if let metadata = processImage.imageMetadata {
-                    if let profileName = metadata.getMetadata(key: kCGImagePropertyExifColorSpace) as? String {
+                    if let profileName = metadata.getMetadata(key: kCGImagePropertyProfileName) as? String {
                         Text("Color Profile: \(profileName)")
                             .font(.caption)
                             .foregroundColor(.gray)
