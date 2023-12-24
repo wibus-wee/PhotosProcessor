@@ -45,10 +45,7 @@ struct WaterMarkView: View {
                                 } else {
                                     if let image = image {
                                         processImage.image = image
-                                        InternalKit.eazyAlert(
-                                            title: "Encode Watermark",
-                                            message: "Watermark has been added to the image"
-                                        )
+                                        processImage.saveAs()
                                     }
                                 }
                             }
@@ -63,7 +60,7 @@ struct WaterMarkView: View {
                     Button {
                         if processImage.image != nil {
                             let lsbWatermark = LSBWatermark()
-                            let data = lsbWatermark.decode(from: processImage.image!) { (data, error) in
+                            lsbWatermark.decode(from: processImage.image!) { (data, error) in
                                 if let error = error {
                                     print(error)
                                 } else {
