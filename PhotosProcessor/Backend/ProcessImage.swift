@@ -113,4 +113,30 @@ class ProcessImage: NSObject, ObservableObject {
         print("[I] Refreshed image: \(self.url!)")
         self.setup(url: self.url!)
     }
+
+    func saveAs() {
+        if !self.inited {
+            print("[W] Image not inited. SaveAs failed.")
+            return
+        }
+        InternalKit.saveFilePanel(title: "Save Image", message: "Save the image file", action: { url in
+            if url == nil {
+                print("[E] No image selected")
+                return
+            }
+            let cgImage = self.image?.cgImage(forProposedRect: nil, context: nil, hints: nil)
+            if cgImage == nil {
+                print("[E] Failed to get cgImage")
+                return
+            }
+            let bitmapRep = NSBitmapImageRep(cgImage: cgImage!)
+            let data = bitmapRep.representation(using: .png, properties: [:])
+            do {
+                try data?.write(to: url!)
+            } catch {
+                print("[E] Failed to write image to file: \(error)")
+                return
+            }
+        })
+    }
 }
