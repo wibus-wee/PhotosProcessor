@@ -13,7 +13,13 @@ func getSelectedFileInFinder() -> (path: String, name: String)? {
     if NSWorkspace.shared.frontmostApplication?.bundleIdentifier != "com.apple.finder" {
         return nil
     }
-    let script = NSAppleScript(source: "tell application \"Finder\"\nset theFiles to selection\nset theFile to item 1 of theFiles as alias\nset theFile to POSIX path of theFile\nend tell")
+    let script = NSAppleScript(source: """
+        tell application "Finder"
+            set theFiles to selection
+            set theFile to item 1 of theFiles as alias
+            set theFile to POSIX path of theFile
+        end tell
+        """)
     var error: NSDictionary?
     let output: NSAppleEventDescriptor = script!.executeAndReturnError(&error)
     if (error != nil) {
