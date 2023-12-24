@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		380769702AC055F90066C7FE /* ImageUniversalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3807696F2AC055F90066C7FE /* ImageUniversalView.swift */; };
 		380769722AC482A50066C7FE /* AnyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380769712AC482A50066C7FE /* AnyDataView.swift */; };
+		386C09E32B3858EF0060FDA5 /* ISStegoDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 386C09D62B3858EF0060FDA5 /* ISStegoDecoder.m */; };
+		386C09E42B3858EF0060FDA5 /* ISSteganographer.m in Sources */ = {isa = PBXBuildFile; fileRef = 386C09D82B3858EF0060FDA5 /* ISSteganographer.m */; };
+		386C09E52B3858EF0060FDA5 /* ISStegoDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 386C09DA2B3858EF0060FDA5 /* ISStegoDefaults.m */; };
+		386C09E62B3858EF0060FDA5 /* ISPixelUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 386C09DD2B3858EF0060FDA5 /* ISPixelUtilities.m */; };
+		386C09E72B3858EF0060FDA5 /* ISStegoUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 386C09DF2B3858EF0060FDA5 /* ISStegoUtilities.m */; };
+		386C09E82B3858EF0060FDA5 /* ISStegoEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 386C09E12B3858EF0060FDA5 /* ISStegoEncoder.m */; };
 		3874B1EA2AC6AAEE00790925 /* NSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874B1E92AC6AAEE00790925 /* NSTextView.swift */; };
 		3874B1EC2AC6B14F00790925 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874B1EB2AC6B14F00790925 /* View.swift */; };
 		3874B1EF2AC6B1CD00790925 /* Colorful in Frameworks */ = {isa = PBXBuildFile; productRef = 3874B1EE2AC6B1CD00790925 /* Colorful */; };
@@ -25,9 +31,6 @@
 		38861CF22AADCC4B005DD3B4 /* InternalKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38861CF12AADCC4B005DD3B4 /* InternalKit.swift */; };
 		38861CF42AADD1E7005DD3B4 /* ImageMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38861CF32AADD1E7005DD3B4 /* ImageMetadata.swift */; };
 		388CBC3D2AC7D06F0095D447 /* ProcessImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388CBC3C2AC7D06F0095D447 /* ProcessImage.swift */; };
-		38AEC5692AD5A5AF002F6C63 /* Utlities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AEC5682AD5A5AF002F6C63 /* Utlities.swift */; };
-		38AEC56B2AD5A5BB002F6C63 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AEC56A2AD5A5BB002F6C63 /* Decoder.swift */; };
-		38AEC56D2AD5A5C1002F6C63 /* Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AEC56C2AD5A5C1002F6C63 /* Encoder.swift */; };
 		38AEC5702AD5A5DA002F6C63 /* LSBWatermark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AEC56F2AD5A5DA002F6C63 /* LSBWatermark.swift */; };
 		38AEC5722AD5A5FD002F6C63 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AEC5712AD5A5FD002F6C63 /* String.swift */; };
 		38DC56292ABFC0E100DC6408 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DC56282ABFC0E100DC6408 /* Configuration.swift */; };
@@ -52,6 +55,19 @@
 /* Begin PBXFileReference section */
 		3807696F2AC055F90066C7FE /* ImageUniversalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUniversalView.swift; sourceTree = "<group>"; };
 		380769712AC482A50066C7FE /* AnyDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyDataView.swift; sourceTree = "<group>"; };
+		386C09D62B3858EF0060FDA5 /* ISStegoDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISStegoDecoder.m; sourceTree = "<group>"; };
+		386C09D72B3858EF0060FDA5 /* ISStegoEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISStegoEncoder.h; sourceTree = "<group>"; };
+		386C09D82B3858EF0060FDA5 /* ISSteganographer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISSteganographer.m; sourceTree = "<group>"; };
+		386C09DA2B3858EF0060FDA5 /* ISStegoDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISStegoDefaults.m; sourceTree = "<group>"; };
+		386C09DB2B3858EF0060FDA5 /* ISPixelUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISPixelUtilities.h; sourceTree = "<group>"; };
+		386C09DC2B3858EF0060FDA5 /* ISStegoUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISStegoUtilities.h; sourceTree = "<group>"; };
+		386C09DD2B3858EF0060FDA5 /* ISPixelUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISPixelUtilities.m; sourceTree = "<group>"; };
+		386C09DE2B3858EF0060FDA5 /* ISStegoDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISStegoDefaults.h; sourceTree = "<group>"; };
+		386C09DF2B3858EF0060FDA5 /* ISStegoUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISStegoUtilities.m; sourceTree = "<group>"; };
+		386C09E02B3858EF0060FDA5 /* ISStegoDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISStegoDecoder.h; sourceTree = "<group>"; };
+		386C09E12B3858EF0060FDA5 /* ISStegoEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISStegoEncoder.m; sourceTree = "<group>"; };
+		386C09E22B3858EF0060FDA5 /* ISSteganographer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISSteganographer.h; sourceTree = "<group>"; };
+		386C09E92B38597A0060FDA5 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		3874B1E92AC6AAEE00790925 /* NSTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTextView.swift; sourceTree = "<group>"; };
 		3874B1EB2AC6B14F00790925 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		3874B1F22AC6B33900790925 /* screen.avif */ = {isa = PBXFileReference; lastKnownFileType = file; path = screen.avif; sourceTree = "<group>"; };
@@ -69,9 +85,6 @@
 		38861CF12AADCC4B005DD3B4 /* InternalKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalKit.swift; sourceTree = "<group>"; };
 		38861CF32AADD1E7005DD3B4 /* ImageMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMetadata.swift; sourceTree = "<group>"; };
 		388CBC3C2AC7D06F0095D447 /* ProcessImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessImage.swift; sourceTree = "<group>"; };
-		38AEC5682AD5A5AF002F6C63 /* Utlities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utlities.swift; sourceTree = "<group>"; };
-		38AEC56A2AD5A5BB002F6C63 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
-		38AEC56C2AD5A5C1002F6C63 /* Encoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encoder.swift; sourceTree = "<group>"; };
 		38AEC56F2AD5A5DA002F6C63 /* LSBWatermark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSBWatermark.swift; sourceTree = "<group>"; };
 		38AEC5712AD5A5FD002F6C63 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		38DC56282ABFC0E100DC6408 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
@@ -108,6 +121,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		386C09D52B3858EF0060FDA5 /* ISStego */ = {
+			isa = PBXGroup;
+			children = (
+				386C09D92B3858EF0060FDA5 /* Utilities */,
+				386C09E02B3858EF0060FDA5 /* ISStegoDecoder.h */,
+				386C09D62B3858EF0060FDA5 /* ISStegoDecoder.m */,
+				386C09D72B3858EF0060FDA5 /* ISStegoEncoder.h */,
+				386C09E12B3858EF0060FDA5 /* ISStegoEncoder.m */,
+				386C09E22B3858EF0060FDA5 /* ISSteganographer.h */,
+				386C09D82B3858EF0060FDA5 /* ISSteganographer.m */,
+			);
+			path = ISStego;
+			sourceTree = "<group>";
+		};
+		386C09D92B3858EF0060FDA5 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				386C09DA2B3858EF0060FDA5 /* ISStegoDefaults.m */,
+				386C09DB2B3858EF0060FDA5 /* ISPixelUtilities.h */,
+				386C09DC2B3858EF0060FDA5 /* ISStegoUtilities.h */,
+				386C09DD2B3858EF0060FDA5 /* ISPixelUtilities.m */,
+				386C09DE2B3858EF0060FDA5 /* ISStegoDefaults.h */,
+				386C09DF2B3858EF0060FDA5 /* ISStegoUtilities.m */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		3874B1F12AC6B32600790925 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +195,7 @@
 				38F8931F2AAD544D008414D9 /* PhotosProcessorApp.swift */,
 				38F893332AAD5701008414D9 /* Constants.swift */,
 				3874B1FB2AC6C62100790925 /* AppState.swift */,
+				386C09E92B38597A0060FDA5 /* Bridging-Header.h */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -196,9 +237,7 @@
 		38AEC56E2AD5A5C8002F6C63 /* LSB */ = {
 			isa = PBXGroup;
 			children = (
-				38AEC5682AD5A5AF002F6C63 /* Utlities.swift */,
-				38AEC56A2AD5A5BB002F6C63 /* Decoder.swift */,
-				38AEC56C2AD5A5C1002F6C63 /* Encoder.swift */,
+				386C09D52B3858EF0060FDA5 /* ISStego */,
 				38AEC56F2AD5A5DA002F6C63 /* LSBWatermark.swift */,
 			);
 			path = LSB;
@@ -355,14 +394,18 @@
 				388CBC3D2AC7D06F0095D447 /* ProcessImage.swift in Sources */,
 				38AEC5702AD5A5DA002F6C63 /* LSBWatermark.swift in Sources */,
 				3874B1FC2AC6C62100790925 /* AppState.swift in Sources */,
+				386C09E82B3858EF0060FDA5 /* ISStegoEncoder.m in Sources */,
+				386C09E52B3858EF0060FDA5 /* ISStegoDefaults.m in Sources */,
 				387B9D8B2AB6C46E002777DA /* CommandQueue.swift in Sources */,
 				3874B1F92AC6BB3C00790925 /* SelectedFile.swift in Sources */,
 				38861CEE2AAD679A005DD3B4 /* ListColorProfiles.swift in Sources */,
-				38AEC56D2AD5A5C1002F6C63 /* Encoder.swift in Sources */,
 				38DC56302ABFC48100DC6408 /* SettingView.swift in Sources */,
 				38F63CA72AAE130C003D7156 /* Compressor.swift in Sources */,
 				38F893222AAD544D008414D9 /* ContentView.swift in Sources */,
 				38F893302AAD5476008414D9 /* CompressImageView.swift in Sources */,
+				386C09E42B3858EF0060FDA5 /* ISSteganographer.m in Sources */,
+				386C09E72B3858EF0060FDA5 /* ISStegoUtilities.m in Sources */,
+				386C09E62B3858EF0060FDA5 /* ISPixelUtilities.m in Sources */,
 				38AEC5722AD5A5FD002F6C63 /* String.swift in Sources */,
 				3874B1EC2AC6B14F00790925 /* View.swift in Sources */,
 				380769702AC055F90066C7FE /* ImageUniversalView.swift in Sources */,
@@ -373,16 +416,15 @@
 				38861CF22AADCC4B005DD3B4 /* InternalKit.swift in Sources */,
 				3874B2002AC6E64000790925 /* ImageGPSLocationView.swift in Sources */,
 				38F893322AAD54A5008414D9 /* ModifyMetadataView.swift in Sources */,
-				38AEC56B2AD5A5BB002F6C63 /* Decoder.swift in Sources */,
 				38861CF42AADD1E7005DD3B4 /* ImageMetadata.swift in Sources */,
 				387B9D852AB60FAB002777DA /* Executor.swift in Sources */,
 				38DC56342AC012FE00DC6408 /* WaterMarkView.swift in Sources */,
-				38AEC5692AD5A5AF002F6C63 /* Utlities.swift in Sources */,
 				38F893362AAD5723008414D9 /* SidebarView.swift in Sources */,
 				38F893382AAD5750008414D9 /* WelcomeView.swift in Sources */,
 				387B9D8F2AB6FE6A002777DA /* SendNotification.swift in Sources */,
 				3874B1EA2AC6AAEE00790925 /* NSTextView.swift in Sources */,
 				387B9D872AB610DF002777DA /* LogView.swift in Sources */,
+				386C09E32B3858EF0060FDA5 /* ISStegoDecoder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +584,7 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "PhotosProcessor/App/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -584,6 +627,7 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "PhotosProcessor/App/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

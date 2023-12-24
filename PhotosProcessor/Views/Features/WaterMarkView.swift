@@ -38,15 +38,21 @@ struct WaterMarkView: View {
                 ToolbarItem {
                     Button {
                         if processImage.image != nil {
-                            watermark.encode(processImage.image!, text: watermarkText) { (image, error) in
+                            let lsbWatermark = LSBWatermark()
+                            lsbWatermark.encode(data: watermarkText, image: processImage.image!) { (image, error) in
                                 if let error = error {
                                     print(error)
                                 } else {
                                     if let image = image {
-                                        processImage.image = NSImage(cgImage: image, size: NSSize(width: image.width, height: image.height))
+                                        processImage.image = image
+                                        InternalKit.eazyAlert(
+                                            title: "Encode Watermark",
+                                            message: "Watermark has been added to the image"
+                                        )
                                     }
                                 }
                             }
+                            
                         }
                     } label: {
                         Label("Save Image", systemImage: "square.and.arrow.down")
@@ -56,7 +62,20 @@ struct WaterMarkView: View {
                 ToolbarItem {
                     Button {
                         if processImage.image != nil {
-                            watermark.decode(processImage.image!)
+                            let lsbWatermark = LSBWatermark()
+                            let data = lsbWatermark.decode(from: processImage.image!) { (data, error) in
+                                if let error = error {
+                                    print(error)
+                                } else {
+                                    if let data = data {
+                                        let string = String(data: data, encoding: .utf8)
+                                        InternalKit.eazyAlert(
+                                            title: "Decode Watermark",
+                                            message: string ?? "No Watermark"
+                                        )
+                                    }
+                                }
+                            }
                         }
                     } label: {
                         Label("Visible Watermark", systemImage: "eye")

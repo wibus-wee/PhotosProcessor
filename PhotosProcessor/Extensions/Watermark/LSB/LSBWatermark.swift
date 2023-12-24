@@ -7,31 +7,42 @@
 
 import Foundation
 import CoreGraphics
+import SwiftUI
 
 class LSBWatermark {
-    func encode(data: String, image: CGImage, completionBlock: @escaping (CGImage?, Error?) -> Void) {
-        DispatchQueue.global(qos: .background).async {
-            autoreleasepool {
-                let encoder = LSBEncoder()
-                var processedImage: CGImage?
-                do {
-                    processedImage = try (encoder.stegoImage(for: image, data: data) as! CGImage)
-                } catch {
-                    print(error)
-                }
-                completionBlock(processedImage, nil)
-            }
-        }
+    func encode(data: String, image: NSImage, completionBlock: @escaping (NSImage?, Error?) -> Void) {
+        // DispatchQueue.global(qos: .background).async {
+            // autoreleasepool {
+                // Transform image to NSImage
+                // let nsImage = NSImage(cgImage: image, size: NSSize(width: image.width, height: image.height))
+                ISSteganographer.hideData(data, withImage: image) { hiddenImage, error in 
+                        if let error = error {
+                            print("[E] LSBWatermark.encode: \(error)")
+                        }
+                        if let hiddenImage = hiddenImage as? NSImage {
+                            DispatchQueue.main.async {
+                                completionBlock(hiddenImage, nil)
+                            }
+                        }
+                  }
+            // }
+        // }
     }
 
-    func decode(from image: CGImage, completionBlock: @escaping (Data?, Error?) -> Void) {
-        DispatchQueue.global(qos: .background).async {
-            autoreleasepool {
-                let decoder = LSBDecoder()
-                var data: Data?
-                data = decoder.decodeStegoImage(image: image)
-                completionBlock(data, nil)
-            }
-        }
+    func decode(from image: NSImage, completionBlock: @escaping (Data?, Error?) -> Void) {
+        // DispatchQueue.global(qos: .background).async {
+            // autoreleasepool {
+                // let nsImage = NSImage(cgImage: image, size: NSSize(width: image.width, height: image.height))
+                ISSteganographer.data(fromImage: image) { data, error in
+                        if let error = error {
+                            print("[E] LSBWatermark.decode: \(error)")
+                        } else if let data = data, let hiddenData = String(data: data, encoding: .utf8) {
+                            DispatchQueue.main.async {
+                                completionBlock(data, nil)
+                            }
+                        }
+                    }
+            // }
+        // }
     }
 }

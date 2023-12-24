@@ -18,8 +18,8 @@ class Watermark {
 
     func decode(_ image: NSImage) -> Void {
         // Change to CGImage
-        let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil)
-        impl.decode(from: cgImage!) { (data, error) in
+        // let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil)
+        impl.decode(from: image) { (data, error) in
             if let error = error {
                 print(error)
             } else {
@@ -31,22 +31,9 @@ class Watermark {
         }
     }
 
-    func encode(_ image: NSImage, text: String) -> Void {
-        let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil)
-        impl.encode(data: text, image: cgImage!) { (image, error) in
-            if let error = error {
-                print(error)
-            } else {
-                if let image = image {
-                    
-                }
-            }
-        }
-    }
-
-    func encode(_ image: NSImage, text: String, completionBlock: @escaping (CGImage?, Error?) -> Void) -> Void {
-        let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil)
-        impl.encode(data: text, image: cgImage!) { (image, error) in
+    func encode(_ image: NSImage, text: String, completionBlock: @escaping (NSImage?, Error?) -> Void) -> Void {
+        // let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil)
+        impl.encode(data: text, image: image) { (image, error) in
             if let error = error {
                 print(error)
             } else {
