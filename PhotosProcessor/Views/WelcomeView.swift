@@ -5,9 +5,8 @@
 //  Created by wibus on 2023/9/10.
 //
 
-
-import SwiftUI
 import Colorful
+import SwiftUI
 
 struct WelcomeView: View {
     // let timer = Timer
@@ -28,8 +27,8 @@ struct WelcomeView: View {
 
     var body: some View {
         ZStack {
-             ColorfulView(colorCount: 4)
-                    .ignoresSafeArea()
+            ColorfulView(colorCount: 4)
+                .ignoresSafeArea()
             VStack(spacing: 4) {
                 Image("Avatar")
                     .antialiased(true)
@@ -53,11 +52,9 @@ struct WelcomeView: View {
                     .opacity(0.5)
             }
             .padding()
-
         }
         .toolbar {
-            Group {
-            }
+            Group {}
         }
         .frame(minWidth: 400, minHeight: 200)
         .navigationTitle("PhotosProcessor")

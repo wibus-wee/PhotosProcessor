@@ -5,8 +5,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Lakr233/Colorful",
       "state" : {
-        "revision" : "0bcf960c856d9f7cde10a0b464208585736c5e47",
-        "version" : "1.1.0"
+        "branch" : "main",
+        "revision" : "da58c0721998f258d3cdd76a16beb2ab54aae7b6"
+      }
+    },
+    {
+      "identity" : "colorfulx",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Lakr233/ColorfulX.git",
+      "state" : {
+        "revision" : "11aae9e92a2f846ed26d275d0d3d6fad85d16837",
+        "version" : "2.3.1"
       }
     },
     {
@@ -25,6 +34,15 @@
       "state" : {
         "branch" : "main",
         "revision" : "8e28b5e5a9561ace33a26c55d78f74963fbce6f9"
+      }
+    },
+    {
+      "identity" : "springinterpolation",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Lakr233/SpringInterpolation.git",
+      "state" : {
+        "revision" : "be8721cffc87ec514fa13ba5dab586a2730f51c9",
+        "version" : "1.1.2"
       }
     }
   ],

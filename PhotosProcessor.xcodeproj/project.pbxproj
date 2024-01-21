@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		380769702AC055F90066C7FE /* ImageUniversalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3807696F2AC055F90066C7FE /* ImageUniversalView.swift */; };
 		380769722AC482A50066C7FE /* AnyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380769712AC482A50066C7FE /* AnyDataView.swift */; };
+		38697DE62B5CC79700BE4A3E /* ColorfulX in Frameworks */ = {isa = PBXBuildFile; productRef = 38697DE52B5CC79700BE4A3E /* ColorfulX */; };
+		38697DE92B5CCB3600BE4A3E /* Colorful in Frameworks */ = {isa = PBXBuildFile; productRef = 38697DE82B5CCB3600BE4A3E /* Colorful */; };
 		386C09E32B3858EF0060FDA5 /* ISStegoDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 386C09D62B3858EF0060FDA5 /* ISStegoDecoder.m */; };
 		386C09E42B3858EF0060FDA5 /* ISSteganographer.m in Sources */ = {isa = PBXBuildFile; fileRef = 386C09D82B3858EF0060FDA5 /* ISSteganographer.m */; };
 		386C09E52B3858EF0060FDA5 /* ISStegoDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 386C09DA2B3858EF0060FDA5 /* ISStegoDefaults.m */; };
@@ -17,7 +19,6 @@
 		386C09E82B3858EF0060FDA5 /* ISStegoEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 386C09E12B3858EF0060FDA5 /* ISStegoEncoder.m */; };
 		3874B1EA2AC6AAEE00790925 /* NSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874B1E92AC6AAEE00790925 /* NSTextView.swift */; };
 		3874B1EC2AC6B14F00790925 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874B1EB2AC6B14F00790925 /* View.swift */; };
-		3874B1EF2AC6B1CD00790925 /* Colorful in Frameworks */ = {isa = PBXBuildFile; productRef = 3874B1EE2AC6B1CD00790925 /* Colorful */; };
 		3874B1F52AC6B4DC00790925 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 3874B1F42AC6B4DC00790925 /* KeyboardShortcuts */; };
 		3874B1F72AC6B50000790925 /* KeyboardShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874B1F62AC6B50000790925 /* KeyboardShortcuts.swift */; };
 		3874B1F92AC6BB3C00790925 /* SelectedFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874B1F82AC6BB3C00790925 /* SelectedFile.swift */; };
@@ -112,9 +113,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3874B1EF2AC6B1CD00790925 /* Colorful in Frameworks */,
 				38DC562C2ABFC15C00DC6408 /* LaunchAtLogin in Frameworks */,
 				3874B1F52AC6B4DC00790925 /* KeyboardShortcuts in Frameworks */,
+				38697DE92B5CCB3600BE4A3E /* Colorful in Frameworks */,
+				38697DE62B5CC79700BE4A3E /* ColorfulX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,8 +327,9 @@
 			name = PhotosProcessor;
 			packageProductDependencies = (
 				38DC562B2ABFC15C00DC6408 /* LaunchAtLogin */,
-				3874B1EE2AC6B1CD00790925 /* Colorful */,
 				3874B1F42AC6B4DC00790925 /* KeyboardShortcuts */,
+				38697DE52B5CC79700BE4A3E /* ColorfulX */,
+				38697DE82B5CCB3600BE4A3E /* Colorful */,
 			);
 			productName = PhotosProcessor;
 			productReference = 38F8931C2AAD544D008414D9 /* PhotosProcessor.app */;
@@ -358,8 +361,9 @@
 			mainGroup = 38F893132AAD544D008414D9;
 			packageReferences = (
 				38DC562A2ABFC15C00DC6408 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
-				3874B1ED2AC6B1CD00790925 /* XCRemoteSwiftPackageReference "Colorful" */,
 				3874B1F32AC6B4DC00790925 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
+				38697DE42B5CC79700BE4A3E /* XCRemoteSwiftPackageReference "ColorfulX" */,
+				38697DE72B5CCB3600BE4A3E /* XCRemoteSwiftPackageReference "Colorful" */,
 			);
 			productRefGroup = 38F8931D2AAD544D008414D9 /* Products */;
 			projectDirPath = "";
@@ -582,11 +586,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.wibus-wee.PhotosProcessor";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "PhotosProcessor/App/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -625,11 +630,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.wibus-wee.PhotosProcessor";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "PhotosProcessor/App/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -657,12 +663,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3874B1ED2AC6B1CD00790925 /* XCRemoteSwiftPackageReference "Colorful" */ = {
+		38697DE42B5CC79700BE4A3E /* XCRemoteSwiftPackageReference "ColorfulX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Lakr233/ColorfulX.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		38697DE72B5CCB3600BE4A3E /* XCRemoteSwiftPackageReference "Colorful" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Lakr233/Colorful";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 		3874B1F32AC6B4DC00790925 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
@@ -684,9 +698,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3874B1EE2AC6B1CD00790925 /* Colorful */ = {
+		38697DE52B5CC79700BE4A3E /* ColorfulX */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3874B1ED2AC6B1CD00790925 /* XCRemoteSwiftPackageReference "Colorful" */;
+			package = 38697DE42B5CC79700BE4A3E /* XCRemoteSwiftPackageReference "ColorfulX" */;
+			productName = ColorfulX;
+		};
+		38697DE82B5CCB3600BE4A3E /* Colorful */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38697DE72B5CCB3600BE4A3E /* XCRemoteSwiftPackageReference "Colorful" */;
 			productName = Colorful;
 		};
 		3874B1F42AC6B4DC00790925 /* KeyboardShortcuts */ = {
