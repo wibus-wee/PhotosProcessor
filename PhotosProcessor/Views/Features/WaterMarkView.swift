@@ -12,7 +12,7 @@ struct WaterMarkView: View {
     @State private var watermarkText: String = ""
     @State private var watermarkFontSize: String = ""
     
-    let watermark = Watermark()
+    private var watermark = Watermark()
     
     var body: some View {
         ZStack {
@@ -38,8 +38,8 @@ struct WaterMarkView: View {
                 ToolbarItem {
                     Button {
                         if processImage.image != nil {
-                            let lsbWatermark = LSBWatermark()
-                            lsbWatermark.encode(data: watermarkText, image: processImage.image!) { (image, error) in
+                            let lightWatermark = LightWatermark()
+                            lightWatermark.encode(data: watermarkText, image: processImage.image!) { (image, error) in
                                 if let error = error {
                                     print(error)
                                 } else {
@@ -59,8 +59,8 @@ struct WaterMarkView: View {
                 ToolbarItem {
                     Button {
                         if processImage.image != nil {
-                            let lsbWatermark = LSBWatermark()
-                            lsbWatermark.decode(from: processImage.image!) { (data, error) in
+                            let lightWatermark = LightWatermark()
+                            watermark.decode(processImage.image!) { (data, error) in
                                 if let error = error {
                                     print(error)
                                 } else {
@@ -90,6 +90,20 @@ struct WaterMarkView: View {
     var rightColumn: some View {
         VStack(alignment: .leading) {
             VStack(alignment: .leading) {
+                Button {
+                    watermark.setWatermarkType(.LSB)
+                } label: {
+                    Text("LSB Watermark")
+                        .font(.headline)
+                        .foregroundColor(.gray)
+                }
+                Button {
+                    watermark.setWatermarkType(.Light)
+                } label: {
+                    Text("Light Watermark")
+                        .font(.headline)
+                        .foregroundColor(.gray)
+                }
                 Text("Watermark Text")
                     .font(.headline)
                     .foregroundColor(.gray)

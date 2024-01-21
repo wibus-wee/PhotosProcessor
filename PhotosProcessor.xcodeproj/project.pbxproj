@@ -11,6 +11,7 @@
 		380769722AC482A50066C7FE /* AnyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380769712AC482A50066C7FE /* AnyDataView.swift */; };
 		38697DE62B5CC79700BE4A3E /* ColorfulX in Frameworks */ = {isa = PBXBuildFile; productRef = 38697DE52B5CC79700BE4A3E /* ColorfulX */; };
 		38697DE92B5CCB3600BE4A3E /* Colorful in Frameworks */ = {isa = PBXBuildFile; productRef = 38697DE82B5CCB3600BE4A3E /* Colorful */; };
+		38697DED2B5CCCED00BE4A3E /* LightWatermark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38697DEB2B5CCCED00BE4A3E /* LightWatermark.swift */; };
 		386C09E32B3858EF0060FDA5 /* ISStegoDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 386C09D62B3858EF0060FDA5 /* ISStegoDecoder.m */; };
 		386C09E42B3858EF0060FDA5 /* ISSteganographer.m in Sources */ = {isa = PBXBuildFile; fileRef = 386C09D82B3858EF0060FDA5 /* ISSteganographer.m */; };
 		386C09E52B3858EF0060FDA5 /* ISStegoDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 386C09DA2B3858EF0060FDA5 /* ISStegoDefaults.m */; };
@@ -56,6 +57,7 @@
 /* Begin PBXFileReference section */
 		3807696F2AC055F90066C7FE /* ImageUniversalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUniversalView.swift; sourceTree = "<group>"; };
 		380769712AC482A50066C7FE /* AnyDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyDataView.swift; sourceTree = "<group>"; };
+		38697DEB2B5CCCED00BE4A3E /* LightWatermark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightWatermark.swift; sourceTree = "<group>"; };
 		386C09D62B3858EF0060FDA5 /* ISStegoDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISStegoDecoder.m; sourceTree = "<group>"; };
 		386C09D72B3858EF0060FDA5 /* ISStegoEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISStegoEncoder.h; sourceTree = "<group>"; };
 		386C09D82B3858EF0060FDA5 /* ISSteganographer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISSteganographer.m; sourceTree = "<group>"; };
@@ -123,6 +125,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		38697DEA2B5CCCED00BE4A3E /* LightWater */ = {
+			isa = PBXGroup;
+			children = (
+				38697DEB2B5CCCED00BE4A3E /* LightWatermark.swift */,
+			);
+			path = LightWater;
+			sourceTree = "<group>";
+		};
 		386C09D52B3858EF0060FDA5 /* ISStego */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +240,7 @@
 		38AEC5672AD5A58F002F6C63 /* Watermark */ = {
 			isa = PBXGroup;
 			children = (
+				38697DEA2B5CCCED00BE4A3E /* LightWater */,
 				38AEC56E2AD5A5C8002F6C63 /* LSB */,
 				38DC56312ABFF35700DC6408 /* Watermark.swift */,
 			);
@@ -413,6 +424,7 @@
 				38AEC5722AD5A5FD002F6C63 /* String.swift in Sources */,
 				3874B1EC2AC6B14F00790925 /* View.swift in Sources */,
 				380769702AC055F90066C7FE /* ImageUniversalView.swift in Sources */,
+				38697DED2B5CCCED00BE4A3E /* LightWatermark.swift in Sources */,
 				38DC56322ABFF35700DC6408 /* Watermark.swift in Sources */,
 				38DC56292ABFC0E100DC6408 /* Configuration.swift in Sources */,
 				38DC562E2ABFC2C400DC6408 /* PublishedStorage.swift in Sources */,

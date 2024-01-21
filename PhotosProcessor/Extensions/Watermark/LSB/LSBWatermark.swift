@@ -6,10 +6,9 @@
 //
 
 import Foundation
-import CoreGraphics
 import SwiftUI
 
-class LSBWatermark {
+class LSBWatermark: WatermarkProtocol {
     func encode(data: String, image: NSImage, completionBlock: @escaping (NSImage?, Error?) -> Void) {
         // DispatchQueue.global(qos: .background).async {
             // autoreleasepool {
