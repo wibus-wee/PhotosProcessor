@@ -43,8 +43,6 @@ struct SidebarView: View {
                     Label("GPS Location", systemImage: "location.circle")
                 }
             }
-            #endif
-            #if DEBUG
             Section("Planing") {
                 // Stitching images
                 useNavigationLink {
